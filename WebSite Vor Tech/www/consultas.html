@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VorTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/template.css" />
+    <script src="scripts/funções.js"></script>  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+</head>
+<body   >
+    <header id="header">
+        <div id="h1">
+            <!-- Icon do IPS -->
+            <a href="#"> <img src="images/ips.png" width="150px" height="90px"></a>
+        </div>
+        <div id="h2">
+            <!-- Título -->
+         Consultas
+        </div>
+        <div id="h3">
+           <!-- Lado direito do topo -->
+           <a href="registar.html" class="button1">Registar</a>
+           <a href="login.html" class="button1">Login</a> 
+           
+        </div>
+    
+    </header>
+    <nav id="menu">
+        <!-- Menu de Navegação -->
+        <ul class="menuul">
+            <a href="home.html" class="style"><li class="menuli">Home</li></a>
+            <a href="requisitarSala.html" class="style"><li class="menuli">Requisitar Salas</li></a>
+            <a href="requisitarMaterial.html" class="style"><li class="menuli">Requisitar Materiais</li></a>
+            <a href="registareventos.html" class="style"><li class="menuli">Registar Eventos</li></a>
+            <a href="consultas.html" class="style"><li class="menuli">Consultas</li></a>
+            <a href="relatorios.html" class="style"><li class="menuli">Relatórios</li></a>
+            <a href="ocorrencias.html" class="style"><li class="menuli">Ocorrências</li></a>
+            <a href="artigosperdidos.html" class="style"><li class="menuli">Artigos Perdidos</li></a>
+            <!--                        NOTAS
+                Quando as validações por login forem feitas.
+                Artigos Perdidos:
+                    -Apenas o Seguranaça pode registar e levantar artigos
+                    -Todos podem consultar os Artigod Perdidos
+                Requisitar Salas e Materiais:
+                    -Apenas os docentes e a direção poderão aceder a estas opções
+                Registar Eventos:
+                    -Apenas a direção poderá aceder a essa opção
+                Consultas:
+                    -Todos podem consultar aulas e eventos
+                    -Só os docentes, segurança e direção podem consultar salas e materiais
+                Ocorrências:
+                    - Apenas o segurança pode registar e consultar ocorrências
+                Relatórios:
+                    -São gerados automaticamente
+                    -Apenas a direção pode consultar                
+            -->
+        </ul>
+
+    </nav>
+        
+    <div id="container">
+            <!-- <div id="hContainer" class="hContainer">
+                Titulo Container, caso seja necessário
+                Titulo <br><br>                
+            </div> -->
+            <!-- Container Principal -->
+
+            <div id="consultas">
+                <button class="button2" onclick="consultarSalas()">Consultar Salas</button>
+                <button class="button2" onclick="consultarMateriais()">Consultar Materiais</button>
+                <button class="button2" onclick="consultarAulas()">Consultar Aulas</button>
+                <button class="button2" onclick="consultarEventos()">Consultar Eventos</button>
+            </div>
+
+            <div id="consultarSalas" class="consultar" style="display:none">
+                <input type="text" id="search" onkeyup="searchSalas()" placeholder="Pesquisar salas.." title="Pesquisar Sala">
+                <label for='tipoProb'><b>Estado</b></label>
+                <select id="estado" onchange="estadoFiltro()">
+                        <option value="All">All</option>
+                        <option value="Disponível">Disponível</option>
+                        <option value="Requisitado">Requisitado</option>
+                        <option value="Manutenção">Manutenção</option>
+                </select>
+                <br>
+                <table id="tableSalas" class="consultar">
+                    <tr class="tableHeader">
+                      <th>Bloco</th>
+                      <th>Sala</th>
+                      <th>Estado</th>
+                      <th>Docente</th>
+                    </tr>
+                    <tr>
+                      <td>A</td>
+                      <td>F123</td>
+                      <td>Disponível</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>F1256</td>
+                        <td>Manutenção</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>F12</td>
+                        <td>Disponível</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>F13</td>
+                        <td>Disponível</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>F123</td>
+                        <td>Requisitado</td>
+                        <td>Rui Borges</td>
+                    </tr>
+                  </table>
+
+
+            </div>
+            <div id="consultarMateriais" style="display:none">
+                <input type="text" id="searchMaterial" onkeyup="searchMaterial()" placeholder="Pesquisar material.." title="Pesquisar Material">
+                <br>
+                <table id="tableMateriais" class="consultar">
+                    <tr class="tableHeader">
+                      <th>Material</th>
+                      <th>Sala</th>
+                      <th>Estado</th>
+                      <th>Docente</th>
+                    </tr>
+                    <tr>
+                        <td>Caneta</td>
+                        <td>-</td>
+                        <td>Disponível</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Computador</td>
+                        <td>F123</td>
+                        <td>Disponível</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Comando Projetor</td>
+                        <td>F233</td>
+                        <td>Requisitado</td>
+                        <td>Rui Borges</td>
+                    </tr>
+                    <tr>
+                        <td>Computador</td>
+                        <td>F345</td>
+                        <td>Manutenção</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Caneta</td>
+                        <td>-</td>
+                        <td>Requisitada</td>
+                        <td>Rui Borges</td>
+                    </tr>
+                  </table>
+            </div>
+            <div id="consultarAulas" style="display:none">
+               <!-- <input type="text" id="searchAulasAula" onkeyup="searchAula()" placeholder="Pesquisar aula.." title="Pesquisar Aula">
+                 <input type="text" id="searchAulasProfessor" onkeyup="searchProfessor()" placeholder="Pesquisar professor.." title="Pesquisar Professor">
+                <input type="text" id="searchAulasTurma" onkeyup="searchMaterial()" placeholder="Pesquisar turma.." title="Pesquisar Turma">  -->
+                <br>
+                <table id="tableAulas" class="consultar">
+                    <tr class="tableHeader">
+                      <th>Aula</th>
+                      <th>Sala</th>
+                      <th>Professor</th>
+                      <th>Turma</th>
+                      <th>Inicio</th>
+                      <th>Duração</th>
+                    </tr>
+                    <tr>
+                        <td>Engenharia de Software</td>
+                        <td>F123</td>
+                        <td>Rui Borges</td>
+                        <td>BrightStart</td>
+                        <td>9h</td>
+                        <td>4h</td>
+                    </tr>
+                    <tr>
+                        <td>Engenharia de Software</td>
+                        <td>F134</td>
+                        <td>Nuno Pina</td>
+                        <td>A12A3</td>
+                        <td>9h</td>
+                        <td>2h</td>
+                    </tr>
+                    <tr>
+                        <td>Gestão e Comportamento Organizacional</td>
+                        <td>F123</td>
+                        <td>Cláudia Viana</td>
+                        <td>BrightStart</td>
+                        <td>14h</td>
+                        <td>4h</td>
+                    </tr>
+                    <tr>
+                        <td>Gestão e Comportamento Organizacional</td>
+                        <td>F123</td>
+                        <td>Cláudia Viana</td>
+                        <td>A22B1</td>
+                        <td>9h</td>
+                        <td>1h30m</td>
+                    </tr>
+                  </table>
+            </div>
+            <div id="consultarEventos" style="display:none">
+                <table id="consultarEventos" class="consultar">
+                    <tr class="tableHeader">
+                            <th>Nome</th>
+                            <th>Local</th>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                    </tr>
+                        <tr>
+                            <td>Feira de Emprego</td>
+                            <td>Pátio</td>
+                            <td>13/05/2019</td>
+                            <td>Feira de emprego para os estudantes</td>
+                        </tr>
+                        <tr>
+                            <td>Dar sangue</td>
+                            <td>Entrada IPS</td>
+                            <td>12/10/2019</td>
+                            <td>Carrinha de doação de sangue</td>
+                        </tr>
+                        <tr>
+                            <td>Feira Tecnologica</td>
+                            <td>Sala F3452</td>
+                            <td>03/08/2019</td>
+                            <td>Demonstrações tecnologicas</td>
+                        </tr>
+                        </table>
+            </div>
+                     
+             
+         
+    </div>
+    <div id="container2">              
+          
+    </div>
+                
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+       Projeto IPS
+    </footer>
+</body>
+</html>

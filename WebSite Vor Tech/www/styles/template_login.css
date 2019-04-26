@@ -1,0 +1,268 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;   
+   
+}
+
+
+/* Cabeçalho */
+#header{
+    width: 100%;
+    height: 12%;
+    background-color: white;
+    color: #4169E1;
+    overflow: hidden;
+}
+
+#h1{
+    width: 15%;
+    height: 100%;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    border-right-style: solid;
+    position: fixed;
+    background-color: rgb(235, 232, 232);
+}
+
+#h2{
+    width: 63%;
+    height: 100%;
+    font-size: 60px;
+    text-align: center;
+    padding-left:40%; 
+    display: inline;
+    float: left;
+    overflow: hidden;
+}
+
+#h3{
+    width: 20%;
+    height: 100%;
+    display: inline-block;
+    float: right;
+    overflow: hidden;
+    align-content: center;
+    margin-right: 1%;
+    background-color: white;    
+}
+
+
+.style{
+    text-decoration: none;
+    color: white;
+}
+
+.style:hover{
+    text-decoration: none;
+}
+
+
+
+/* Container Principal*/
+
+#container{
+    width: 60%;
+    height: 80%;
+    padding-left:2%;
+    padding-top: 1%;
+    background-color: white;
+    text-align: center;
+    align-content: center;
+    border-color: #4169E1;
+    display: inline-block;
+    float: left;
+    margin-left: 22%;
+    overflow: hidden; 
+    border: solid;
+}
+
+#hContainer {
+    border-radius: 10px;
+    font-size: 20px;
+    width: 95%;
+    height: 5%;
+    text-align: center;
+    font-size: 28px;
+    background-color: white;
+    color: #4169E1;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.imgli{
+    vertical-align: left;
+    overflow: hidden;
+}
+
+.imgHome{
+    text-align:center;
+}
+/* 
+    
+/* Rodapé */
+.footer{
+    height:4%;
+    width: 100%;
+    background-color: #4169E1;
+    float:left;
+    text-align: center;
+    color:white;
+    bottom: 0%;
+    padding-top: 5px;
+    overflow: hidden;
+    position: fixed;
+}
+
+/* Labels */
+input[type=text], input[type=password], input[type=date], input[type=email] {
+    width: 50%; 
+    padding-right: 20px;
+    display: inline-block;
+    border: none;
+    margin-right: 3%;
+    background: #f1f1f1;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  .label{
+      font-weight: bold;
+      font-size: 40px;
+      color: black;
+  }
+
+  .brtop {
+
+    margin-right: 9%;   
+    display:inline-block;
+    font-size: 16px;
+    color: black;
+    margin-left:5%;
+}
+
+.brtop2 {
+    margin-right: 33%;
+    display:inline-block;
+    font-size: 16px;
+    color: black;
+}
+
+
+
+#search, #searchMaterial {
+    width: 100%;
+    padding-right: 20px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    text-align: center;
+    overflow: hidden;
+    float: center;
+}
+
+/* Butões*/
+.button1 {
+    margin-top: 5%;
+    margin-right: 2%;
+    float: left;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-left: 45%;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4169E1;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+.button1:hover {
+      background-color:rgb(54, 91, 202)
+}
+  
+  .button1:active {
+    background-color: #4169E1;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+    /*butão consultas*/
+.button2 {
+    
+    margin-top: 15%;
+    margin-left: 15%;
+    float: center;
+    display: inline-block;
+    padding: 50px 60px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4169E1;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button2:hover {
+    background-color:rgb(54, 91, 202)
+}
+
+.button2:active {
+    background-color: #4169E1;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+/*consultar*/
+
+table.consultar{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.consultar th{
+    background-color: #4169E1;
+    color:white;
+    text-align: left;
+    padding: 6px;
+    width: 20%;
+    border: 1px solid #4169E1;
+}
+  
+table.consultar td {
+    text-align: left;
+    padding: 6px;
+    width:20%;
+    border: 1px solid #4169E1;
+   
+}
+
+
+  
+table.consultar tr:nth-child(even) {
+    background-color: rgb(221, 226, 240);
+}
+table.consultar tr:hover {
+    background-color: lightskyblue;
+    color: white;
+}
