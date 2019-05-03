@@ -1,0 +1,24 @@
+{
+  "name": "ips",
+  "description": "projeto final esw",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongodb": "^2.2.36",
+    "mongoose": "^5.5.4",
+    "mysql": "^2.16.0",
+    "node": "^11.10.0",
+    "options": "0.0.6",
+    "sqlite3": "^4.0.6"
+  },
+  "license": "MIT",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": ""
+}

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<title>VorTech</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="styles/default.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="scripts/funções.js"></script>   
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="/images/ips.png" ><br><br>
+    <h4><b>VorTech</b></h4>
+    <p class="w3-text-grey">Insituto Politécnico de Setúbal</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
+    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>Consultar</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <button onclick="consultarAulas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-bank w3-margin-right"></i>Consultar Aulas</i></button>
+      <button onclick="consultarEventos()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Consultar Eventos</button>
+      <button onclick="consultarSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Consultar Salas</button>
+      <button onclick="consultarMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Consultar Materiais</button>
+    </div>
+    </div>
+  </header>
+
+    <div id="consultarAulas" style="text-align: center">
+            <h1><b>Consultar Aulas</b></h1>
+            <hr class="w3-opacity">
+            <form action="/action_page.php" target="_blank">
+              <div class="table-wrapper">
+                  <table class="fl-table">
+                      <thead>
+                      <tr>
+                          <th>Data de ínicio</th>
+                          <th>Aula</th>
+                          <th>Professor</th>
+                          <th>Sala</th>
+                          <th>Duração</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>6</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>7</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>8</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>9</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>10</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tbody>
+                  </table>
+              </div>
+            </form>
+    </div>
+ 
+    <div id="consultarSalas" style="text-align: center; display: none">
+        <h1><b>Consultar Salas</b></h1>
+        <hr class="w3-opacity">
+        <form action="/action_page.php" target="_blank">
+          <div class="table-wrapper2">
+              <table class="f2-table">
+                  <thead>
+                  <tr>
+                      <th>Bloco</th>
+                      <th>Sala</th>
+                      <th>Estado</th>
+                      <th>Docente</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>4</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>5</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>6</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>7</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>8</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>9</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>10</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tbody>
+              </table>
+          </div>
+        
+        </form>
+    </div>
+
+    <div id="consultarEventos" style="text-align: center; display: none;">
+            <h1><b>Consultar Eventos</b></h1>
+            <hr class="w3-opacity">
+            <form action="/action_page.php" target="_blank">
+              <div class="table-wrapper">
+                  <table class="fl-table">
+                      <thead>
+                      <tr>
+                          <th>Data de Inicio</th>
+                          <th>Evento</th>
+                          <th>Descrição</th>
+                          <th>Duração</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>1</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>4</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>6</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>7</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>8</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>9</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tr>
+                          <td>10</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                          <td>Content</td>
+                      </tr>
+                      <tbody>
+                  </table>
+              </div>
+            </form>
+            </div>
+    <div id="consultarMateriais" style="text-align: center;display: none;">
+    <h1><b>Consultar Materiais</b></h1>
+    <hr class="w3-opacity">
+    <form action="/action_page.php" target="_blank">
+        <div class="w3-section">
+            <div class="table-wrapper2">
+                <table class="f2-table">
+                    <thead>
+                    <tr>
+                        <th>Material</th>
+                        <th>Estado</th>
+                        <th>Sala</th>
+                        <th>Docente</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                            <td>Content</td>
+                        </tr>
+                        <tbody>
+                    </table>
+            </div>
+    </form>
+    </div>
+
+  </div>
+  <div id="container2">              
+          
+    </div>
+  
+  <div class="w3-black w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
+
+<!-- End page content -->
+</div>
+</body>
+</html>
+ 
