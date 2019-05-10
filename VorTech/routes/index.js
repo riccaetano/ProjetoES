@@ -13,8 +13,11 @@ router.post("/login", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    collection.find({}).toArray((err,result)=>{
+    var query= {numIps: req.body.numeroIPS, password: req.body.psw};
+    collection.find(query).toArray((err,result)=>{
       console.log(res);
+      console.log(result);
+      console.log(err);
       
     })
     // perform actions on the collection object
