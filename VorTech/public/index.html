@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<title>VorTech</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/default.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="javascripts/filterTable.js"></script>   
+<script src="javascripts/funções.js"></script>   
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="/images/ips.png" ><br><br>
+    <h4><b>VorTech</b></h4>
+    <p class="w3-text-grey">Insituto Politécnico de Setúbal</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
+    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>Home</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <button class="w3-button w3-white"><i class="w3-margin-right">IPS - Instituto Politécnico de Setúbal</i></button>
+      <button class="w3-button w3-white" onclick="openLogin()"><i class="w3-margin-right">Login</i></button>
+      <button class="w3-button w3-white w3-margin-right" onclick="openRegistar()"><i class="w3-margin-right">Registar</i></button>
+    </div>
+    </div>
+  </header>
+  
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Sobre o IPS</b></h4>
+    <p>
+            O Instituto Politécnico de Setúbal (IPS) é uma instituição pública de ensino superior que se insere no subsistema politécnico.<br>
+            O IPS surge no âmbito da criação em Portugal da nova rede de ensino superior politécnica em 1979, integrando inicialmente as duas Escolas localizadas em Setúbal; a Escola Superior de Tecnologia (ESTSetúbal) e a Escola Superior de Educação (ESE). Atualmente, o IPS engloba, para além destas, mais três Escolas: a Escola Superior de Ciências Empresariais (ESCE), a Escola Superior de Tecnologia do Barreiro (ESTBarreiro) e a Escola Superior de Saúde (ESS). As atividades das cinco Escolas Superiores são coordenadas pelos Serviços Centrais. Existe ainda uma sexta unidade organizacional, orientada para o apoio aos estudantes: os Serviços de Ação Social (SAS), responsável pelo alojamento, alimentação, apoio psicológico e atividades desportivas e recreativas.<br>
+            
+            Enquanto instituição pública, o IPS tem como principal financiador o Estado, através das verbas inscritas no Orçamento de Estado, as quais são complementadas com receitas próprias provenientes de propinas, contratos de investigação e de serviços ao exterior. O recrutamento, seleção e avaliação do pessoal docente, e do pessoal técnico e administrativo não docente, estão enquadrados pelos respetivos estatutos de carreira, assim como por outras regulamentações centrais concebidas para todos os funcionários públicos. Por sua vez, o recrutamento do pessoal, tanto em números como em categoria, é igualmente limitado por lei e por constrangimentos orçamentais.<br>
+     </p>
+    <h4><b>Orgãos do IPS</b></h4>
+    <p>
+            O Instituto Politécnico de Setúbal, enquanto instituição de ensino superior público, integrada no subsistema politécnico, apresenta a seguinte organização, decorrente dos seus Estatutos <br>
+
+        - Conselho Geral<br>
+        - Presidente<br>
+
+        - Conselho Académico <br>
+
+        - Conselho de Gestão <br>
+
+        - Administradora <br>
+
+        - Provedor do Estudante <br>
+
+        - Fiscal Único<br>
+    </p>
+    <hr>
+    <div class="form-popup" id="login">
+            <form id="/login" action="/login" method="POST" class="form-container">
+              <h1>Login</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input class="w3-input w3-border" name="numeroIPS" type="text">
+          
+              <label for="psw"><b>Password</b></label>
+              <input class="w3-input w3-border" name="psw" type="password" required>
+          
+              <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="registarUser">
+            <form action="/action_page.php" class="form-container">
+              <h1>Registar</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input class="w3-input w3-border" type="text" required>
+
+              <label for="name"><b>Nome User</b></label>
+              <input class="w3-input w3-border" type="text" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input class="w3-input w3-border" type="password" required>
+          
+              <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="recuperarPass">
+            <form action="/action_page.php" class="form-container">
+              <h1>Recuperar Password</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input class="w3-input w3-border" type="text" required>
+
+              <label for="name"><b>Nome User</b></label>
+              <input class="w3-input w3-border" type="text" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input class="w3-input w3-border" type="password" required>
+
+              <label for="psw"><b>Repetir Password</b></label>
+              <input class="w3-input w3-border" type="password" required>
+          
+              <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="errorLogin">
+      <form action="/action_page.php" class="form-container">
+        <h1>Login Inválido</h1>
+    
+        <label for="numeroIPS"><b>Verifique o número e a password inseridas</b></label>
+    
+        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Login</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
+      </form>
+</div>
+
+    <h4>Escolas</h4>
+    <!-- Progress bars / Skills -->
+    <p>Escola de Saúde</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:30%">30%</div>
+    </div>
+    <p>Escola de Tecnologia</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:40%">40%</div>
+    </div>
+    <p>Escola de Gestão</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:30%">30%</div>
+    </div>
+    <hr>
+    
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-large w3-grey">
+    <h4 id="contact"><b>Contactos</b></h4>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+        <p>gi.com@ips.pt</p>
+      </div>
+      <div class="w3-third w3-teal">
+        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+        <p>Campus do IPS, Estefanilha, 2910-761 </p>
+      </div>
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+        <p>+351 265 710 814 </p>
+      </div>
+    </div>
+    <hr class="w3-opacity">
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <h3>IPS</h3>
+      <p>No âmbito do Sistema Integrado de Gestão e de Garantia da Qualidade (SIGGQ), realizam-se, de forma agregada, Relatórios de Monitorização por Curso e por Escola, e Relatórios de Atividades das Escolas e do Instituto que visam contribuir para a monitorização dos processos.
+            A informação presente nestes relatórios visa também contribuir para o cumprimento do objetivo de recolha e divulgação pública de informação, no âmbito da avaliação da qualidade dos serviços prestados à comunidade académica.</p>
+      </p>
+    </div>
+  
+    <div class="w3-third">
+      <h3>Dados</h3>
+      <ul class="w3-ul w3-hoverable">
+        <li class="w3-padding-16">
+          <span>Política de Proteção de Dados IPS | Elogios, Sugestões ou Reclamações IPS 2012 - Termos de Utilização do Portal IPS</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <h3>Cursos Mais Populares</h3>
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">Enfermagem</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Desportos de Natureza</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Produção Audiovisual</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Programa BrightStart</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Contabilidade e Finanças</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Acupuntura</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Engenharia Informática</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Educação Básica</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Assessoria de Gestão</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Técnico de Sistemas de Informação</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Topografia e Sistemas de Informação Geográfica</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Serviço Familiar e Comunitário</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Gestão</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Gestão de Turismo</span>
+      </p>
+    </div>
+
+  </div>
+  </footer>
+  
+  <div class="w3-black w3-center w3-padding-24">Instituto Politécnico de Setúbal & Programa BrightStart</div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

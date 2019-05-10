@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<title>VorTech</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/default.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="javascripts/filterTable.js"></script>   
+<script src="javascripts/funções.js"></script>   
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="/images/ips.png" ><br><br>
+    <h4><b>VorTech</b></h4>
+    <p class="w3-text-grey">Insituto Politécnico de Setúbal</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
+    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>Definições</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <!-- <span class="w3-margin-right">Filter:</span>  -->
+      <!-- <button class="w3-button w3-black">ALL</button> -->
+      <button  onclick="perfil()" class="w3-button w3-white w3-hide-small"><i class="fa fa-drivers-license-o w3-margin-right"></i>Perfil</i></button>
+      <button onclick="gerirUsers()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
+      <button onclick="gerirSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Gerir Salas</button>
+      <button onclick="gerirMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Gerir Materiais</button>
+
+    </div>
+    </div>
+  </header>
+ 
+    <div id="perfil" style="text-align: center">
+      <h1><b>Perfil</b></h1>
+      <hr class="w3-opacity">
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-section">
+          <label>Id</label>
+          <input class="w3-input w3-border" type="text" name="Name" required>
+        </div>
+        <div class="w3-section">
+          <label>Número IPS</label>
+          <input class="w3-input w3-border" type="text" name="Email" required>
+        </div>
+        <div class="w3-section">
+          <label>Cartão de Cidadão</label>
+          <input class="w3-input w3-border" type="text" name="Message" required>
+        </div>
+        <div class="w3-section">
+              <label>User</label>
+              <input class="w3-input w3-border" type="date" name="Message" required>
+          </div>
+          <div class="w3-section">
+            <label>Tema</label>
+            <input class="w3-input w3-border" type="text" name="Message" required>
+        </div>
+        <div class="w3-section">
+          <label>Role</label>
+          <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+          <div class="w3-section">
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarPass()">Alterar Password</button>
+          </div>
+          
+      </form>
+    </div>
+
+    <div id="gerirUsers" style="text-align: center; display: none;">
+            <h1><b>Users</b></h1>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRegistar()">Adicionar User</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarUser()">Alterar User</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarUser()">Eliminar User</button>      
+            <hr class="w3-opacity">
+            <form id="userForm" action="javascript: info.processingUser('create');" target="_blank">
+              <div class="table-wrapper2">
+                <table id="tableUser" class="f2-table">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Número IPS</th>
+                            <th>Role</th>
+                            <th>Tema</th>
+                            <th>Password</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tbody>
+                     
+                </table>
+              </div>
+            </form>
+            </div>
+    <div id="gerirSalas" style="text-align: center;display: none;">
+            <h1><b>Salas</b></h1> 
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAdicionarSala()">Adicionar Sala</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarSala()">Alterar Sala</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAdicionarSalaMaterial()">Adicionar Material</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarSala()">Eliminar Sala</button>
+            <hr class="w3-opacity">
+            <div class="table-wrapper2">
+              <table class="f2-table">
+                  <thead>
+                  <tr>
+                      <th>Bloco</th>
+                      <th>Sala</th>
+                      <th>Estado</th>
+                      <th>Docente</th>
+                      <th>Materiais</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>4</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>5</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>6</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>7</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>8</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>9</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tr>
+                      <td>10</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                      <td>Content</td>
+                  </tr>
+                  <tbody>
+              </table>
+          </div>
+        
+            </form>
+            </div>
+    <div id="gerirMateriais" style="text-align: center;display: none;">
+      <h1><b>Material</b></h1> 
+      <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAdicionarMaterial()">Adicionar Material</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarMaterial()">Alterar Material</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarMaterial()">Eliminar Material</button>
+      <hr class="w3-opacity">
+      <div class="table-wrapper2">
+        <table class="f2-table">
+                      <thead>
+                      <tr>
+                          <th>Material</th>
+                          <th>Estado</th>
+                          <th>Sala</th>
+                          <th>Docente</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>5</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>6</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>7</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>8</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>9</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tr>
+                              <td>10</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                              <td>Content</td>
+                          </tr>
+                          <tbody>
+                      </table>
+              </div>      
+      </form>
+    </div>
+
+     <!-- SALAS  -->
+
+        <div class="form-popup" id="alterarPass">
+          <form action="/action_page.php" class="form-container">
+            <h1>Alterar Password</h1>
+        
+            <label for="numeroIPS"><b>Número IPS</b></label>
+            <input class="w3-input w3-border" type="text" required>
+
+            <label for="name"><b>Nome User</b></label>
+            <input class="w3-input w3-border" type="text" required>
+        
+            <label for="psw"><b>Password Antiga</b></label>
+            <input class="w3-input w3-border" type="password" required>
+
+            <label for="psw"><b>Nova Password</b></label>
+            <input class="w3-input w3-border" type="password" required>
+
+            <label for="psw"><b>Repetir Nova Password</b></label>
+            <input class="w3-input w3-border" type="password" required>
+        
+            <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarPass()">Cancelar</button>
+          </form>
+      </div>
+      <div class="form-popup" id="adicionarSala">
+        <form action="/action_page.php" class="form-container">
+          <h1>Adicionar Sala</h1>
+          <label for="numeroIPS"><b>Bloco</b></label>
+          <input class="w3-input w3-border" type="text" required>
+
+          <label for="name"><b>Sala</b></label>
+          <input class="w3-input w3-border" type="text" required>
+      
+          <label for="psw"><b>Estado</b></label>
+          <input class="w3-input w3-border" type="text" required>
+      
+          <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
+          <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarSala()">Cancelar</button>
+        </form>
+    </div>
+
+    <div class="form-popup" id="alterarSala">
+      <form action="/action_page.php" class="form-container">
+        <h1>Alterar Estado</h1>
+        <label for="numeroIPS"><b>Bloco</b></label>
+        <input class="w3-input w3-border" type="text" required>
+
+        <label for="name"><b>Sala</b></label>
+        <input class="w3-input w3-border" type="text" required>
+    
+        <label for="psw"><b>Estado</b></label>
+        <input class="w3-input w3-border" type="text" required>
+
+        <label for="psw"><b>Docente</b></label>
+        <input class="w3-input w3-border" type="text" required>
+   
+        <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarSala()">Cancelar</button>
+      </form>
+  </div>
+
+  <div class="form-popup" id="adicionarSalaMaterial">
+    <form action="/action_page.php" class="form-container">
+      <h1>Adicionar Material</h1>
+      <label for="numeroIPS"><b>Bloco</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="name"><b>Sala</b></label>
+      <input class="w3-input w3-border" type="text" required>
+  
+      <label for="psw"><b>Id do Material</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="psw"><b>Material</b></label>
+      <input class="w3-input w3-border" type="text" required>
+ 
+      <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarSalaMaterial()">Cancelar</button>
+    </form>
+</div>
+
+  <div class="form-popup" id="eliminarSala">
+    <form action="/action_page.php" class="form-container">
+      <h1>Eliminar Sala</h1>
+      <label for="numeroIPS"><b>Bloco</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="name"><b>Sala</b></label>
+      <input class="w3-input w3-border" type="text" required>
+   
+      <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarSala()">Cancelar</button>
+    </form>
+  </div>
+
+    <!-- MATERIAIS  -->
+
+    <div class="form-popup" id="adicionarMaterial">
+      <form action="/action_page.php" class="form-container">
+        <h1>Adicionar Material</h1>
+        <label for="numeroIPS"><b>Material</b></label>
+        <input class="w3-input w3-border" type="text" required>
+   
+        <label for="psw"><b>Estado</b></label>
+        <input class="w3-input w3-border" type="text" required>
+
+        <label for="psw"><b>Descrição</b></label>
+        <input class="w3-input w3-border" type="text" required>
+   
+        <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarMaterial()">Cancelar</button>
+      </form>
+  </div>
+
+  <div class="form-popup" id="alterarMaterial">
+    <form action="/action_page.php" class="form-container">
+      <h1>Alterar Estado</h1>
+      <label for="numeroIPS"><b>Material</b></label>
+      <input class="w3-input w3-border" type="text" required>
+ 
+      <label for="psw"><b>Estado</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="psw"><b>Descrição</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="psw"><b>Docente</b></label>
+      <input class="w3-input w3-border" type="text" required>
+ 
+      <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarMaterial()">Cancelar</button>
+    </form>
+</div>
+
+  <div class="form-popup" id="eliminarMaterial">
+    <form action="/action_page.php" class="form-container">
+      <h1>Eliminar Sala</h1>
+      <label for="numeroIPS"><b>Material</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="name"><b>Descrição</b></label>
+      <input class="w3-input w3-border" type="text" required>
+  
+      <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarMaterial()">Cancelar</button>
+    </form>
+  </div>
+
+  <!-- USERS -->
+  
+  <div class="form-popup" id="registarUser">
+    <form action="/action_page.php" class="form-container">
+      <h1>Adicionar User</h1>
+      <label for="numeroIPS"><b>Número IPS</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="name"><b>Nome User</b></label>
+      <input class="w3-input w3-border" type="text" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input class="w3-input w3-border" type="password" required>
+  
+      <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
+      <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
+    </form>
+</div>
+
+<div class="form-popup" id="alterarUser">
+  <form action="/action_page.php" class="form-container">
+    <h1>Alterar Estado</h1>
+      <label for="numeroIPS"><b>Número IPS</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="name"><b>User Name</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="psw"><b>Role</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+      <label for="psw"><b>Tema</b></label>
+      <input class="w3-input w3-border" type="text" required>
+
+    <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarUser()">Cancelar</button>
+  </form>
+</div>
+</div>
+
+<div class="form-popup" id="eliminarUser">
+  <form action="/action_page.php" class="form-container">
+    <h1>Eliminar User</h1>
+    <label for="numeroIPS"><b>Número IPS</b></label>
+    <input class="w3-input w3-border" type="text" required>
+
+    <label for="name"><b>User Name</b></label>
+    <input class="w3-input w3-border" type="text" required>
+
+    <label for="name"><b>Role</b></label>
+    <input class="w3-input w3-border" type="text" required>
+
+    <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarUser()">Cancelar</button>
+  </form>
+</div>
+
+
+  </div>
+  <div id="container2">              
+          
+    </div>
+  
+  <div class="w3-black w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
+
+<!-- End page content -->
+</div>
+</body>
+</html>
+ 
