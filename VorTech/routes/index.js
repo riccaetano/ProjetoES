@@ -18,6 +18,7 @@ router.post("/login", (req, res, next) => {
       console.log(res);
       console.log(result);
       console.log(err);
+      res.send(result)
       
     })
     // perform actions on the collection object
