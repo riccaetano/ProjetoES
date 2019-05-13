@@ -14,7 +14,6 @@ router.post("/login", (req, res, next) => {
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
     var query= {numIps: parseInt(req.body.numeroIPS), password: req.body.psw};
-    
     collection.find(query).toArray((err,result)=>{
 
       console.log(result);
