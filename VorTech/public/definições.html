@@ -77,7 +77,19 @@
           </div>
           <div class="w3-section">
             <label>Tema</label>
-            <input class="w3-input w3-border" type="text" name="Message" required>
+            <label>Tema</label>
+            <!-- <a href="#" onclick="setActiveStyleSheet('default')">Claro 1</a> 
+            <a href="#" onclick="setActiveStyleSheet('black')">Escuro 1</a>
+            <a href="#" onclick="setActiveStyleSheet('yellow_light')">Claro 2</a> 
+            <a href="#" onclick="setActiveStyleSheet('alternative')">Escuro 2</a>
+            <a href="#" onclick="setActiveStyleSheet('purple')">Claro 3</a> -->
+            <select onchange="setStyleSheet()" id="temas" class="filter">
+              <option value="default">Claro 1</option>  
+              <option value="black">Escuro 1</option>
+              <option value="yellow">Claro 2</option>  
+              <option value="alternative">Escuro 2</option>  
+              <option value="purple">Claro 3</option>  
+          <select> 
         </div>
         <div class="w3-section">
           <label>Role</label>
