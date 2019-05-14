@@ -37,24 +37,35 @@ router.get('/', function (req, res, next) {
 
 router.post("/registar", (req, res, next) => {
   console.log(req.body)
+  var num = parseInt(req.body.numeroIPS);
+  var pass =  req.body.psw;
+  var username = req.body.username,
+  var role = 3;  
+  var palette =  "default";
+
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
     const collection1 = client.db("VorTech").collection("Person");
-    var query= {numIps: parseInt(req.body.numeroIPS)};
+    var query= {numIps: num};
     collection1.findOne(query, function(err,result){
       if(err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
-        console.log(req)
       } else {
-        // var role = result[3];
-        console.log(result)
-        console.log(req)
-        role = 3; 
-        // console.log(role)
-        collection.insertOne({numIps: parseInt(req.body.numeroIps), username: req.body.username, password: req.body.psw, role: role,palette: "default" })
-        res.redirect("index.html");
+        collection.findOne(query, function(err,result){
+          if(err || !result) {
+            collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
+            res.redirect("index.html");
+          } else {
+            // console.log(role)
+            res.redirect("registoERROR.html");
+            console.log(result)
+            
+          }
+          
+        })
+      
       }
       
     })
