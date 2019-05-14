@@ -36,10 +36,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.post("/registar", (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   var num = parseInt(req.body.numeroIPS);
   var pass =  req.body.psw;
-  var username = req.body.username,
+  var username = req.body.username;
   var role = 3;  
   var palette =  "default";
 
@@ -53,17 +53,11 @@ router.post("/registar", (req, res, next) => {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        // var role = result[3];
-        console.log(result)
-      
-        // console.log(role)
         collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
         res.redirect("index.html");
       }
       
     })
-
-    // perform actions on the collection object
     // client.close();
   });
 });
