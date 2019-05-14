@@ -94,17 +94,17 @@
     </div>
 
     <div class="form-popup" id="registarUser">
-            <form action="/action_page.php" class="form-container">
+            <form id="/login" action="/registar" method="POST" class="form-container">
               <h1>Registar</h1>
           
               <label for="numeroIPS"><b>Número IPS</b></label>
-              <input class="w3-input w3-border" type="text" required>
+              <input class="w3-input w3-border" name="numeroIPS" type="text" required>
 
-              <label for="name"><b>Nome User</b></label>
-              <input class="w3-input w3-border" type="text" required>
+              <label for="username"><b>Username</b></label>
+              <input class="w3-input w3-border" name="username" type="text" required>
           
               <label for="psw"><b>Password</b></label>
-              <input class="w3-input w3-border" type="password" required>
+              <input class="w3-input w3-border" name="psw" type="password" required>
           
               <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
               <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>

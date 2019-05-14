@@ -129,7 +129,6 @@ function openLogin() {
     document.getElementById("login").style.display = "block";
     document.getElementById("registarUser").style.display = "none";
     document.getElementById("recuperarPass").style.display = "none";
-    document.getElementById("errorLogin").style.display = "none";
   }
   
   function closeLogin() {
@@ -140,7 +139,6 @@ function openLogin() {
     document.getElementById("registarUser").style.display = "block";
     document.getElementById("login").style.display = "none";
     document.getElementById("recuperarPass").style.display = "none";
-    document.getElementById("errorLogin").style.display = "none";
   }
   
   function closeRegistar() {
@@ -151,7 +149,6 @@ function openLogin() {
     document.getElementById("registarUser").style.display = "none";
     document.getElementById("login").style.display = "none";
     document.getElementById("recuperarPass").style.display = "block";
-    document.getElementById("errorLogin").style.display = "none";
   }
   
   function closeRecuperar() {
