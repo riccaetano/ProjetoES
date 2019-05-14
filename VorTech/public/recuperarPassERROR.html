@@ -42,24 +42,25 @@
   <header id="portfolio">
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    <h1><b>Home - Registo Inválido</b></h1>
+    <h1><b>Home - Recuperar Password Inválido</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-      <button class="w3-button w3-white" onclick="openLogin()"><i class="w3-margin-right">Tentar Login</i></button>
+      <button class="w3-button w3-white" onclick="openLogin()"><i class="w3-margin-right">Login</i></button>
       <button class="w3-button w3-white w3-margin-right" onclick="openRegistar()"><i class="w3-margin-right">Registar</i></button>
+      <button class="w3-button w3-white w3-margin-right" onclick="openRecuperar()"><i class="w3-margin-right">Recuperar Password</i></button>
     </div>
     </div>
   </header>
   
   <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4 style="text-align: center"><b>Registo Inválido - Número inserido inválido</b></h4>
+    <h4 style="text-align: center"><b>Password Inválida - Número, Username ou Password Inválidos</b></h4>
     <p style="text-align:center">
       <img src="images\error.png" width="200">
     </p>
     <hr>
     <div class="form-popup" id="login">
-      <form id="/login" action="/login" method="POST" class="form-container">
-        <h1>Login</h1>
-    
+        <form id="/login" action="/login" method="POST" class="form-container">
+          <h1>Login</h1>
+      
           <label for="numeroIPS"><b>Número IPS</b></label>
           <input class="w3-input w3-border" name="numeroIPS" type="text">
       
@@ -70,9 +71,9 @@
           <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
           <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
         </form>
-  </div>
+</div>
 
-  <div class="form-popup" id="registarUser">
+<div class="form-popup" id="registarUser">
         <form id="/registar" action="/registar" method="POST" class="form-container">
           <h1>Registar</h1>
       
@@ -88,9 +89,9 @@
           <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
           <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
         </form>
-  </div>
+</div>
 
-  <div class="form-popup" id="recuperarPass">
+<div class="form-popup" id="recuperarPass">
         <form d="/recuperarPass" action="/recuperarPass" method="POST" class="form-container">
           <h1>Recuperar Password</h1>
       
@@ -109,7 +110,8 @@
           <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
           <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
         </form>
-  </div>
+</div>
+
 
   <!-- Contact Section -->
   <div class="w3-container w3-padding-large w3-grey">

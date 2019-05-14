@@ -63,3 +63,41 @@ router.post("/registar", (req, res, next) => {
 });
 
 module.exports = router;
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.post("/recuperarPass", (req, res, next) => {
+  console.log(req.body);
+  var numero = parseInt(req.body.numeroIPS);
+  var password =  req.body.psw;
+  var repPassword =  req.body.repPsw
+  var user = req.body.username;
+  
+  if(password != repPassword){
+    res.redirect("recuperarPassERROR.html")
+    alert("Passwords não correspondem");
+  } else {
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("VorTech").collection("User");
+    var query= {numIps: numero, username: user};
+    var values = {$set: {password: password}};
+    collection.updateOne(query, values, function(err,result){
+      if(err || !result) {
+        res.redirect("recuperarPassERROR.html");
+        console.log(result)
+        console.log(err);
+      } else {
+        res.redirect("index.html");
+        console.log(result)
+      }
+    })
+    // client.close();
+  });
+}
+});
+
+module.exports = router;

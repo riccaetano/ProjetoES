@@ -57,60 +57,59 @@
     </p>
     <hr>
     <div class="form-popup" id="login">
-            <form id="/login" action="/login" method="POST" class="form-container">
-              <h1>Login</h1>
-          
-              <label for="numeroIPS"><b>Número IPS</b></label>
-              <input class="w3-input w3-border" name="numeroIPS" type="text">
-          
-              <label for="psw"><b>Password</b></label>
-              <input class="w3-input w3-border" name="psw" type="password" required>
-          
-              <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
-              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
-              <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
-            </form>
-    </div>
+      <form id="/login" action="/login" method="POST" class="form-container">
+        <h1>Login</h1>
+    
+        <label for="numeroIPS"><b>Número IPS</b></label>
+        <input class="w3-input w3-border" name="numeroIPS" type="text">
+    
+        <label for="psw"><b>Password</b></label>
+        <input class="w3-input w3-border" name="psw" type="password" required>
+    
+        <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
+      </form>
+</div>
 
-    <div class="form-popup" id="registarUser">
-            <form action="/action_page.php" class="form-container">
-              <h1>Registar</h1>
-          
-              <label for="numeroIPS"><b>Número IPS</b></label>
-              <input class="w3-input w3-border" type="text" required>
+<div class="form-popup" id="registarUser">
+      <form id="/registar" action="/registar" method="POST" class="form-container">
+        <h1>Registar</h1>
+    
+        <label for="numeroIPS"><b>Número IPS</b></label>
+        <input class="w3-input w3-border" name="numeroIPS" type="text" required>
 
-              <label for="name"><b>Nome User</b></label>
-              <input class="w3-input w3-border" type="text" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input class="w3-input w3-border" type="password" required>
-          
-              <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
-              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
-            </form>
-    </div>
+        <label for="username"><b>Username</b></label>
+        <input class="w3-input w3-border" name="username" type="text" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input class="w3-input w3-border" name="psw" type="password" required>
+    
+        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
+      </form>
+</div>
 
-    <div class="form-popup" id="recuperarPass">
-            <form action="/action_page.php" class="form-container">
-              <h1>Recuperar Password</h1>
-          
-              <label for="numeroIPS"><b>Número IPS</b></label>
-              <input class="w3-input w3-border" type="text" required>
+<div class="form-popup" id="recuperarPass">
+      <form d="/recuperarPass" action="/recuperarPass" method="POST" class="form-container">
+        <h1>Recuperar Password</h1>
+    
+        <label for="numeroIPS"><b>Número IPS</b></label>
+        <input class="w3-input w3-border" name="numeroIPS" type="text" required>
 
-              <label for="name"><b>Nome User</b></label>
-              <input class="w3-input w3-border" type="text" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input class="w3-input w3-border" type="password" required>
+        <label for="name"><b>Username</b></label>
+        <input class="w3-input w3-border" name="username" type="text" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input class="w3-input w3-border" name="psw" type="password" required>
 
-              <label for="psw"><b>Repetir Password</b></label>
-              <input class="w3-input w3-border" type="password" required>
-          
-              <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
-              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
-            </form>
-    </div>
-
+        <label for="psw"><b>Repetir Password</b></label>
+        <input class="w3-input w3-border" name="repPsw" type="password" required>
+    
+        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
+      </form>
+</div>
 
 
   <!-- Contact Section -->
