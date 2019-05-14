@@ -53,19 +53,12 @@ router.post("/registar", (req, res, next) => {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.findOne(query, function(err,result){
-          if(err || !result) {
-            collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
-            res.redirect("index.html");
-          } else {
-            // console.log(role)
-            res.redirect("registoERROR.html");
-            console.log(result)
-            
-          }
-          
-        })
+        // var role = result[3];
+        console.log(result)
       
+        // console.log(role)
+        collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
+        res.redirect("index.html");
       }
       
     })
