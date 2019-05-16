@@ -134,7 +134,7 @@ router.post("/requisitarSala", (req, res, next) => {
         if(date = dataInicio){
           collection.updateOne(query, values, function(err,result){
             if(err || !result) {
-              res.redirect("recuperarPassERROR.html");
+              res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
