@@ -151,6 +151,86 @@ router.post("/requisitarSala", (req, res, next) => {
 });
 module.exports = router;
 
+
+// Registar Eventos
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.post("/registarEvento", (req, res, next) => {
+  console.log(req.body);
+  var nome = req.body.nome;
+  var num = parseInt(req.body.numeroIPS);
+  var local = req.body.local;
+  var dataInicio = req.body.dataInicio;
+  var dataFim = req.body.dataFim;
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("VorTech").collection("User");
+    const collection1 = client.db("VorTech").collection("Event");
+    var query= {numIps: num};
+    collection.findOne(query, function(err,result){
+      if(err || !result) {
+        res.redirect("registoERROR.html");
+        console.log(result)
+      } else {
+        collection1.insertOne({name: nome, local:local, startDate: dataInicio, endDate: dataFim,  employee: num})
+        res.redirect("./index.html");
+      }
+      
+    })
+    // client.close();
+  });
+});
+
+module.exports = router;
+
+// Registar Materiais
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.post("/requisitarMaterial", (req, res, next) => {
+  console.log(req.body);
+  var numeroMaterial = req.body.material;
+  var numeroIPS = parseInt(req.body.numeroIPS);
+  var dataInicio = req.body.dataInicio;
+  var dataFim = req.body.dataFim;
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("VorTech").collection("Material");
+    const collection1 = client.db("VorTech").collection("Request");
+    var query= {materialId: numeroMaterial};
+    var values = {$set: {status: 2}};
+    collection.findOne(query, function(err,result){
+      if(err || !result) {
+        res.redirect("registoERROR.html");
+        console.log(result)
+      } else {
+        collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
+        if(date = dataInicio){
+          collection.updateOne(query, values, function(err,result){
+            if(err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+              console.log(err);
+            } else {
+              res.redirect("requisitar.html");
+              console.log(result)
+            }
+          })
+        }
+        }     
+      
+    })
+    //client.close();
+  });
+});
+module.exports = router;
+
+
+
 //Requisitar Material
 // router.get('/', function (req, res, next) {
 //   res.render('requisitar', { title: 'Express' });
