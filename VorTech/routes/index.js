@@ -101,3 +101,94 @@ router.post("/recuperarPass", (req, res, next) => {
 });
 
 module.exports = router;
+
+// Requisitar
+
+// router.get('/', function (req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
+
+// router.post("/registarSala", (req, res, next) => {
+//   console.log(req.body)
+//   var numeroSala = req.body.numeroSala;
+//   var numeroIPS = parseInt(req.body.numeroIPS);
+//   var dataInicio = req.body.dataInicio;
+//   var dataFim = req.body.dataFim;
+//   const client = new MongoClient(uri, { useNewUrlParser: true });
+//   client.connect(err => {
+//     const collection = client.db("VorTech").collection("ClassRoom");
+//     const collection1 = client.db("VorTech").collection("User");
+//     const collection2 = client.db("VorTech").collection("Request");
+//     var query= {name: numeroSala};
+//     var query1= {numIps: numeroIPS}; 
+//     // perform actions on the collection object
+//     collection1.findOne(query1, function(err,result){
+//       if(err || !result) {
+//         res.redirect("requisitar.html");
+//         console.log(err);
+//       } else {
+//         collection.findOne(query, values, function(err,result){
+//           if(err || !result) {
+//             res.redirect("recuperarPassERROR.html");
+//             console.log(result)
+//             console.log(err);
+//           } else {
+//             collection2.insertOne({user: numeroIPS, classRoom: numeroSala, startDate: dataInicio, endDate: dataFim})
+//             res.redirect("index.html");
+//             console.log(result)
+//           }
+//         })
+//       }
+      
+//     })
+//   });
+// });
+
+
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.post("/registarSala", (req, res, next) => {
+  console.log(req.body);
+  var numeroSala = req.body.numeroSala;
+  var numeroIPS = parseInt(req.body.numeroIPS);
+  var material = "";
+  var dataInicio = req.body.dataInicio;
+  var dataFim = req.body.dataFim;
+  var today = new Date;
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
+  console.log(date);
+  console.log(dataFim);
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("VorTech").collection("ClassRoom");
+    const collection1 = client.db("VorTech").collection("Request");
+    var query= {name: numeroSala};
+    var query1= {name: numeroSala};
+    var values = {$set: {status: 2}};
+    collection.findOne(query, function(err,result){
+      if(err || !result) {
+        res.redirect("registoERROR.html");
+        console.log(result)
+      } else {
+        collection1.insertOne({user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim})
+        if(date = dataInicio){
+          collection.updateOne(query1, values, function(err,result){
+            if(err || !result) {
+              res.redirect("recuperarPassERROR.html");
+              console.log(result)
+              console.log(err);
+            } else {
+              res.redirect("index.html");
+              console.log(result)
+            }
+          })
+        }
+        }     
+      
+    })
+    // client.close();
+  });
+});

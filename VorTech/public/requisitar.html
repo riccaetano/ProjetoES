@@ -56,14 +56,10 @@
     <div id="requisitarSalas" style="text-align: center">
     <h1><b>Requisitar Salas</b></h1>
     <hr class="w3-opacity">
-    <form id="requisitarSala" action="/requisitarSala" method="POST" target="_blank">
+    <form action="/registarSala" method="POST" target="_blank">
       <div class="w3-section">
         <label>Numero da sala</label>
         <input class="w3-input w3-border" type="text" name="numeroSala" required>
-      </div>
-      <div class="w3-section">
-        <label>Motivo</label>
-        <input class="w3-input w3-border" type="text" name="motivo" required>
       </div>
       <div class="w3-section">
         <label>Numero IPS</label>
@@ -71,7 +67,7 @@
       </div>
       <div class="w3-section">
         <label>Materiais</label>
-        <select id="materiais"></select>
+        <input class="w3-input w3-border" type="text" name="material" required>
       </div>
       <div class="w3-section">
             <label>Data de Início</label>
