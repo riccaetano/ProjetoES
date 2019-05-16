@@ -56,7 +56,7 @@
     <div id="requisitarSalas" style="text-align: center">
     <h1><b>Requisitar Salas</b></h1>
     <hr class="w3-opacity">
-    <form action="/registarSala" method="POST" target="_blank">
+    <form action="/requisitarSala" method="POST" target="_blank">
       <div class="w3-section">
         <label>Numero da sala</label>
         <input class="w3-input w3-border" type="text" name="numeroSala" required>
@@ -87,50 +87,54 @@
             <form action="/action_page.php" target="_blank">
               <div class="w3-section">
                 <label>Nome do Evento</label>
-                <input class="w3-input w3-border" type="text" name="Name" required>
+                <input class="w3-input w3-border" type="text" name="nome" required>
               </div>
               <div class="w3-section">
+                <label>Responsável</label>
+                <input class="w3-input w3-border" type="text" name="numeroIPS" required>
+            </div>
+              <div class="w3-section">
                 <label>Local</label>
-                <input class="w3-input w3-border" type="text" name="Email" required>
+                <input class="w3-input w3-border" type="text" name="local" required>
               </div>
               <div class="w3-section">
                   <label>Data de Início</label>
-                  <input class="w3-input w3-border" type="datetime-local" name="Message" required>
+                  <input class="w3-input w3-border" type="datetime-local" name="dataInicio" required>
               </div>
               <div class="w3-section">
                     <label>Data de Fim</label>
-                    <input class="w3-input w3-border" type="datetime-local" name="Message" required>
+                    <input class="w3-input w3-border" type="datetime-local" name="dataFim" required>
               </div>
-                <div class="w3-section">
-                        <label>Descrição</label>
-                        <input class="w3-input w3-border" type="text" name="Message" required>
-                </div>
+              <div class="w3-section">
+                  <label>Descrição</label>
+                  <input class="w3-input w3-border" type="text" name="descricao" required>
+              </div>
               <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Registar</button>
             </form>
             </div>
-            <div id="requisitarMateriais" style="text-align: center;display: none;">
-                    <h1><b>Requisitar Materiais</b></h1>
-                    <hr class="w3-opacity">
-                    <form action="/action_page.php" target="_blank">
-                      <div class="w3-section">
-                        <label>Material</label>
-                        <input class="w3-input w3-border" type="text" name="Name" required>
-                      </div>
-                      <div class="w3-section">
-                        <label>Numero IPS</label>
-                        <input class="w3-input w3-border" type="text" name="Email" required>
-                      </div>
-                      <div class="w3-section">
-                          <label>Data de Início</label>
-                          <input class="w3-input w3-border" type="datetime-local" name="Message" required>
-                      </div>
-                      <div class="w3-section">
-                            <label>Data de Fim</label>
-                            <input class="w3-input w3-border" type="datetime-local" name="Message" required>
-                      </div>
-                      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Requisitar</button>
-                    </form>
-                    </div>
+          <div id="requisitarMateriais" style="text-align: center;display: none;">
+              <h1><b>Requisitar Materiais</b></h1>
+              <hr class="w3-opacity">
+              <form action="/requisitarMaterial" method="POST" target="_blank">
+                <div class="w3-section">
+                  <label>Número do Material</label>
+                  <input class="w3-input w3-border" type="text" name="material" required>
+                </div>
+                <div class="w3-section">
+                  <label>Numero IPS</label>
+                  <input class="w3-input w3-border" type="text" name="numeroIPS" required>
+                </div>
+                <div class="w3-section">
+                    <label>Data de Início</label>
+                    <input class="w3-input w3-border" type="datetime-local" name="dataInicio" required>
+                </div>
+                <div class="w3-section">
+                      <label>Data de Fim</label>
+                      <input class="w3-input w3-border" type="datetime-local" name="dataFim" required>
+                </div>
+                <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Requisitar</button>
+              </form>
+            </div>
 
   </div>
   <div id="container2">              
