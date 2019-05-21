@@ -17,9 +17,9 @@ router.post("/login", (req, res, next) => {
     // perform actions on the collection object
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.send("loginERROR.html");
+       res.redirect("loginERROR.html");
       } else {
-        res.send("index.html");
+       res.redirect("index.html");
         client.close();
       }
       
@@ -49,11 +49,11 @@ router.post("/registar", (req, res, next) => {
     var query= {numIps: num};
     collection1.findOne(query, function(err,result){
       if(err || !result) {
-        res.send("registoERROR.html");
+       res.redirect("registoERROR.html");
         console.log(result)
       } else {
         collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
-        res.send("index.html");
+       res.redirect("index.html");
         client.close();
       }
       
@@ -76,7 +76,7 @@ router.post("/recuperarPass", (req, res, next) => {
   var user = req.body.username;
   
   if(password != repPassword){
-    res.send("recuperarPassERROR.html")
+   res.redirect("recuperarPassERROR.html")
     alert("Passwords não correspondem");
   } else {
   const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -86,11 +86,11 @@ router.post("/recuperarPass", (req, res, next) => {
     var values = {$set: {password: password}};
     collection.updateOne(query, values, function(err,result){
       if(err || !result) {
-        res.send("recuperarPassERROR.html");
+       res.redirect("recuperarPassERROR.html");
         console.log(result)
         console.log(err);
       } else {
-        res.send("index.html");
+       res.redirect("index.html");
         console.log(result);
         client.close();
       }
@@ -127,18 +127,18 @@ router.post("/requisitarSala", (req, res, next) => {
     var values = {$set: {status: 2}};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.send("requisitar.html");
+       res.redirect("requisitar.html");
         console.log(result)
       } else {
         collection1.insertOne({user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim})
         if(date = dataInicio){
           collection.updateOne(query, values, function(err,result){
             if(err || !result) {
-              res.send("registoERROR.html");
+             res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
-              res.send("requisitar.html");
+             res.redirect("requisitar.html");
               console.log(result)
               client.close();
             }
@@ -171,11 +171,11 @@ router.post("/registarEvento", (req, res, next) => {
     var query= {numIps: num};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.send("registoERROR.html");
+       res.redirect("registoERROR.html");
         console.log(result)
       } else {
         collection1.insertOne({name: nome, local:local, startDate: dataInicio, endDate: dataFim,  employee: num})
-        res.send("./index.html");
+       res.redirect("./index.html");
         client.close();
       }
       
@@ -205,18 +205,18 @@ router.post("/requisitarMaterial", (req, res, next) => {
     var values = {$set: {status: 2}};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.send("registoERROR.html");
+       res.redirect("registoERROR.html");
         console.log(result)
       } else {
         collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
         if(date = dataInicio){
           collection.updateOne(query, values, function(err,result){
             if(err || !result) {
-              res.send("registoERROR.html");
+             res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
-              res.send("requisitar.html");
+             res.redirect("requisitar.html");
               console.log(result)
               client.close();
             }

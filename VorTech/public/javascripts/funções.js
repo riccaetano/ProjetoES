@@ -131,17 +131,11 @@ function openLogin() {
     document.getElementById("recuperarPass").style.display = "none";
   }
 
-  function openLogout() {
-    document.getElementById("loginButton").style.display = "none";
-    document.getElementById("registarButton").style.display = "none";
-    document.getElementById("logoutButton").style.display = "block";
-   
-  }
-  function closeLogin() {
+function closeLogin() {
     document.getElementById("login").style.display = "none";
   }
 
-  function openRegistar() {
+function openRegistar() {
     document.getElementById("registarUser").style.display = "block";
     document.getElementById("login").style.display = "none";
     document.getElementById("recuperarPass").style.display = "none";
