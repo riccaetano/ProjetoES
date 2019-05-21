@@ -3,6 +3,9 @@ var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 // Login
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -53,8 +56,11 @@ router.post("/registar", (req, res, next) => {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
+
+        bcrypt.hash(pass, saltRounds, function(err,hash) {
+        collection.insertOne({numIps: num, username: username, password: hash, role: role, palette: palette})
         res.redirect("index.html");
+      });
       }
       
     })

@@ -6,6 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
+var session = require ('express-session');
+var passport = require ('passport');
+
 var app = express();
 
 // view engine setup
@@ -16,6 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+secret: 'wefoiwjfowefvhjv',
+resave: false,
+saveUninitialized: false,
+//cookie: { secure: true}
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 
