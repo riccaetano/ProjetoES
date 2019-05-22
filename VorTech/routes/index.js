@@ -17,9 +17,9 @@ router.post("/login", (req, res, next) => {
     // perform actions on the collection object
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.redirect("loginERROR.html");
+        res.send("loginERROR.html");
       } else {
-        res.redirect("index.html");
+        res.send("index.html");
       }
       
     })
@@ -50,11 +50,11 @@ router.post("/registar", (req, res, next) => {
     var query= {numIps: num};
     collection1.findOne(query, function(err,result){
       if(err || !result) {
-        res.redirect("registoERROR.html");
+        res.send("registoERROR.html");
         console.log(result)
       } else {
         collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
-        res.redirect("index.html");
+        res.send("index.html");
       }
       
     })
@@ -77,7 +77,7 @@ router.post("/recuperarPass", (req, res, next) => {
   var user = req.body.username;
   
   if(password != repPassword){
-    res.redirect("recuperarPassERROR.html")
+    res.send("recuperarPassERROR.html")
     alert("Passwords não correspondem");
   } else {
   const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -87,11 +87,11 @@ router.post("/recuperarPass", (req, res, next) => {
     var values = {$set: {password: password}};
     collection.updateOne(query, values, function(err,result){
       if(err || !result) {
-        res.redirect("recuperarPassERROR.html");
+        res.send("recuperarPassERROR.html");
         console.log(result)
         console.log(err);
       } else {
-        res.redirect("index.html");
+        res.send("index.html");
         console.log(result)
       }
     })
@@ -127,18 +127,18 @@ router.post("/requisitarSala", (req, res, next) => {
     var values = {$set: {status: 2}};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.redirect("requisitar.html");
+        res.send("requisitar.html");
         console.log(result)
       } else {
         collection1.insertOne({user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim})
         if(date = dataInicio){
           collection.updateOne(query, values, function(err,result){
             if(err || !result) {
-              res.redirect("registoERROR.html");
+              res.send("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
-              res.redirect("requisitar.html");
+              res.send("requisitar.html");
               console.log(result)
             }
           })
@@ -171,11 +171,11 @@ router.post("/registarEvento", (req, res, next) => {
     var query= {numIps: num};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.redirect("registoERROR.html");
+        res.send("registoERROR.html");
         console.log(result)
       } else {
         collection1.insertOne({name: nome, local:local, startDate: dataInicio, endDate: dataFim,  employee: num})
-        res.redirect("./index.html");
+        res.send("./index.html");
       }
       
     })
@@ -205,18 +205,18 @@ router.post("/requisitarMaterial", (req, res, next) => {
     var values = {$set: {status: 2}};
     collection.findOne(query, function(err,result){
       if(err || !result) {
-        res.redirect("registoERROR.html");
+        res.send("registoERROR.html");
         console.log(result)
       } else {
         collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
         if(date = dataInicio){
           collection.updateOne(query, values, function(err,result){
             if(err || !result) {
-              res.redirect("registoERROR.html");
+              res.send("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
-              res.redirect("requisitar.html");
+              res.send("requisitar.html");
               console.log(result)
             }
           })
@@ -229,86 +229,52 @@ router.post("/requisitarMaterial", (req, res, next) => {
 });
 module.exports = router;
 
+//Registar Hora
 
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
-//Requisitar Material
-// router.get('/', function (req, res, next) {
-//   res.render('requisitar', { title: 'Express' });
-// });
+router.post("/registarEntradaSaida", (req, res, next) => {
+  console.log(req.body);
+  var numeroIPS = req.body.material;
+  var today = new Date;
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
+ 
 
-// router.post("/registarMaterial", (req, res, next) => {
-//   console.log(req.body);
-//   var numeroMaterial = req.body.material;
-//   var numeroIPS = parseInt(req.body.numeroIPS);
-//   var dataInicio = req.body.dataInicio;
-//   var dataFim = req.body.dataFim;
-//   var today = new Date;
-//   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
-//   console.log(date);
-//   console.log(dataFim);
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("VorTech").collection("User");
+    const collection1 = client.db("VorTech").collection("Hours");
+    var query= {numIps: numeroIPS};
 
-//   const client = new MongoClient(uri, { useNewUrlParser: true });
-//   client.connect(err => {
-//     const collection = client.db("VorTech").collection("Material");
-//     const collection1 = client.db("VorTech").collection("Request");
-//     var query= {materialId: numeroSala};
-//     var values = {$set: {status: 2}};
-//     collection.findOne(query, function(err,result){
-//       if(err || !result) {
-//         res.redirect("requisitar");
-//         // requisitarMateriais();
-//         console.log(result)
-//       } else {
-//         collection1.insertOne({user: numeroIPS, classRoom: "", material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
-//         if(date = dataInicio){
-//           collection.updateOne(query, values, function(err,result){
-//             if(err || !result) {
-//               res.redirect("requisitar");
-//               // requisitarMateriais();
-//               console.log(result)
-//               console.log(err);
-//             } else {
-//               res.redirect("requisitar");
-//               // requisitarMateriais();
-//               console.log(result)
-//             }
-//           })
-//         }
-//         }     
+    collection.findOne(query, function(err,result){
+      if(err || !result) {
+        res.send("registoERROR.html");
+        console.log(result)
+      } else {
+        if(status= 0) {
+          var values = {$set: {status: 1}};
+        } else {
+          var values = {$set: {status: 0}};
+        }
+        collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
+        if(date = dataInicio){
+          collection.updateOne(query, values, function(err,result){
+            if(err || !result) {
+              res.send("registoERROR.html");
+              console.log(result)
+              console.log(err);
+            } else {
+              res.send(".html");
+              console.log(result)
+            }
+          })
+        }
+        }     
       
-//     })
-//     //client.close();
-//   });
-// });
-// module.exports = router;
-
-// router.get('/', function (req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
-// router.post("/registarEvento", (req, res, next) => {
-//   console.log(req.body);
-//   var nome = req.body.nome;
-//   var numeroIPS = req.body.numeroIPS;
-//   var local = req.body.local;
-//   var dataInicio = req.body.dataInicio;
-//   var dataFim = req.body.dataFim;
-
-//   const client = new MongoClient(uri, { useNewUrlParser: true });
-//   client.connect(err => {
-//     const collection = client.db("VorTech").collection("User");
-//     const collection1 = client.db("VorTech").collection("Event");
-//     var query= {numIps: num};
-//     collection.findOne(query, function(err,result){
-//       if(err || !result) {
-//         res.redirect("registoERROR.html");
-//         console.log(result)
-//       } else {
-//         collection1.insertOne({name: nome,local: local, startDate: dataInicio, endDate: dataFim, employee: numeroIPS})
-//         res.redirect("requisitar.html");
-//       }
-      
-//     })
-//     // client.close();
-//   });
-// });
+    })
+    //client.close();
+  });
+});
+module.exports = router;

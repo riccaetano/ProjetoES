@@ -556,18 +556,20 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   border-radius: 0px;
   font-family: Arial;
   color: #ffffff;
-  font-size: 21px;
+  font-size: 22px;
   background: #000000;
-  padding: 10px 20px 10px 20px;
+  padding: 40px 120px 40px 120px;
   text-decoration: none;
+  margin-left:37%;
 }
 
 .butn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  background: #ffffff;
+  color: black;
+  background-image: -webkit-linear-gradient(top, white, white);
+  background-image: -moz-linear-gradient(top,  white, white);
+  background-image: -ms-linear-gradient(top,  white, white);
+  background-image: -o-linear-gradient(top,  white, white);
+  background-image: linear-gradient(to bottom,  white, white);
   text-decoration: none;
 }
