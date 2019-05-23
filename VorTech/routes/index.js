@@ -253,14 +253,15 @@ router.post("/registarEntradaSaida", (req, res, next) => {
         res.send("registoERROR.html");
         console.log(result)
       } else {
-        if(status= 0) {
-          var values = {$set: {status: 1}};
+        if(status= true) {
+          var values = {$set: {status: false}};
         } else {
-          var values = {$set: {status: 0}};
+          var values = {$set: {status: true}};
         }
-        collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
-        if(date = dataInicio){
-          collection.updateOne(query, values, function(err,result){
+        if(overtimeIn = null)
+        collection1.insertOne({idUser: numeroIPS,status: status, overtimeIn: date, overtimeOut: null})
+        else{
+          collection.updateOne(query, overtimeOut= date, function(err,result){
             if(err || !result) {
               res.send("registoERROR.html");
               console.log(result)
