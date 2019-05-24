@@ -253,14 +253,14 @@ router.post("/registarEntradaSaida", (req, res, next) => {
         res.send("registoERROR.html");
         console.log(result)
       } else {
-        //isso assume o status como uma variavel que tu criaste e não que vem das base de dados, alem disso, n tem como ir buscar esses valores a collection User
-        if(status= true) { //n existe o status no user, collection = coleção User, collection1 = coleção Hours
+        //isso assume o status como uma variavel e não que vem das base de dados, alem disso, n tem como ir buscar esses valores a collection User
+        if(status= true) { 
           var values = {$set: {status: false}};
         } else {
           var values = {$set: {status: true, overtimeOut: date}};
         }
-        if(overtimeIn = null) //n existe o overTimeIn no user, collection = coleção User, collection1 = coleção Hours
-        collection1.insertOne({idUser: numeroIPS,status: status, overtimeIn: date, overtimeOut: null})
+        if(overtimeIn != null) //n existe o overTimeIn no user, collection = coleção User, collection1 = coleção Hours
+        collection1.insertOne({idUser: numeroIPS,status: status, overtimeIn: today, overtimeOut: null})
         else{
           //collection.updateOne(query, overtimeOut= date, function(err,result)
           collection1.updateOne(query, values, function(err,result){
