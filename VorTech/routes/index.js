@@ -3,6 +3,10 @@ var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
 
+var bcrypt = require('bcrypt');
+var passport = require ('passport');
+const saltRounds = 10;
+
 // Login
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -10,23 +14,31 @@ router.get('/', function (req, res, next) {
 
 router.post("/login", (req, res, next) => {
   console.log(req.body)
+  var num = parseInt(req.body.numeroIPS);
+  var pass =  req.body.psw;
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query = { numIps: parseInt(req.body.numeroIPS) };
+    var query= {numIps: num};
     // perform actions on the collection object
-    collection.findOne(query, function (err, result) {
-      if (err || !result) {
-        res.redirect("loginERROR.html");
+    collection.findOne(query, function(err,results){
+      if(err || !results) {
+        res.redirect("loginError.html");
       } else {
-        res.redirect("index.html");
-        client.close();
+            const hash = results.password;
+            bcrypt.compare(pass, hash, function(err,result) {
+              if(err || !result) {
+                res.redirect("loginError.html");
+              } else {
+                res.redirect("Index.html");
+              }
+            });
+            
       }
 
     })
   });
 });
-
 
 
 module.exports = router;
@@ -54,9 +66,11 @@ router.post("/registar", (req, res, next) => {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.insertOne({ numIps: num, username: username, password: pass, role: role, palette: palette })
+
+        bcrypt.hash(pass, saltRounds, function(err,hash) {
+        collection.insertOne({numIps: num, username: username, password: hash, role: role, palette: palette})
         res.redirect("index.html");
-        client.close();
+      });
       }
 
     })
