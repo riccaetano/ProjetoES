@@ -13,16 +13,16 @@ router.post("/login", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= {numIps: parseInt(req.body.numeroIPS)};
+    var query = { numIps: parseInt(req.body.numeroIPS) };
     // perform actions on the collection object
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("loginERROR.html");
       } else {
         res.redirect("index.html");
         client.close();
       }
-      
+
     })
   });
 });
@@ -39,26 +39,26 @@ router.get('/', function (req, res, next) {
 router.post("/registar", (req, res, next) => {
   console.log(req.body);
   var num = parseInt(req.body.numeroIPS);
-  var pass =  req.body.psw;
+  var pass = req.body.psw;
   var username = req.body.username;
-  var role = 3;  
-  var palette =  "default";
+  var role = 3;
+  var palette = "default";
 
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
     const collection1 = client.db("VorTech").collection("Person");
-    var query= {numIps: num};
-    collection1.findOne(query, function(err,result){
-      if(err || !result) {
+    var query = { numIps: num };
+    collection1.findOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
+        collection.insertOne({ numIps: num, username: username, password: pass, role: role, palette: palette })
         res.redirect("index.html");
         client.close();
       }
-      
+
     })
   });
 });
@@ -73,33 +73,33 @@ router.get('/', function (req, res, next) {
 router.post("/recuperarPass", (req, res, next) => {
   console.log(req.body);
   var numero = parseInt(req.body.numeroIPS);
-  var password =  req.body.psw;
-  var repPassword =  req.body.repPsw
+  var password = req.body.psw;
+  var repPassword = req.body.repPsw
   var user = req.body.username;
-  
-  if(password != repPassword){
+
+  if (password != repPassword) {
     res.redirect("recuperarPassERROR.html")
     alert("Passwords não correspondem");
   } else {
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("User");
-    var query= {numIps: numero, username: user};
-    var values = {$set: {password: password}};
-    collection.updateOne(query, values, function(err,result){
-      if(err || !result) {
-        res.redirect("recuperarPassERROR.html");
-        console.log(result)
-        console.log(err);
-      } else {
-        res.redirect("index.html");
-        console.log(result);
-        client.close();
-      }
-    })
-    // client.close();
-  });
-}
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("User");
+      var query = { numIps: numero, username: user };
+      var values = { $set: { password: password } };
+      collection.updateOne(query, values, function (err, result) {
+        if (err || !result) {
+          res.redirect("recuperarPassERROR.html");
+          console.log(result)
+          console.log(err);
+        } else {
+          res.redirect("index.html");
+          console.log(result);
+          client.close();
+        }
+      })
+      // client.close();
+    });
+  }
 });
 
 module.exports = router;
@@ -117,7 +117,7 @@ router.post("/requisitarSala", (req, res, next) => {
   var dataInicio = req.body.dataInicio;
   var dataFim = req.body.dataFim;
   var today = new Date;
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
+  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
   console.log(date);
   console.log(dataFim);
 
@@ -125,17 +125,17 @@ router.post("/requisitarSala", (req, res, next) => {
   client.connect(err => {
     const collection = client.db("VorTech").collection("ClassRoom");
     const collection1 = client.db("VorTech").collection("Request");
-    var query= {name: numeroSala};
-    var values = {$set: {status: 2}};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
+    var query = { name: numeroSala };
+    var values = { $set: { status: 2 } };
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("requisitar.html");
         console.log(result)
       } else {
-        collection1.insertOne({user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim})
-        if(date = dataInicio){
-          collection.updateOne(query, values, function(err,result){
-            if(err || !result) {
+        collection1.insertOne({ user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim })
+        if (date = dataInicio) {
+          collection.updateOne(query, values, function (err, result) {
+            if (err || !result) {
               res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
@@ -146,8 +146,8 @@ router.post("/requisitarSala", (req, res, next) => {
             }
           })
         }
-        }     
-      
+      }
+
     })
   });
 });
@@ -170,17 +170,17 @@ router.post("/registarEvento", (req, res, next) => {
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
     const collection1 = client.db("VorTech").collection("Event");
-    var query= {numIps: num};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
+    var query = { numIps: num };
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection1.insertOne({name: nome, local:local, startDate: dataInicio, endDate: dataFim,  employee: num})
+        collection1.insertOne({ name: nome, local: local, startDate: dataInicio, endDate: dataFim, employee: num })
         res.redirect("./index.html");
         client.close();
       }
-      
+
     })
   });
 });
@@ -203,17 +203,17 @@ router.post("/requisitarMaterial", (req, res, next) => {
   client.connect(err => {
     const collection = client.db("VorTech").collection("Material");
     const collection1 = client.db("VorTech").collection("Request");
-    var query= {materialId: numeroMaterial};
-    var values = {$set: {status: 2}};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
+    var query = { materialId: numeroMaterial };
+    var values = { $set: { status: 2 } };
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
-        if(date = dataInicio){
-          collection.updateOne(query, values, function(err,result){
-            if(err || !result) {
+        collection1.insertOne({ user: numeroIPS, classRoom: "", material: numeroMaterial, startDate: dataInicio, endDate: dataFim })
+        if (date = dataInicio) {
+          collection.updateOne(query, values, function (err, result) {
+            if (err || !result) {
               res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
@@ -224,8 +224,8 @@ router.post("/requisitarMaterial", (req, res, next) => {
             }
           })
         }
-        }     
-      
+      }
+
     })
   });
 });
@@ -247,16 +247,17 @@ router.post("/addSala", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("ClassRoom");
-    var query= {name: numeroSala, section: bloco, floor: andar, status: estado, material: material};
-    collection.insertOne(query, function(err,result){
-      if(err || !result) {
+    var query = { name: numeroSala, section: bloco, floor: andar, status: estado, material: material };
+    collection.insertOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -273,19 +274,19 @@ router.post("/updateSala", (req, res, next) => {
   var andar = req.body.andar;
   var estado = req.body.estado;
   var material = [];
- 
+
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("ClassRoom");
-    var query= { $set: {section: bloco, floor: andar, status: estado, material: material}};
-    var queryFilter= {name: numeroSala};
-    collection.findOne(queryFilter, function(err,result){
-      if(err || !result) {
+    var query = { $set: { section: bloco, floor: andar, status: estado, material: material } };
+    var queryFilter = { name: numeroSala };
+    collection.findOne(queryFilter, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.updateOne(queryFilter, query, function(err,result){
-          if(err || !result) {
+        collection.updateOne(queryFilter, query, function (err, result) {
+          if (err || !result) {
             res.redirect("registoERROR.html");
             console.log(result)
             console.log(err);
@@ -295,7 +296,8 @@ router.post("/updateSala", (req, res, next) => {
             client.close();
           }
         })
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -308,30 +310,31 @@ router.get('/', function (req, res, next) {
 router.post("/addMaterialSala", (req, res, next) => {
   console.log(req.body);
   var numeroSala = req.body.numeroSala;
-  // var material = re.body.material;
-  var material = [];
+  var material = req.body.material;
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("ClassRoom");
-    var query= { $set: {material: material}};
-    var queryFilter= {name: numeroSala};
-    collection.findOne(queryFilter, function(err,result){
-      if(err || !result) {
-        res.redirect("registoERROR.html");
+    var queryFilter = { name: numeroSala };
+    collection.findOne(queryFilter, function (err, result) {
+      if (err || !result) {
+        res.redirect("./registoERROR.html");
         console.log(result)
       } else {
-        collection.updateOne(queryFilter, query, function(err,result){
-          if(err || !result) {
-            res.redirect("registoERROR.html");
+         result.material.push(material)
+        var query = { $set: { material: result.material } };
+        collection.updateOne(queryFilter, query, function (err, result) {
+          if (err || !result) {
+            res.redirect("./registoERROR.html");
             console.log(result)
             console.log(err);
           } else {
-            res.redirect("definições.html");
+            res.redirect("./definições.html");
             console.log(result)
             client.close();
           }
         })
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -348,16 +351,17 @@ router.post("/deleteSala", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("ClassRoom");
-    var query= {name: numeroSala};
-    collection.deleteOne(query, function(err,result){
-      if(err || !result) {
+    var query = { name: numeroSala };
+    collection.deleteOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 
 });
@@ -377,21 +381,22 @@ router.post("/addMaterial", (req, res, next) => {
   var nome = req.body.nome;
   var estado = req.body.estado;
   var descricao = req.body.descricao;
- 
+
 
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("Material");
-    var query= {materialId: numeroMaterial, name: nome, status: estado, description: descricao};
-    collection.insertOne(query, function(err,result){
-      if(err || !result) {
+    var query = { materialId: numeroMaterial, name: nome, status: estado, description: descricao };
+    collection.insertOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -407,19 +412,19 @@ router.post("/updateMaterial", (req, res, next) => {
   var nome = req.body.nome;
   var estado = req.body.estado;
   var descricao = req.body.descricao;
- 
+
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("Material");
-    var query= { $set: { name: nome, status: estado, description: descricao}};
-    var queryFilter= {materialId: numeroMaterial};
-    collection.findOne(queryFilter, function(err,result){
-      if(err || !result) {
+    var query = { $set: { name: nome, status: estado, description: descricao } };
+    var queryFilter = { materialId: numeroMaterial };
+    collection.findOne(queryFilter, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.updateOne(queryFilter, query, function(err,result){
-          if(err || !result) {
+        collection.updateOne(queryFilter, query, function (err, result) {
+          if (err || !result) {
             res.redirect("registoERROR.html");
             console.log(result)
             console.log(err);
@@ -429,7 +434,8 @@ router.post("/updateMaterial", (req, res, next) => {
             client.close();
           }
         })
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -446,16 +452,17 @@ router.post("/deleteMateriais", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("Material");
-    var query= {materialId: material};
-    collection.deleteOne(query, function(err,result){
-      if(err || !result) {
+    var query = { materialId: material };
+    collection.deleteOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 
 });
@@ -472,21 +479,22 @@ router.post("/addUser", (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
   var role = req.body.role;
-  var palette= "default";
+  var palette = "default";
   var estado = "false";
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= {numIps: numeroIPS, username: username, password: password, role: role, palette: palette, status: estado};
-    collection.insertOne(query, function(err,result){
-      if(err || !result) {
+    var query = { numIps: numeroIPS, username: username, password: password, role: role, palette: palette, status: estado };
+    collection.insertOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -505,15 +513,15 @@ router.post("/updateUser", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= { $set: { role: role}};
-    var queryFilter= {numIps: numeroIPS, username: username};
-    collection.findOne(queryFilter, function(err,result){
-      if(err || !result) {
+    var query = { $set: { role: role } };
+    var queryFilter = { numIps: numeroIPS, username: username };
+    collection.findOne(queryFilter, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.updateOne(queryFilter, query, function(err,result){
-          if(err || !result) {
+        collection.updateOne(queryFilter, query, function (err, result) {
+          if (err || !result) {
             res.redirect("registoERROR.html");
             console.log(result)
             console.log(err);
@@ -523,7 +531,8 @@ router.post("/updateUser", (req, res, next) => {
             client.close();
           }
         })
-      }}) 
+      }
+    })
   });
 });
 module.exports = router;
@@ -540,16 +549,17 @@ router.post("/deleteUser", (req, res, next) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= {numIps: numeroIPS};
-    collection.deleteOne(query, function(err,result){
-      if(err || !result) {
+    var query = { numIps: numeroIPS };
+    collection.deleteOne(query, function (err, result) {
+      if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
         res.redirect("definições.html");
         console.log(result)
         client.close();
-      }}) 
+      }
+    })
   });
 
 });
@@ -568,34 +578,35 @@ router.post("/alterarPassword", (req, res, next) => {
   var passwordNova = req.body.passNova;
   var passwordNovaRep = req.body.passNovaRepetir;
 
-  if(passwordNova != passwordNovaRep){
+  if (passwordNova != passwordNovaRep) {
     alert("Passwords não correspondem");
-  }else{
+  } else {
 
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("User");
-    var query= { $set: { password: passwordNova}};
-    var queryFilter= {numIps: numeroIPS, username: username, password:passwordAntiga};
-    var queryFilter1= {numIps: numeroIPS, username: username};
-    collection.findOne(queryFilter, function(err,result){
-      if(err || !result) {
-        res.redirect("registoERROR.html");
-        console.log(result)
-      } else {
-        collection.updateOne(queryFilter1, query, function(err,result){
-          if(err || !result) {
-            res.redirect("registoERROR.html");
-            console.log(result)
-            console.log(err);
-          } else {
-            res.redirect("definições.html");
-            console.log(result)
-            client.close();
-          }
-        })
-      }}) 
-  });
-}
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("User");
+      var query = { $set: { password: passwordNova } };
+      var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
+      var queryFilter1 = { numIps: numeroIPS, username: username };
+      collection.findOne(queryFilter, function (err, result) {
+        if (err || !result) {
+          res.redirect("registoERROR.html");
+          console.log(result)
+        } else {
+          collection.updateOne(queryFilter1, query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+              console.log(err);
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
+        }
+      })
+    });
+  }
 });
 module.exports = router;
