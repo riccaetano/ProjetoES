@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var reqRouter = require('./routes/requisitar');
 var regRouter = require('./routes/registar');
 var defRouter = require('./routes/definicoes');
+var artRouter = require('./routes/artigos');
+var conRouter = require('./routes/consultar');
 
 var session = require ('express-session');
 var passport = require ('passport');
@@ -38,6 +40,9 @@ app.use('/', indexRouter);
 app.use('/', reqRouter);
 app.use('/', regRouter);
 app.use('/', defRouter);
+app.use('/', artRouter);
+app.use('/', conRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
