@@ -49,7 +49,7 @@
     <div class="w3-section w3-bottombar w3-padding-16">
       <!-- <span class="w3-margin-right">Filter:</span>  -->
       <!-- <button class="w3-button w3-black">ALL</button> -->
-      <button onclick="consultarArtigo()" class="w3-button w3-white w3-hide-small"><i class="fa fa-search w3-margin-right"></i>Consultar Artigos Perdidos</i></button>
+      <button onclick="consultarArtigo()" type="submit" class="w3-button w3-white w3-hide-small"><i class="fa fa-search w3-margin-right"></i>Consultar Artigos Perdidos</i></button>
       <button onclick="registarArtigo()" class="w3-button w3-white w3-hide-small"><i class="fa fa-edit w3-margin-right"></i>Registar Artigos Perdidos</button>
       <button onclick="levantarArtigo()" class="w3-button w3-white w3-hide-small"><i class="fa fa-check-square-o w3-margin-right"></i>Levantar Artigos Perdidos</button>
     </div>
@@ -67,113 +67,11 @@
             <option value="levantado">Levantado</option>
         <select> 
             <hr class="w3-opacity">
-            <form action="/action_page.php" target="_blank">
+            <form action="/showArtigo" method="POST">
               <div class="table-wrapper2">
-                  <table id="artigoPerdido" class="f2-table">
-                      <thead>
-                      <tr>
-                          <th>Artigo Perdido</th>
-                          <th>Descrição</th>
-                          <th>Data de Entrega</th>
-                          <th>Entregue por:</th>
-                          <th>Estado</th>
-                          <th>Levantado por:</th>
-                          <th>Data de Levantamento</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>Casaco Azul</td>
-                              <td>12/04/2019</td>
-                              <td>Maria João</td>
-                              <td>Levantado</td>
-                              <td>Joana Cruz</td>
-                              <td>13/04/2019</td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>Cartão Crédito</td>
-                              <td>08/05/2019</td>
-                              <td>João Manuel</td>
-                              <td>Perdido</td>
-                              <td>-</td>
-                              <td>-</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>8</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>9</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>10</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tbody>
-                      </table>
+                  <table id="showArtigoPerdido" class="f2-table">
+                     
+                  </table>
               </div>
             </form>
     </div>

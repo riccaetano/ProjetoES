@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var reqRouter = require('./routes/requisitar');
+var regRouter = require('./routes/registar');
+var defRouter = require('./routes/definicoes');
 
 var session = require ('express-session');
 var passport = require ('passport');
@@ -32,6 +35,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+app.use('/', reqRouter);
+app.use('/', regRouter);
+app.use('/', defRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
