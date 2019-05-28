@@ -67,10 +67,21 @@
             <option value="levantado">Levantado</option>
         <select> 
             <hr class="w3-opacity">
-            <form action="/showArtigo" method="POST">
+            <form>
               <div class="table-wrapper2">
-                  <table id="showArtigoPerdido" class="f2-table">
-                     
+                  <table id="tabela" class="f2-table">
+                     <thead>
+                       <tr>
+                          <th>Artigo Perdido</th>
+                          <th>Descrição</th>
+                          <th>Data de Entrega</th>
+                          <th>Entregue por:</th>
+                          <th>Estado</th>
+                          <th>Levantado por:</th>
+                          <th>Data de Levantamento</th>
+                       </tr>
+                     </thead>
+                     <tbody id="tbody"></tbody>
                   </table>
               </div>
             </form>

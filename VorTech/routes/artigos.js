@@ -8,22 +8,21 @@ const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express' });
   });
-    router.get("/showMaterial", (req, res, next) => {
+    router.get("/getArtigos", (req, res, next) => {
 
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("ItemLost");
-      collection.find({}, function (err, result) {
-        if (err || !result) {
-          res.redirect("registoERROR.html");
-          console.log(result)
+      collection.find({}).toArray((err, result) => {
+        if(err){
+          console.log(err);
+          res.send(500);
+          client.close();
         } else {
-          var table = document.getElementById("showArtigoPerdido");
-          table.appendChild(tableLine(result, true));
-          for (var i = 0; i < result.length; i++) {
-              table.appendChild(tableLine(result[i], false));
-            }
+          res.send(result);
+          client.close();
         }
+
       })
     });
   });
