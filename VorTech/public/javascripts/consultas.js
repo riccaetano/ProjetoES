@@ -4,17 +4,18 @@ function criarTabela(conteudo) {
         var td = document.createElement('td');
         td.textContent = conteudo[i];
         tr.appendChild(td);
-        }
-     return tr;
+    }
+    return tr;
 }
 
 $(() => {
-    $.get("./artigos/getArtigos", function (data) {
-        console.log(data);
-        data.forEach(result => {
-            document.getElementById("tbody").appendChild(criarTabela(
-            [result.type, result.description, result.dueDate, result.person, result.deliveryDate, result.status, result.owner, result.description]
-                ));
+$.get("./encomendas/getAll", function (data) {
+    console.log(data);
+    data.forEach(result => {
+        document.getElementById("tbody").appendChild(criarTabela(
+            [result.type, result.description, result.dueDate, result.person, result.status, result.owner, result.deleveryDate]
+            ));
         });
     });
 }); 
+    

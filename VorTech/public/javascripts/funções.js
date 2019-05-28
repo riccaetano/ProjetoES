@@ -241,6 +241,7 @@ function closeEliminarUser() {
 function openAlterarOcorrencia() {
   document.getElementById("alterarOcorrencia").style.display = "block";
   document.getElementById("eliminarOcorrencia").style.display = "none";
+  document.getElementById("alterarEstadoOcorrencia").style.display = "none";
 }
 
 function closeAlterarOcorrencia() {
@@ -250,11 +251,33 @@ function closeAlterarOcorrencia() {
 function openEliminarOcorrencia() {
   document.getElementById("eliminarOcorrencia").style.display = "block";
   document.getElementById("alterarOcorrencia").style.display = "none";
+  document.getElementById("alterarEstadoOcorrencia").style.display = "none";
 }
 
 function closeEliminarOcorrencia() {
   document.getElementById("eliminarOcorrencia").style.display = "none";
 }
+
+function openEliminarArtigo() {
+  document.getElementById("eliminarArtigo").style.display = "block";
+}
+
+function closeEliminarArtigo() {
+  document.getElementById("eliminarArtigo").style.display = "none";
+}
+
+
+function openAlterarEstadoOcorrencia() {
+  document.getElementById("alterarEstadoOcorrencia").style.display = "block";
+  document.getElementById("eliminarOcorrencia").style.display = "none";
+  document.getElementById("alterarOcorrencia").style.display = "none";
+}
+
+function closeAlterarEstadoOcorrencia() {
+  document.getElementById("alterarEstadoOcorrencia").style.display = "none";
+}
+
+
 
 function setStyleSheet(){
   var stylesheet = document.getElementById("temas").value;

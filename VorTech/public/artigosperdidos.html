@@ -10,9 +10,12 @@
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/light_purple.css" title = "purple"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="javascripts/filterTable.js"></script>   
 <script src="javascripts/funções.js"></script>   
+<script src="javascripts/consultas.js"></script> 
 <body class="background-color w3-content" style="max-width:1600px">
+
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse sidebar-color w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -65,10 +68,11 @@
             <option value="">-</option>  
             <option value="perdido">Perdido</option>  
             <option value="levantado">Levantado</option>
-        <select> 
+        <select>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarArtigo()">Eliminar Artigo</button> 
             <hr class="w3-opacity">
             <form>
-              <div class="table-wrapper2">
+              <div class="table-wrapper2">   
                   <table id="tabela" class="f2-table">
                      <thead>
                        <tr>
@@ -90,22 +94,30 @@
     <div id="registarArtigo" style="text-align: center; display: none">
         <h1><b>Registar Artigos Perdidos</b></h1>
         <hr class="w3-opacity">
-        <form action="/action_page.php" target="_blank">
+        <form action="/registarArtigo" method="POST">
+          <div class="w3-section">
+              <label>Artigo ID</label>
+              <input class="w3-input w3-border" type="text" name="id" required>
+            </div>
           <div class="w3-section">
             <label>Artigo</label>
-            <input class="w3-input w3-border" type="text" name="Name" required>
+            <input class="w3-input w3-border" type="text" name="artigo" required>
           </div>
           <div class="w3-section">
             <label>Descrição</label>
-            <input class="w3-input w3-border" type="text" name="Email" required>
+            <input class="w3-input w3-border" type="text" name="descricao" required>
           </div>
+          <div class="w3-section">
+              <label>Local onde foi encontrado</label>
+              <input class="w3-input w3-border" type="text" name="local" required>
+            </div>
           <div class="w3-section">
             <label>Entregue por</label>
-            <input class="w3-input w3-border" type="text" name="Message" required>
+            <input class="w3-input w3-border" type="text" name="entreguePor" required>
           </div>
           <div class="w3-section">
-                <label>Data de Entrega</label>
-                <input class="w3-input w3-border" type="datetime-local" name="Message" required>
+              <label>Telemóvel </label>
+              <input class="w3-input w3-border" type="text" name="phone" required>
             </div>
           <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Registar</button>
         </form>
@@ -113,34 +125,33 @@
     <div id="levantarArtigo" style="text-align: center; display: none">
             <h1><b>Levantar Artigos Perdidos</b></h1>
             <hr class="w3-opacity">
-            <form action="/action_page.php" target="_blank">
+            <form action="/levantarArtigo" method="POST">
+              <div class="w3-section">
+                  <label>Artigo ID</label>
+                  <input class="w3-input w3-border" type="text" name="id" required>
+                </div>
               <div class="w3-section">
                 <label>Artigo</label>
-                <input class="w3-input w3-border" type="text" name="Name" required>
-              </div>
-              <div class="w3-section">
-                <label>Descrição</label>
-                <input class="w3-input w3-border" type="text" name="Email" required>
-              </div>
-              <div class="w3-section">
-                <label>Entregue por</label>
-                <input class="w3-input w3-border" type="text" name="Message" required>
-              </div>
-              <div class="w3-section">
-                    <label>Data de Entrega</label>
-                    <input class="w3-input w3-border" type="datetime-local" name="Message" required>
+                <input class="w3-input w3-border" type="text" name="artigo" required>
               </div>
               <div class="w3-section">
                   <label>Levantado por</label>
-                  <input class="w3-input w3-border" type="text" name="Message" required>
-                </div>
-                <div class="w3-section">
-                      <label>Data de Levantamento</label>
-                      <input class="w3-input w3-border" type="datetime-local" name="Message" required>
+                  <input class="w3-input w3-border" type="text" name="levantadoPor" required>
                 </div>
                 <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Levantar</button>
             </form>
         </div>
+
+        <div class="form-popup" id="eliminarArtigo">
+            <form action="/eliminarArtigo" method="POST" class="form-container">
+              <h1>Eliminar Artigo</h1>
+              <label for="material"><b>Artigo ID</b></label>
+              <input class="w3-input w3-border" type="text" name="artigo" required>
+          
+              <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarArtigo()">Cancelar</button>
+            </form>
+          </div>
 
   
   <div class="separador2 w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
