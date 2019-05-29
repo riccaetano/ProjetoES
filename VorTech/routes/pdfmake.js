@@ -1,3 +1,5 @@
+//                                  RELATÓRIO MANUAL
+
 const express = require('express');
 const router = express.Router();
 
@@ -37,7 +39,7 @@ router.post('/pdf', (req, res, next)=>{
     console.log(name);
     console.log(tipoRelatorio);
 
-    
+
 
 
 
