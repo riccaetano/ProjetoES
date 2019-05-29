@@ -11,6 +11,7 @@ var defRouter = require('./routes/definicoes');
 var artRouter = require('./routes/artigos');
 var conRouter = require('./routes/consultar');
 var ocoRouter = require('./routes/ocorrencias');
+var pdfRouter = require('./routes/pdfmake');
 
 var session = require ('express-session');
 var passport = require ('passport');
@@ -44,6 +45,7 @@ app.use('/', defRouter);
 app.use('/', artRouter);
 app.use('/', conRouter);
 app.use('/', ocoRouter);
+app.use('/', pdfRouter);
 
 
 // catch 404 and forward to error handler
