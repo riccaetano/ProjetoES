@@ -17,31 +17,63 @@ router.post('/pdf', (req, res, next)=>{
     var tipoRelatorio = parseInt(req.body.tipoRelatorio);
     var name = "";
     var col = "";
+    var query = "";
+    var resultado = "";
     console.log(name);
     console.log(tipoRelatorio);
 
     if(tipoRelatorio == 1) {
         name = "Requisições";
         col = "Request";
+        query = {startDate: dataRelatorio};
     } else if(tipoRelatorio == 2){
         name = "Ocorrências";
         col = "Incident";
+        query = {incidentCreate: dataRelatorio};
     } else if(tipoRelatorio == 3){
         name = "Eventos";
         col = "Event";
+        query = {startDate: dataRelatorio};
     } else if(tipoRelatorio == 4){
         name = "Entradas e Saídas";
         col = "Hours";
+        query = {overtimeIn: dataRelatorio};
     } else if(tipoRelatorio == 5){
-        name = "Estatísticas";
-        col = "Estatistica"
+        // name = "Estatísticas";
+        // col = "Estatistica"
+        // query = {startDate: dataRelatorio};
     }
     console.log(name);
     console.log(tipoRelatorio);
+    console.log(query);
+    console.log(col);
+   
+    router.get('/', function (req, res, next) {
+        res.render('index', { title: 'Express' });
+      });
+        router.post("/pdf", (req, res, next) => {
+    
+        const client = new MongoClient(uri, { useNewUrlParser: true });
+        client.connect(err => {
+          const collection = client.db("VorTech").collection(col);
+          collection.find(query).toArray((err, result) => {
+            if(err){
+              console.log(err);
+              res.send(500);
+              client.close();
+            } else {
+              res.send(result);
+              client.close();
+            }
+    
+          })
+        });
+      });
+      module.exports = router;
+   
+    console.log(resultado);
 
-
-
-
+    console.log("resultado: " + resultado);
 
 
     
