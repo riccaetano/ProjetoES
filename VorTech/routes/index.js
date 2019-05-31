@@ -194,7 +194,7 @@ router.get('/', function (req, res, next) {
 
 router.post("/requisitarMaterial", (req, res, next) => {
   console.log(req.body);
-  var numeroMaterial = req.body.material;
+  //var numeroMaterial = req.body.material;
   var numeroIPS = parseInt(req.body.numeroIPS);
   var dataInicio = req.body.dataInicio;
   var dataFim = req.body.dataFim;
@@ -204,6 +204,7 @@ router.post("/requisitarMaterial", (req, res, next) => {
     const collection = client.db("VorTech").collection("Material");
     const collection1 = client.db("VorTech").collection("Request");
     var query= {materialId: numeroMaterial};
+    var numeroMaterial = query + 1;
     var values = {$set: {status: 2}};
     collection.findOne(query, function(err,result){
       if(err || !result) {
