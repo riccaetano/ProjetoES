@@ -50,11 +50,10 @@
     <div class="w3-section w3-bottombar w3-padding-16">
       <!-- <span class="w3-margin-right">Filter:</span>  -->
       <!-- <button class="w3-button w3-black">ALL</button> -->
-      <button  onclick="perfil()" class="w3-button w3-white w3-hide-small"><i class="fa fa-drivers-license-o w3-margin-right"></i>Perfil</i></button>
-      <button onclick="gerirUsers()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
       <button onclick="gerirSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Gerir Salas</button>
       <button onclick="gerirMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Gerir Materiais</button>
-
+      <button onclick="gerirUsers()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
+      <button  onclick="perfil()" class="w3-button w3-white w3-hide-small"><i class="fa fa-drivers-license-o w3-margin-right"></i>Perfil</i></button>
     </div>
     </div>
   </header>
@@ -372,82 +371,79 @@
       </form>
     </div>
 
-     <!-- SALAS  -->
+     <!-- ALTERAR PASSWORD  -->
 
         <div class="form-popup" id="alterarPass">
-          <form action="/action_page.php" class="form-container">
+          <form action="/alterarPassword" method="POST" class="form-container">
             <h1>Alterar Password</h1>
         
             <label for="numeroIPS"><b>Número IPS</b></label>
-            <input class="w3-input w3-border" type="text" required>
+            <input class="w3-input w3-border" type="text" name="numeroIPS" required>
 
-            <label for="name"><b>Nome User</b></label>
-            <input class="w3-input w3-border" type="text" required>
+            <label for="name"><b>Username</b></label>
+            <input class="w3-input w3-border" type="text" name="username"required>
         
             <label for="psw"><b>Password Antiga</b></label>
-            <input class="w3-input w3-border" type="password" required>
+            <input class="w3-input w3-border" type="password" name="passAntiga"required>
 
             <label for="psw"><b>Nova Password</b></label>
-            <input class="w3-input w3-border" type="password" required>
+            <input class="w3-input w3-border" type="password" name="passNova" required>
 
             <label for="psw"><b>Repetir Nova Password</b></label>
-            <input class="w3-input w3-border" type="password" required>
+            <input class="w3-input w3-border" type="password" name="passNovaRepetir" required>
         
-            <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
+            <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
             <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarPass()">Cancelar</button>
           </form>
       </div>
+
+      <!-- SALAS  -->
       <div class="form-popup" id="adicionarSala">
-        <form action="/action_page.php" class="form-container">
+        <form action="/addSala" method="POST" class="form-container">
           <h1>Adicionar Sala</h1>
           <label for="numeroIPS"><b>Bloco</b></label>
-          <input class="w3-input w3-border" type="text" required>
+          <input class="w3-input w3-border" type="text" name="bloco" required>
+
+          <label for="numeroIPS"><b>Andar</b></label>
+          <input class="w3-input w3-border" type="number" name="andar" required>
 
           <label for="name"><b>Sala</b></label>
-          <input class="w3-input w3-border" type="text" required>
-      
-          <label for="psw"><b>Estado</b></label>
-          <input class="w3-input w3-border" type="text" required>
-      
+          <input class="w3-input w3-border" type="text" name="numeroSala" required>
+
           <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
           <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarSala()">Cancelar</button>
         </form>
     </div>
 
     <div class="form-popup" id="alterarSala">
-      <form action="/action_page.php" class="form-container">
+      <form action="/updateSala" method="POST" class="form-container">
         <h1>Alterar Estado</h1>
         <label for="numeroIPS"><b>Bloco</b></label>
-        <input class="w3-input w3-border" type="text" required>
+        <input class="w3-input w3-border" type="text" name="bloco" required>
+        
+        <label for="numeroIPS"><b>Andar</b></label>
+        <input class="w3-input w3-border" type="number" name="andar" required>
 
         <label for="name"><b>Sala</b></label>
-        <input class="w3-input w3-border" type="text" required>
+        <input class="w3-input w3-border" type="text" name="numeroSala" required>
     
         <label for="psw"><b>Estado</b></label>
-        <input class="w3-input w3-border" type="text" required>
-
-        <label for="psw"><b>Docente</b></label>
-        <input class="w3-input w3-border" type="text" required>
-   
+        <input class="w3-input w3-border" type="number" name="estado" required>
+  
         <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
         <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarSala()">Cancelar</button>
       </form>
   </div>
 
   <div class="form-popup" id="adicionarSalaMaterial">
-    <form action="/action_page.php" class="form-container">
+    <form action="/addMaterialSala" method="POST" class="form-container">
       <h1>Adicionar Material</h1>
-      <label for="numeroIPS"><b>Bloco</b></label>
-      <input class="w3-input w3-border" type="text" required>
 
       <label for="name"><b>Sala</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="numeroSala" required>
   
-      <label for="psw"><b>Id do Material</b></label>
-      <input class="w3-input w3-border" type="text" required>
-
       <label for="psw"><b>Material</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="material" required>
  
       <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
       <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarSalaMaterial()">Cancelar</button>
@@ -455,13 +451,11 @@
 </div>
 
   <div class="form-popup" id="eliminarSala">
-    <form action="/action_page.php" class="form-container">
+    <form action="/deleteSala" method="POST" class="form-container">
       <h1>Eliminar Sala</h1>
-      <label for="numeroIPS"><b>Bloco</b></label>
-      <input class="w3-input w3-border" type="text" required>
 
       <label for="name"><b>Sala</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="sala" required>
    
       <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
       <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarSala()">Cancelar</button>
@@ -471,16 +465,19 @@
     <!-- MATERIAIS  -->
 
     <div class="form-popup" id="adicionarMaterial">
-      <form action="/action_page.php" class="form-container">
+      <form action="/addMaterial" method="POST" class="form-container">
         <h1>Adicionar Material</h1>
-        <label for="numeroIPS"><b>Material</b></label>
-        <input class="w3-input w3-border" type="text" required>
+        <label for="numeroIPS"><b>Material ID</b></label>
+        <input class="w3-input w3-border" type="text" name="numeroMaterial" required>
+        
+        <label for="numeroIPS"><b>Nome</b></label>
+        <input class="w3-input w3-border" type="text" name="nome" required>
    
         <label for="psw"><b>Estado</b></label>
-        <input class="w3-input w3-border" type="text" required>
+        <input class="w3-input w3-border" type="number" name="estado" required>
 
         <label for="psw"><b>Descrição</b></label>
-        <input class="w3-input w3-border" type="text" required>
+        <input class="w3-input w3-border" type="text" name="descricao" required>
    
         <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Adicionar</button>
         <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAdicionarMaterial()">Cancelar</button>
@@ -488,19 +485,19 @@
   </div>
 
   <div class="form-popup" id="alterarMaterial">
-    <form action="/action_page.php" class="form-container">
+    <form action="/updateMaterial" method="POST" class="form-container">
       <h1>Alterar Estado</h1>
-      <label for="numeroIPS"><b>Material</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <label for="material"><b>Material</b></label>
+      <input class="w3-input w3-border" type="text" name="numeroMaterial" required>
+      
+      <label for="nome"><b>Nome</b></label>
+      <input class="w3-input w3-border" type="text" name="nome" required>
  
-      <label for="psw"><b>Estado</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <label for="estado"><b>Estado</b></label>
+      <input class="w3-input w3-border" type="number" name="estado" required>
 
-      <label for="psw"><b>Descrição</b></label>
-      <input class="w3-input w3-border" type="text" required>
-
-      <label for="psw"><b>Docente</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <label for="descricao"><b>Descrição</b></label>
+      <input class="w3-input w3-border" type="text" name="descricao" required>
  
       <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
       <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarMaterial()">Cancelar</button>
@@ -508,13 +505,10 @@
 </div>
 
   <div class="form-popup" id="eliminarMaterial">
-    <form action="/action_page.php" class="form-container">
-      <h1>Eliminar Sala</h1>
-      <label for="numeroIPS"><b>Material</b></label>
-      <input class="w3-input w3-border" type="text" required>
-
-      <label for="name"><b>Descrição</b></label>
-      <input class="w3-input w3-border" type="text" required>
+    <form action="/deleteMateriais" method="POST" class="form-container">
+      <h1>Eliminar Material</h1>
+      <label for="material"><b>Material</b></label>
+      <input class="w3-input w3-border" type="text" name="material" required>
   
       <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
       <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarMaterial()">Cancelar</button>
@@ -524,36 +518,36 @@
   <!-- USERS -->
   
   <div class="form-popup" id="registarUser">
-    <form action="/action_page.php" class="form-container">
+    <form action="/addUser" method="POST" class="form-container">
       <h1>Adicionar User</h1>
       <label for="numeroIPS"><b>Número IPS</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="numeroIPS" required>
 
       <label for="name"><b>Nome User</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="username" required>
   
       <label for="psw"><b>Password</b></label>
-      <input class="w3-input w3-border" type="password" required>
+      <input class="w3-input w3-border" type="password" name="password" required>
+      
+      <label for="psw"><b>Role</b></label>
+      <input class="w3-input w3-border" type="number" name="role" required>
   
-      <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
+      <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
       <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
     </form>
 </div>
 
 <div class="form-popup" id="alterarUser">
-  <form action="/action_page.php" class="form-container">
+  <form action="/updateUser" method="POST" class="form-container">
     <h1>Alterar Estado</h1>
       <label for="numeroIPS"><b>Número IPS</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="numeroIPS" required>
 
       <label for="name"><b>User Name</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="username" required>
 
       <label for="psw"><b>Role</b></label>
-      <input class="w3-input w3-border" type="text" required>
-
-      <label for="psw"><b>Tema</b></label>
-      <input class="w3-input w3-border" type="text" required>
+      <input class="w3-input w3-border" type="text" name="role" required>
 
     <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
     <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarUser()">Cancelar</button>
@@ -562,27 +556,15 @@
 </div>
 
 <div class="form-popup" id="eliminarUser">
-  <form action="/action_page.php" class="form-container">
+  <form action="/deleteUser" method="POST" class="form-container">
     <h1>Eliminar User</h1>
     <label for="numeroIPS"><b>Número IPS</b></label>
-    <input class="w3-input w3-border" type="text" required>
-
-    <label for="name"><b>User Name</b></label>
-    <input class="w3-input w3-border" type="text" required>
-
-    <label for="name"><b>Role</b></label>
-    <input class="w3-input w3-border" type="text" required>
+    <input class="w3-input w3-border" type="text" name="numeroIPS" required>
 
     <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
     <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarUser()">Cancelar</button>
   </form>
 </div>
-
-
-  </div>
-  <div id="container2">              
-          
-    </div>
   
   <div class="separador2 w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
 

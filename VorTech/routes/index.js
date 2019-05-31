@@ -3,6 +3,10 @@ var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
 
+var bcrypt = require('bcrypt');
+var passport = require ('passport');
+const saltRounds = 10;
+
 // Login
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -10,23 +14,32 @@ router.get('/', function (req, res, next) {
 
 router.post("/login", (req, res, next) => {
   console.log(req.body)
+  var num = parseInt(req.body.numeroIPS);
+  var pass =  req.body.psw;
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= {numIps: parseInt(req.body.numeroIPS)};
+    var query= {numIps: num};
     // perform actions on the collection object
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
-        res.send("loginERROR.html");
+    collection.findOne(query, function(err,results){
+      if(err || !results) {
+        res.redirect("loginError.html");
       } else {
-        res.send("index.html");
+            const hash = results.password;
+            bcrypt.compare(pass, hash, function(err,result) {
+              if(err || !result) {
+                res.redirect("loginError.html");
+              } else {
+                res.redirect("Index.html");
+              }
+            });
+            
       }
-      
-    })
 
-    client.close();
+    })
   });
 });
+
 
 module.exports = router;
 
@@ -38,27 +51,29 @@ router.get('/', function (req, res, next) {
 router.post("/registar", (req, res, next) => {
   console.log(req.body);
   var num = parseInt(req.body.numeroIPS);
-  var pass =  req.body.psw;
+  var pass = req.body.psw;
   var username = req.body.username;
-  var role = 3;  
-  var palette =  "default";
+  var role = 3;
+  var palette = "default";
 
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
     const collection1 = client.db("VorTech").collection("Person");
-    var query= {numIps: num};
-    collection1.findOne(query, function(err,result){
-      if(err || !result) {
-        res.send("registoERROR.html");
+    var query = { numIps: num };
+    collection1.findOne(query, function (err, result) {
+      if (err || !result) {
+        res.redirect("registoERROR.html");
         console.log(result)
       } else {
-        collection.insertOne({numIps: num, username: username, password: pass, role: role, palette: palette})
-        res.send("index.html");
+
+        bcrypt.hash(pass, saltRounds, function(err,hash) {
+        collection.insertOne({numIps: num, username: username, password: hash, role: role, palette: palette})
+        res.redirect("index.html");
+      });
       }
-      
+
     })
-    // client.close();
   });
 });
 
@@ -72,159 +87,80 @@ router.get('/', function (req, res, next) {
 router.post("/recuperarPass", (req, res, next) => {
   console.log(req.body);
   var numero = parseInt(req.body.numeroIPS);
-  var password =  req.body.psw;
-  var repPassword =  req.body.repPsw
+  var password = req.body.psw;
+  var repPassword = req.body.repPsw
   var user = req.body.username;
-  
-  if(password != repPassword){
-    res.send("recuperarPassERROR.html")
+
+  if (password != repPassword) {
+    res.redirect("recuperarPassERROR.html")
     alert("Passwords não correspondem");
   } else {
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("User");
-    var query= {numIps: numero, username: user};
-    var values = {$set: {password: password}};
-    collection.updateOne(query, values, function(err,result){
-      if(err || !result) {
-        res.send("recuperarPassERROR.html");
-        console.log(result)
-        console.log(err);
-      } else {
-        res.send("index.html");
-        console.log(result)
-      }
-    })
-    // client.close();
-  });
-}
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("User");
+      var query = { numIps: numero, username: user };
+      var values = { $set: { password: password } };
+      collection.updateOne(query, values, function (err, result) {
+        if (err || !result) {
+          res.redirect("recuperarPassERROR.html");
+          console.log(result)
+          console.log(err);
+        } else {
+          res.redirect("index.html");
+          console.log(result);
+          client.close();
+        }
+      })
+      // client.close();
+    });
+  }
 });
 
 module.exports = router;
 
-// Requisitar Sala
+
+// Alterar Password
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post("/requisitarSala", (req, res, next) => {
+router.post("/alterarPassword", (req, res, next) => {
   console.log(req.body);
-  var numeroSala = req.body.numeroSala;
   var numeroIPS = parseInt(req.body.numeroIPS);
-  var material = "";
-  var dataInicio = req.body.dataInicio;
-  var dataFim = req.body.dataFim;
-  var today = new Date;
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
-  console.log(date);
-  console.log(dataFim);
+  var username = req.body.username;
+  var passwordAntiga = req.body.passAntiga;
+  var passwordNova = req.body.passNova;
+  var passwordNovaRep = req.body.passNovaRepetir;
 
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("ClassRoom");
-    const collection1 = client.db("VorTech").collection("Request");
-    var query= {name: numeroSala};
-    var values = {$set: {status: 2}};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
-        res.send("requisitar.html");
-        console.log(result)
-      } else {
-        collection1.insertOne({user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim})
-        if(date = dataInicio){
-          collection.updateOne(query, values, function(err,result){
-            if(err || !result) {
-              res.send("registoERROR.html");
+  if (passwordNova != passwordNovaRep) {
+    alert("Passwords não correspondem");
+  } else {
+
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("User");
+      var query = { $set: { password: passwordNova } };
+      var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
+      var queryFilter1 = { numIps: numeroIPS, username: username };
+      collection.findOne(queryFilter, function (err, result) {
+        if (err || !result) {
+          res.redirect("registoERROR.html");
+          console.log(result)
+        } else {
+          collection.updateOne(queryFilter1, query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
               console.log(result)
               console.log(err);
             } else {
-              res.send("requisitar.html");
+              res.redirect("definições.html");
               console.log(result)
+              client.close();
             }
           })
         }
-        }     
-      
-    })
-    //client.close();
-  });
-});
-module.exports = router;
-
-
-// Registar Eventos
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.post("/registarEvento", (req, res, next) => {
-  console.log(req.body);
-  var nome = req.body.nome;
-  var num = parseInt(req.body.numeroIPS);
-  var local = req.body.local;
-  var dataInicio = req.body.dataInicio;
-  var dataFim = req.body.dataFim;
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("User");
-    const collection1 = client.db("VorTech").collection("Event");
-    var query= {numIps: num};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
-        res.send("registoERROR.html");
-        console.log(result)
-      } else {
-        collection1.insertOne({name: nome, local:local, startDate: dataInicio, endDate: dataFim,  employee: num})
-        res.send("./index.html");
-      }
-      
-    })
-    // client.close();
-  });
-});
-
-module.exports = router;
-
-// Registar Materiais
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.post("/requisitarMaterial", (req, res, next) => {
-  console.log(req.body);
-  var numeroMaterial = req.body.material;
-  var numeroIPS = parseInt(req.body.numeroIPS);
-  var dataInicio = req.body.dataInicio;
-  var dataFim = req.body.dataFim;
-
-  const client = new MongoClient(uri, { useNewUrlParser: true });
-  client.connect(err => {
-    const collection = client.db("VorTech").collection("Material");
-    const collection1 = client.db("VorTech").collection("Request");
-    var query= {materialId: numeroMaterial};
-    var values = {$set: {status: 2}};
-    collection.findOne(query, function(err,result){
-      if(err || !result) {
-        res.send("registoERROR.html");
-        console.log(result)
-      } else {
-        collection1.insertOne({user: numeroIPS, classRoom: "" , material: numeroMaterial, startDate: dataInicio, endDate: dataFim})
-        if(date = dataInicio){
-          collection.updateOne(query, values, function(err,result){
-            if(err || !result) {
-              res.send("registoERROR.html");
-              console.log(result)
-              console.log(err);
-            } else {
-              res.send("requisitar.html");
-              console.log(result)
-            }
-          })
-        }
-        }     
-      
-    })
-    //client.close();
-  });
+      })
+    });
+  }
 });
 module.exports = router;
