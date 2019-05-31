@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
 const pdfMake = require('../pdfmake/pdfmake');
 const vfsFonts = require('../pdfmake/vfs_fonts');
 
@@ -10,9 +11,6 @@ pdfMake.vfs = vfsFonts.pdfMake.vfs;
 
 router.post('/pdf', (req, res, next)=>{
     //res.send('PDF');
-    console.log(name);
-    console.log(tipoRelatorio);
-
     const dataRelatorio = req.body.dataRelatorio;
     var tipoRelatorio = parseInt(req.body.tipoRelatorio);
     var name = "";
@@ -48,28 +46,24 @@ router.post('/pdf', (req, res, next)=>{
     console.log(query);
     console.log(col);
    
-    router.get('/', function (req, res, next) {
-        res.render('index', { title: 'Express' });
-      });
-        router.post("/pdf", (req, res, next) => {
-    
         const client = new MongoClient(uri, { useNewUrlParser: true });
         client.connect(err => {
           const collection = client.db("VorTech").collection(col);
           collection.find(query).toArray((err, result) => {
             if(err){
               console.log(err);
-              res.send(500);
+            //   res.redirect("relatorios.html");
               client.close();
             } else {
-              res.send(result);
+            resultado = result;
+            console.log("resultado mongo: "+result);
+            //   res.redirect("relatorios.html");
               client.close();
             }
     
           })
         });
-      });
-      module.exports = router;
+
    
     console.log(resultado);
 
@@ -98,8 +92,7 @@ router.post('/pdf', (req, res, next)=>{
                                 fontSize: 15,
                                 text: [
                                     'Currently margins for ',
-                                    /* the following margin definition doesn't change anything */
-                                    {text: 'inlines', margin: 20},
+                                     {text: 'inlines', margin: 20},
                                     ' are ignored\n\n'
                                 ],
                             },
