@@ -12,6 +12,7 @@
 <link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="javascripts/filterTable.js"></script>   
 <script src="javascripts/funções.js"></script>   
+<script src="javascripts/ocorrencias.js"></script>  
 <body class="background-color w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
@@ -72,9 +73,9 @@
               <option value="fechado">Fechado</option>  
             <select> 
             <hr class="w3-opacity">
-            <form action="/action_page.php" target="_blank">
+            <form>
               <div class="table-wrapper2">
-                  <table id="ocorrencias" class="f2-table">
+                  <table id="tabela" class="f2-table">
                       <thead>
                       <tr>
                           <th>ID</th>
@@ -83,9 +84,10 @@
                           <th>Estado</th>
                           <th>Local</th>
                           <th>Reportado por</th>
+                          <th>Data de Aviso</th>
                       </tr>
                       </thead>
-                      <tbody><tbody>
+                      <tbody id="tbody"><tbody>
                       </table>  
               </div>
             </form>

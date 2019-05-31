@@ -18,4 +18,3 @@ $.get("./getArtigos", function (data) {
         });
     });
 }); 
-    
