@@ -16,3 +16,94 @@ router.get('/', function (req, res, next) {
     });
   });
   module.exports = router;
+
+// Consultar Aulas
+  router.get('/', function (req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+  router.get("/getAulas", (req, res, next) => {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("Class");
+      collection.find({}).toArray((err, result) => {
+        if (err) {
+          console.log(err);
+          res.send(500);
+          client.close();
+        } else {
+          res.send(result);
+          client.close();
+        }
+  
+      })
+    });
+  });
+  module.exports = router;
+
+  // Consultar Eventos
+  router.get('/', function (req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+  router.get("/getEventos", (req, res, next) => {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("Event");
+      collection.find({}).toArray((err, result) => {
+        if (err) {
+          console.log(err);
+          res.send(500);
+          client.close();
+        } else {
+          res.send(result);
+          client.close();
+        }
+  
+      })
+    });
+  });
+  module.exports = router;
+
+    // Consultar Salas
+    router.get('/', function (req, res, next) {
+      res.render('index', { title: 'Express' });
+    });
+    router.get("/getSalas", (req, res, next) => {
+      const client = new MongoClient(uri, { useNewUrlParser: true });
+      client.connect(err => {
+        const collection = client.db("VorTech").collection("ClassRoom");
+        collection.find({}).toArray((err, result) => {
+          if (err) {
+            console.log(err);
+            res.send(500);
+            client.close();
+          } else {
+            res.send(result);
+            client.close();
+          }
+    
+        })
+      });
+    });
+    module.exports = router;
+
+        // Consultar Materiais
+        router.get('/', function (req, res, next) {
+          res.render('index', { title: 'Express' });
+        });
+        router.get("/getMateriais", (req, res, next) => {
+          const client = new MongoClient(uri, { useNewUrlParser: true });
+          client.connect(err => {
+            const collection = client.db("VorTech").collection("Material");
+            collection.find({}).toArray((err, result) => {
+              if (err) {
+                console.log(err);
+                res.send(500);
+                client.close();
+              } else {
+                res.send(result);
+                client.close();
+              }
+            })
+          });
+        });
+        module.exports = router;
