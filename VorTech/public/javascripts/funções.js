@@ -277,6 +277,14 @@ function closeAlterarEstadoOcorrencia() {
   document.getElementById("alterarEstadoOcorrencia").style.display = "none";
 }
 
+function openGerarRelatorio() {
+  document.getElementById("gerarRelatorio").style.display = "block";
+}
+
+function closeGerarRelatorio() {
+  document.getElementById("gerarRelatorio").style.display = "none";
+}
+
 
 
 function setStyleSheet(){

@@ -9,7 +9,7 @@ function criarTabela(conteudo) {
 }
 
 $(() => {
-$.get("./encomendas/getAll", function (data) {
+$.get("./getArtigos", function (data) {
     console.log(data);
     data.forEach(result => {
         document.getElementById("tbody").appendChild(criarTabela(
@@ -18,4 +18,3 @@ $.get("./encomendas/getAll", function (data) {
         });
     });
 }); 
-    

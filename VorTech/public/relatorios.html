@@ -48,11 +48,11 @@
     <div class="w3-container">
     <h1><b>Consultar</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-file w3-margin-right"></i>Consultar Relatórios</i></button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-search w3-margin-right"></i>Consultar Relatórios</i></button>
+      <button class="w3-button w3-white w3-hide-small" onclick="openGerarRelatorio()"><i class="fa fa-file w3-margin-right"></i>Gerar Relatórios</i></button>
     </div>
     </div>
   </header>
-
     <div id="consultarRelatórios" style="text-align: center">
             <h1><b>Consultar Relatórios</b></h1>
             <hr class="w3-opacity">
@@ -67,71 +67,31 @@
                           <th>Data de Envio</th>
                       </tr>
                       </thead>
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>8</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>9</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>10</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tbody>
+                      <tbody><tbody>
                       </table>
               </div>
             </form>
+    </div>
+    <div class="form-popup" id="gerarRelatorio">
+        <form action="/pdf" method="POST" class="form-container">
+          <h1>Gerar Relatório</h1>
+      
+          <label for="numeroIPS"><b>Data de Referencia</b></label>
+          <input class="w3-input w3-border" type="date" name="dataRelatorio" required>
+          <br>
+          <label>Tipo</label>
+          <select name="tipoRelatorio" class="w3-input w3-border">
+              <option value="">-</option> 
+              <option value="1">Requisições</option>  
+              <option value="2">Ocorrências</option>
+              <option value="3">Eventos</option>  
+              <option value="4">Registo de Horas</option>
+              <option value="5">Estatísticas</option>  
+            <select>   
+            <br>  
+          <button class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Gerar</button>
+          <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeGerarRelatorio()">Cancelar</button>
+        </form>
     </div>
    
   <div class="separador2 w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
