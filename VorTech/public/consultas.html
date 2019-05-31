@@ -9,10 +9,12 @@
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/alternative.css" title = "alternative"/>
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/light_purple.css" title = "purple"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="javascripts/filterTable.js"></script>   
 <script src="javascripts/funções.js"></script>   
+<script src="javascripts/consultas.js"></script>
 <body class="background-color w3-content" style="max-width:1600px">
+
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse sidebar-color w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -65,93 +67,22 @@
             <label>Sala: </label>
             <input id="filterAulaSala" class="filter" onkeyup="filterAulaSala()" placeholder="Insera o Professor" /> 
             <hr class="w3-opacity">
-            <form action="/action_page.php" target="_blank">
-              <div class="table-wrapper">
-                  <table id="aulas" class="fl-table">
-                      <thead>
+            <form>
+                 <div class="table-wrapper">
+                    <table id="tabela" class="fl-table">
+                    <thead>
                       <tr>
-                          <th>Data de ínicio</th>
-                          <th>Aula</th>
-                          <th>Professor</th>
-                          <th>Sala</th>
-                          <th>Duração</th>
+                        <th>Data de Inicio</th>
+                        <th>Data de Fim</th>
+                        <th>Turma</th>
+                        <th>Professor</th>
+                        <th>UC</th>
                       </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Biologia</td>
-                          <td>Nuno Pina</td>
-                          <td>F123</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Informatica</td>
-                          <td>Rui Borges</td>
-                          <td>F456</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Engenharia de Software</td>
-                          <td>Rui Borges</td>
-                          <td>F678</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>GECO</td>
-                          <td>Content</td>
-                          <td>F673</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>5</td>
-                          <td>Sistemas de Informacao</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>6</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>7</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>8</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>9</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>10</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tbody>
+                    </thead>
+                    <tbody id="aulas"></tbody>
                   </table>
-              </div>
-            </form>
+                </div>
+              </form>
     </div>
  
     <div id="consultarSalas" style="text-align: center; display: none">
@@ -171,105 +102,22 @@
         <label>Bloco: </label>
         <input id="filterBloco" class="filter" onkeyup="filterBloco()" placeholder="Insera o Bloco" /> 
         <hr class="w3-opacity">
-        <form action="/action_page.php" target="_blank">
-          <div class="table-wrapper2">
-              <table id="salas" class="f2-table">
-                  <thead>
-                  <tr>
-                      <th>Bloco</th>
-                      <th>Sala</th>
-                      <th>Estado</th>
-                      <th>Docente</th>
-                      <th>Data de Requisição</th>
-                      <th>Data de Disponibilidade</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>F123</td>
-                      <td>Disponivel</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>NOW</td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>F234</td>
-                      <td>Indisponivel</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>F456</td>
-                      <td>Manutencao</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>05/05/2019 10:00</td>
-                  </tr>
-                  <tr>
-                      <td>4</td>
-                      <td>F678</td>
-                      <td>Requisitado</td>
-                      <td>Nuno Pina</td>
-                      <td>03/05/2019 9:00</td>
-                      <td>03/05/2019 12:00</td>
-                  </tr>
-                  <tr>
-                      <td>5</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>6</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>7</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>8</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>9</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>10</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tbody>
-              </table>
-          </div>
-        
-        </form>
+        <form>
+            <div class="table-wrapper2">
+               <table id="tabela" class="f2-table">
+               <thead>
+                 <tr>
+                   <th>Nome</th>
+                   <th>Bloco</th>
+                   <th>Andar</th>
+                   <th>Estado</th>
+                   <th>Material</th>
+                 </tr>
+               </thead>
+               <tbody id="salas"></tbody>
+             </table>
+           </div>
+         </form>
     </div>
 
     <div id="consultarEventos" style="text-align: center; display: none;">
@@ -279,94 +127,25 @@
             <label>Local: </label>
             <input id="filterLocal" class="filter" onkeyup="filterLocal()" placeholder="Insera o Local" /> 
             <hr class="w3-opacity">
-            <form action="/action_page.php" target="_blank">
-              <div class="table-wrapper">
-                  <table id="eventos" class="fl-table">
-                      <thead>
-                      <tr>
-                          <th>Data de Inicio</th>
-                          <th>Evento</th>
-                          <th>Local</th>
-                          <th>Descrição</th>
-                          <th>Duração</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Doar Sangue</td>
-                          <td>Entrada IPS</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Feira de Empreso</td>
-                          <td>Parque de Estacionamento</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>5</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>6</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>7</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>8</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>9</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tr>
-                          <td>10</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                          <td>Content</td>
-                      </tr>
-                      <tbody>
-                  </table>
-              </div>
-            </form>
+            <form>
+                <div class="table-wrapper">
+                   <table id="tabela" class="fl-table">
+                   <thead>
+                     <tr>
+                       <th>Nome</th>
+                       <th>Local</th>
+                       <th>Data de Inicio</th>
+                       <th>Data de Fim</th>
+                       <th>Funcionário</th>
+                     </tr>
+                   </thead>
+                   <tbody id="eventos"></tbody>
+                 </table>
+               </div>
+             </form>
             </div>
+
+
     <div id="consultarMateriais" style="text-align: center;display: none;">
     <h1><b>Consultar Materiais</b></h1>
     <label>Material: </label>
@@ -382,116 +161,21 @@
             <option value="indisponivel">Indisponivel</option>  
         <select> 
     <hr class="w3-opacity">
-    <form action="/action_page.php" target="_blank">
-        <div class="w3-section">
-            <div class="table-wrapper2">
-                <table id="materiais" class="f2-table">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Material</th>
-                        <th>Sala</th>
-                        <th>Estado</th>
-                        <th>Docente</th>
-                        <th>Data de Requisição</th>
-                        <th>Data de Disponibilidade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Computador</td>
-                            <td>F134</td>
-                            <td>Disponivel</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>NOW</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Computador</td>
-                            <td>F123</td>
-                            <td>Requisitado</td>
-                            <td>Nuno Pina</td>
-                            <td>03/05/2019 9:00</td>
-                            <td>03/05/2019 12:00</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Caneta</td>
-                            <td>-</td>
-                            <td>Manutencao</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>07/05/2019 12:00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Caderno</td>
-                            <td>-</td>
-                            <td>Indisponivel</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                            <td>Content</td>
-                        </tr>
-                        <tbody>
-                    </table>
-            </div>
-    </form>
+    <form>
+        <div class="table-wrapper2">
+           <table id="tabela" class="f2-table">
+           <thead>
+             <tr>
+               <th>Id do Material</th>
+               <th>Nome</th>
+               <th>Estado</th>
+               <th>Descrição</th>
+             </tr>
+           </thead>
+           <tbody id="materiais"></tbody>
+         </table>
+       </div>
+     </form>
     </div>
 
   </div>
