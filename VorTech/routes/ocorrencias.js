@@ -15,6 +15,7 @@ router.post("/registarOcorrencia", (req, res, next) => {
   var reportadoPor = req.body.reportadoPor
   var dataOcorrido = req.body.dataOcorrido;
   var local = req.body.local;
+  var prioridade = req.body.prioridade;
   var today = new Date;
   var dataRegisto = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + "T" + today.getHours() + ":" + today.getMinutes();
 
@@ -25,7 +26,7 @@ router.post("/registarOcorrencia", (req, res, next) => {
 
     collection.findOne(query, function (err, result) {
       if (err || !result) {
-        collection.insertOne({ incidentId: id, local: local, incidentDate: dataOcorrido, incidenteCreate: dataRegisto, status: 5, description: descricao, user: reportadoPor })
+        collection.insertOne({ incidentId: id, local: local, incidentDate: dataOcorrido, incidentCreate: dataRegisto, status: 5, description: descricao, user: reportadoPor, priority: prioridade})
         res.redirect("ocorrencias.html");
         client.close();
       } else {
