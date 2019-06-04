@@ -74,7 +74,7 @@ router.post('/pdf', (req, res, next) => {
                             }
                         }
                     }
-                    topTable = [
+                    salaTopTable = [
                         { Top: '1', Sala: salaTop1, Requisições: top1 },
                         { Top: '2', Sala: salaTop2, Requisições: top2 },
                         { Top: '3', Sala: salaTop3, Requisições: top3 },
@@ -82,6 +82,52 @@ router.post('/pdf', (req, res, next) => {
                         { Top: '5', Sala: salaTop5, Requisições: top5 }
                     ];
                     console.log(topTable);
+                    var mtop1 = 0;
+                    var materialTop1="";
+                    var mtop2 = 0;
+                    var materialTop2="";
+                    var mtop3 = 0;
+                    var materialTop3="";
+                    var mtop4 = 0;
+                    var materialTop4="";
+                    var mtop5 = 0;
+                    var materialTop5="";
+                    var mfrequente = 0;
+                    var material ="";
+                    for (var i = 0; i < result.length; i++) {
+                        material = result[i].material;
+                        console.log(material);
+                        frequente = 0;
+                        for (j = 0; j < result.length; j++) {
+
+                            if (result[j].material = material) {
+                                mfrequente++;
+                            }
+                            if (mfrequente > mtop1) {
+                                mtop1 = mfrequente;
+                                materialTop1 = material;
+                            } else if (mfrequente < mtop2 && materialTop2 !=materialTop1) {
+                                Mtop2 = mfrequente;
+                                materialTop2 = material;
+                            } else if (mfrequente < mtop1 && mfrequente < mtop2 && materialTop3 !=materialTop1 && materialTop3 !=materialTop2) {
+                                mtop3 = mfrequente;
+                                materialTop3 = material;
+                            } else if (mfrequente < mtop1 && mfrequente < mtop2 && mfrequente < mtop3 && materialTop4 !=materialTop1 && materialTop4 !=materialTop2 && materialTop4 != materialTop3) {
+                                mtop4 = mfrequente;
+                                materialTop4 = material;
+                            } else if (mfrequente < mtop1 && mfrequente < mtop2 && mfrequente < mtop3 && mfrequente < mtop4 && materialTop5 !=materialTop1 && materialTop5 !=materialTop2 && materialTop5 != materialTop3 && materialTop5 !=materialTop1 && materialTop5 !=materialTop2) {
+                                top5 = mfrequente;
+                                materialTop5 = material;
+                            }
+                        }
+                    }
+                    materialTopTable = [
+                        { Top: '1', Material: materialTop1, Requisições: mtop1 },
+                        { Top: '2', Materialala: materialTop2, Requisições: mtop2 },
+                        { Top: '3', Material: materialTop3, Requisições: mtop3 },
+                        { Top: '4', Material: materialTop4, Requisições: mtop4 },
+                        { Top: '5', Material: materialTop5, Requisições: mtop5 }
+                    ];
             
                     client.close();
                 }
@@ -104,15 +150,7 @@ router.post('/pdf', (req, res, next) => {
                     ]
                 },
                 'Salas mais requisitadas: ',
-                {
-                    style: 'tableExample',
-                    table: {
-                        headerRows: 1,
-                        widths: [ '*', 'auto', 100, '*', '*' ],
-                        body: topTable
-                    }
-                }
-               
+                              
             ],
             styles: {
                 header: {
