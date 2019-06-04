@@ -153,14 +153,13 @@ router.get('/', function (req, res, next) {
     console.log(req.body);
     var numeroMaterial = req.body.numeroMaterial;
     var nome = req.body.nome;
-    var estado = req.body.estado;
     var descricao = req.body.descricao;
   
   
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("Material");
-      var query = { materialId: numeroMaterial, name: nome, status: estado, description: descricao };
+      var query = { materialId: numeroMaterial, name: nome, status: 1, description: descricao };
       collection.insertOne(query, function (err, result) {
         if (err || !result) {
           res.redirect("registoERROR.html");
