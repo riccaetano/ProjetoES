@@ -13,7 +13,7 @@ $(() => {
         console.log(data);
         data.forEach(result => {
             document.getElementById("tbody").appendChild(criarTabela(
-                [result.incidentId, result.incidentDate, result.description, result.status, result.local, result.user, result.incidentCreate]
+                [result.incidentId, result.incidentDate, result.description, result.status,result.priority, result.local, result.user, result.incidentCreate]
             ));
         });
     });
