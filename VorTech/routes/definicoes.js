@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
     console.log(req.body);
     var numeroSala = req.body.numeroSala;
     var bloco = req.body.bloco;
+    var escola = req.body.escola;
     var estado = 1;
     var andar = parseInt(req.body.andar);
     var material = [];
@@ -20,7 +21,7 @@ router.get('/', function (req, res, next) {
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("ClassRoom");
-      var query = { name: numeroSala, section: bloco, floor: andar, status: estado, material: material };
+      var query = { name: numeroSala, section: bloco,school: escola, floor: andar, status: estado, material: material };
       collection.insertOne(query, function (err, result) {
         if (err || !result) {
           res.redirect("registoERROR.html");

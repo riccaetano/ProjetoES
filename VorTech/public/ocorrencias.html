@@ -82,6 +82,7 @@
                           <th>Data da Ocorrência</th>
                           <th>Descrição</th>
                           <th>Estado</th>
+                          <th>Prioridade</th>
                           <th>Local</th>
                           <th>Reportado por</th>
                           <th>Data de Aviso</th>
@@ -119,6 +120,14 @@
             <div class="w3-section">
                 <label>Local</label>
                 <input class="w3-input w3-border" type="text" name="local" required>
+              </div>
+              <div class="w3-section">
+                <label>Prioridade</label>
+                <select id="prioridade" name="prioridade" class="w3-input w3-border">
+                  <option value="1">Baixa</option>  
+                  <option value="2">Média</option>
+                  <option value="3">Alta</option>  
+                <select>  
               </div>
             <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-pencil-square w3-margin-right"></i>Registar</button>
         </form>
