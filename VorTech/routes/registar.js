@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
     var nome = req.body.nome;
     var num = parseInt(req.body.numeroIPS);
     var local = req.body.local;
+    var descricao = req.body.descricao;
     var dataInicio = req.body.dataInicio;
     var dataFim = req.body.dataFim;
     const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -25,8 +26,8 @@ router.get('/', function (req, res, next) {
           res.redirect("registoERROR.html");
           console.log(result)
         } else {
-          collection1.insertOne({ name: nome, local: local, startDate: dataInicio, endDate: dataFim, employee: num })
-          res.redirect("./index.html");
+          collection1.insertOne({ name: nome, local: local, description: descricao, startDate: dataInicio, endDate: dataFim, employee: num })
+          res.redirect("./requisitar.html");
           client.close();
         }
   
