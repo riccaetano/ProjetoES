@@ -13,7 +13,7 @@ $.get("./getAulas", function (data) {
     console.log(data);
     data.forEach(result => {
         document.getElementById("aulas").appendChild(criarTabela(
-            [result.startDate, result.endDate, result.studentClass, result.employee]
+            [result.startDate, result.endDate, result.studentClass, result.employee, result.cu]
             ));
         });
     });
@@ -50,4 +50,16 @@ $(() => {
                         ));
                     });
                 });
-            });     
+            });  
+            
+            $(() => {
+                $.get("./getUsers", function (data) {
+                    console.log(data);
+                    data.forEach(result => {
+                        document.getElementById("users").appendChild(criarTabela(
+                            [result.numIps, result.username, result.password, result.role, result.palette, result.status]
+                            ));
+                        });
+                    });
+                });     
+    
