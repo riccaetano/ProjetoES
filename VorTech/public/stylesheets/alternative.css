@@ -280,6 +280,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   color:#000
 }
 
+.contact-middle{
+  color:#000!important;background-color:#8B9AFF!important
+}
+
 /* Add styles to the form container */
 .form-container {
   max-width: 400px;
