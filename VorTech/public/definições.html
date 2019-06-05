@@ -10,8 +10,10 @@
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/light_purple.css" title = "purple"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="javascripts/filterTable.js"></script>   
-<script type="text/javascript" src="javascripts/funções.js"></script>   
+<script type="text/javascript" src="javascripts/funções.js"></script> 
+<script src="javascripts/consultas.js"></script>  
 <body class="background-color w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
@@ -105,91 +107,20 @@
             <hr class="w3-opacity">
             <form id="userForm" action="javascript: info.processingUser('create');" target="_blank">
               <div class="table-wrapper2">
-                <table id="tableUser" class="f2-table">
-                    <thead>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Número IPS</th>
-                            <th>Role</th>
-                            <th>Tema</th>
-                            <th>Password</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                                <td>Content</td>
-                            </tr>
-                            <tbody>
-                     
-                </table>
-              </div>
+                <table id="tabela" class="f2-table">
+                <thead>
+                  <tr>
+                    <th>NumIps</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Palette</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="users"></tbody>
+              </table>
+            </div>
             </form>
             </div>
     <div id="gerirSalas" style="text-align: center;display: none;">
@@ -200,90 +131,18 @@
             <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarSala()">Eliminar Sala</button>
             <hr class="w3-opacity">
             <div class="table-wrapper2">
-              <table class="f2-table">
-                  <thead>
-                  <tr>
-                      <th>Bloco</th>
-                      <th>Sala</th>
-                      <th>Estado</th>
-                      <th>Docente</th>
-                      <th>Materiais</th>
-
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>4</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>5</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>6</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>7</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>8</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>9</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tr>
-                      <td>10</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                      <td>Content</td>
-                  </tr>
-                  <tbody>
-              </table>
+              <table id="tabela" class="f2-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Bloco</th>
+                  <th>Andar</th>
+                  <th>Estado</th>
+                  <th>Material</th>
+                </tr>
+              </thead>
+              <tbody id="salas"></tbody>
+            </table>
           </div>
         
             </form>
@@ -295,79 +154,18 @@
       <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarMaterial()">Eliminar Material</button>
       <hr class="w3-opacity">
       <div class="table-wrapper2">
-        <table class="f2-table">
-                      <thead>
-                      <tr>
-                          <th>Material</th>
-                          <th>Estado</th>
-                          <th>Sala</th>
-                          <th>Docente</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>8</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>9</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tr>
-                              <td>10</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                              <td>Content</td>
-                          </tr>
-                          <tbody>
-                      </table>
-              </div>      
+        <table id="tabela" class="f2-table">
+        <thead>
+          <tr>
+            <th>Id do Material</th>
+            <th>Nome</th>
+            <th>Estado</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody id="materiais"></tbody>
+      </table>
+    </div>
       </form>
     </div>
 

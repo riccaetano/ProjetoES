@@ -107,3 +107,25 @@ router.get('/', function (req, res, next) {
           });
         });
         module.exports = router;
+  
+  // Consultar Users
+  router.get('/', function (req, res, next) {
+    res.render('index', { title: 'Express' });
+  });
+  router.get("/getUsers", (req, res, next) => {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("VorTech").collection("User");
+      collection.find({}).toArray((err, result) => {
+        if (err) {
+          console.log(err);
+          res.send(500);
+          client.close();
+        } else {
+          res.send(result);
+          client.close();
+        }
+      })
+    });
+  });
+  module.exports = router;
