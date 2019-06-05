@@ -51,7 +51,7 @@
     <h1><b>Consultar</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
       <button onclick="consultarAulas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-bank w3-margin-right"></i>Consultar Aulas</i></button>
-      <button onclick="consultarEventos()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Consultar Eventos</button>
+      <button onclick="consultarEventos()" class="w3-button w3-white w3-hide-small"><i class="fa fa-ticket w3-margin-right"></i>Consultar Eventos</button>
       <button onclick="consultarSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Consultar Salas</button>
       <button onclick="consultarMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Consultar Materiais</button>
     </div>
@@ -124,7 +124,10 @@
             <label>Evento: </label>
             <input id="filterEvento" class="filter" onkeyup="filterEvento()" placeholder="Insera o Evento" /> 
             <label>Local: </label>
-            <input id="filterLocal" class="filter" onkeyup="filterLocal()" placeholder="Insera o Local" /> 
+            <input id="filterLocal" class="filter" onkeyup="filterLocal()" placeholder="Insera o Local" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarEvento()">Alterar Evento</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarEvento()">Eliminar Evento</button> <br>
             <hr class="w3-opacity">
             <form>
                 <div class="table-wrapper">
@@ -180,6 +183,46 @@
   <div id="container2">              
           
     </div>
+    <div class="form-popup" id="alterarEvento">
+      <form action="/alterarEvento" method="POST" class="form-container">
+        <h1>Alterar Evento</h1>
+    
+        <label for="numeroIPS"><b>Evento</b></label>
+        <input class="w3-input w3-border" type="text" name="evento" required>
+
+        <label for="name"><b>Local</b></label>
+        <input class="w3-input w3-border" type="text" name="local"required>
+    
+        <label for="psw"><b>Data de Inicio</b></label>
+        <input class="w3-input w3-border" type="datetime-local" name="dataInicio"required>
+        
+        <label for="psw"><b>Data de Fim</b></label>
+        <input class="w3-input w3-border" type="datetime-local" name="dataFim"required>
+
+        <label for="psw"><b>Responsável</b></label>
+        <input class="w3-input w3-border" type="text" name="responsavel" required>
+    
+        <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Alterar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAlterarEvento()">Cancelar</button>
+      </form>
+  </div>
+
+<div class="form-popup" id="eliminarEvento">
+  <form action="/eliminarEvento" method="POST" class="form-container">
+    <h1>Eliminar Evento</h1>
+
+    <label for="name"><b>Evento</b></label>
+    <input class="w3-input w3-border" type="text" name="evento" required>
+
+    <label for="name"><b>Responsável</b></label>
+    <input class="w3-input w3-border" type="text" name="responsavel" required>
+ 
+    <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarEvento()">Cancelar</button>
+  </form>
+</div>
+
+    
   
   <div class="separador2 w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal & Programa BrightStart</div>
 

@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var reqRouter = require('./routes/requisitar');
-var regRouter = require('./routes/registar');
+var eveRouter = require('./routes/eventos');
 var defRouter = require('./routes/definicoes');
 var artRouter = require('./routes/artigos');
 var conRouter = require('./routes/consultar');
@@ -40,7 +40,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/', reqRouter);
-app.use('/', regRouter);
+app.use('/', eveRouter);
 app.use('/', defRouter);
 app.use('/', artRouter);
 app.use('/', conRouter);

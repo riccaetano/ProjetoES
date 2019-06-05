@@ -305,7 +305,23 @@ function closeGerarRelatorio() {
   document.getElementById("gerarRelatorio").style.display = "none";
 }
 
+function openAlterarEvento() {
+  document.getElementById("alterarEvento").style.display = "block";
+  document.getElementById("eliminarEvento").style.display = "none";
+}
 
+function closeAlterarEvento() {
+  document.getElementById("alterarEvento").style.display = "none";
+}
+
+function openEliminarEvento() {
+  document.getElementById("alterarEvento").style.display = "none";
+  document.getElementById("eliminarEvento").style.display = "block";
+}
+
+function closeEliminarEvento() {
+  document.getElementById("eliminarEvento").style.display = "none";
+}
 
 function setStyleSheet(){
   var stylesheet = document.getElementById("temas").value;
