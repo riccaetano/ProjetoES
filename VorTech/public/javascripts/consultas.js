@@ -13,7 +13,7 @@ $.get("./getAulas", function (data) {
     console.log(data);
     data.forEach(result => {
         document.getElementById("aulas").appendChild(criarTabela(
-            [result.startDate, result.endDate, result.studentClass, result.employee, result.cu]
+            [result.startDate, result.endDate, result.studentClass, result.employee, result.cu, result.classRoom]
             ));
         });
     });
@@ -24,7 +24,7 @@ $(() => {
         console.log(data);
         data.forEach(result => {
             document.getElementById("eventos").appendChild(criarTabela(
-                [result.name, result.local, result.startDate, result.endDate, result.employee]
+                [result.name, result.description,result.local, result.startDate, result.endDate, result.employee]
                 ));
             });
         });

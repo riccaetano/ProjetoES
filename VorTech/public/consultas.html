@@ -65,11 +65,11 @@
             <label>Professor: </label>
             <input id="filterProfessor" class="filter" onkeyup="filterProfessor()" placeholder="Insera o Professor" />
             <label>Sala: </label>
-            <input id="filterAulaSala" class="filter" onkeyup="filterAulaSala()" placeholder="Insera o Professor" /> 
+            <input id="filterAulaSala" class="filter" onkeyup="filterAulaSala()" placeholder="Insera a Sala" /> 
             <hr class="w3-opacity">
             <form>
                  <div class="table-wrapper">
-                    <table id="tabela" class="fl-table">
+                    <table id="aula" class="fl-table">
                     <thead>
                       <tr>
                         <th>Data de Inicio</th>
@@ -77,6 +77,7 @@
                         <th>Turma</th>
                         <th>Professor</th>
                         <th>UC</th>
+                        <th>Sala</th>
                       </tr>
                     </thead>
                     <tbody id="aulas"></tbody>
@@ -87,24 +88,22 @@
  
     <div id="consultarSalas" style="text-align: center; display: none">
         <h1><b>Consultar Salas</b></h1>
-        <label>Docente: </label>
-        <input id="filterDocente" class="filter" onkeyup="filterDocente()" placeholder="Insera o Docente" /> 
         <label>Sala: </label>
         <input id="filterSala" class="filter" onkeyup="filterSala()" placeholder="Insera a Sala" />  <br> <br>
         <label>Estado: </label>
         <select onchange="filterSelectSalas()" id="filterSelectSalas" class="filter">
             <option value="">-</option>  
-            <option value="disponivel">Disponivel</option>  
-            <option value="requisitado">Requisitado</option>
-            <option value="manutencao">Manutencao</option>  
-            <option value="indisponivel">Indisponivel</option>  
+            <option value="1">Disponivel</option>  
+            <option value="2">Requisitado</option>
+            <option value="3">Manutencao</option>  
+            <option value="4">Indisponivel</option>  
         <select> 
         <label>Bloco: </label>
         <input id="filterBloco" class="filter" onkeyup="filterBloco()" placeholder="Insera o Bloco" /> 
         <hr class="w3-opacity">
         <form>
             <div class="table-wrapper2">
-               <table id="tabela" class="f2-table">
+               <table id="sala" class="f2-table">
                <thead>
                  <tr>
                    <th>Nome</th>
@@ -129,10 +128,11 @@
             <hr class="w3-opacity">
             <form>
                 <div class="table-wrapper">
-                   <table id="tabela" class="fl-table">
+                   <table id="evento" class="fl-table">
                    <thead>
                      <tr>
                        <th>Nome</th>
+                       <th>Descrição</th>
                        <th>Local</th>
                        <th>Data de Inicio</th>
                        <th>Data de Fim</th>
@@ -150,20 +150,18 @@
     <h1><b>Consultar Materiais</b></h1>
     <label>Material: </label>
         <input id="filterMaterial" class="filter" onkeyup="filterMaterial()" placeholder="Insera o Material" /> 
-        <label>Sala: </label>
-        <input id="filterMaterialSala" class="filter" onkeyup="filterMaterialSala()" placeholder="Insera a Sala" />
         <label>Estado: </label>
         <select onchange="filterSelectMaterial()" id="filterSelectMaterial" class="filter">
             <option value="">-</option>  
-            <option value="disponivel">Disponivel</option>  
-            <option value="requisitado">Requisitado</option>
-            <option value="manutencao">Manutencao</option>  
-            <option value="indisponivel">Indisponivel</option>  
+            <option value="1">Disponivel</option>  
+            <option value="2">Requisitado</option>
+            <option value="3">Manutencao</option>  
+            <option value="4">Indisponivel</option>  
         <select> 
     <hr class="w3-opacity">
     <form>
         <div class="table-wrapper2">
-           <table id="tabela" class="f2-table">
+           <table id="material" class="f2-table">
            <thead>
              <tr>
                <th>Id do Material</th>
