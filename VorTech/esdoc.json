@@ -1,0 +1,19 @@
+{
+  "source": "./",
+  "destination": "./docs",
+  "includes": ["\\.js$"],
+  "excludes": ["(node_modules|docs|src|dist|foo.js)"],
+  "plugins": [
+  {
+    "name": "esdoc-standard-plugin",
+    "option": {
+      "lint": {"enable": true},
+      "coverage": {"enable": true},
+      "accessor": {"access": ["public", "protected", "private"], "autoPrivate": true},
+      "undocumentIdentifier": {"enable": true},
+      "unexportedIdentifier": {"enable": false},
+      "typeInference": {"enable": true}
+     
+    }
+  }] 
+}

@@ -8,6 +8,8 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+
 router.post("/registarOcorrencia", (req, res, next) => {
   console.log(req.body);
   var id = req.body.id;
