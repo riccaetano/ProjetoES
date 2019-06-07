@@ -323,6 +323,12 @@ function closeEliminarEvento() {
   document.getElementById("eliminarEvento").style.display = "none";
 }
 
+
+function goBack() {
+  window.history.back();
+}
+
+
 function setStyleSheet(){
   var stylesheet = document.getElementById("temas").value;
   // var value = stylesheet;
