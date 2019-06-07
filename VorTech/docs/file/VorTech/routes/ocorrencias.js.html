@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">VorTech/routes/ocorrencias.js | teste</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">VorTech/routes/ocorrencias.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">var express = require(&apos;express&apos;);
+var router = express.Router();
+const MongoClient = require(&apos;mongodb&apos;).MongoClient;
+const uri = &quot;mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true&quot;;
+
+// Registar Ocorr&#xEA;ncias
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+/**
+* Fun&#xE7;&#xE3;o de valida&#xE7;&#xE3;o de uma sess&#xE3;o.
+* A valida&#xE7;&#xE3;o &#xE9; realizada atrav&#xE9;s do
+* m&#xE9;todo Verify() do m&#xF3;dulo
+* JSONWebToken.
+*&#xA0;@param&#xA0;{Request}&#xA0;req&#xA0;- Pedido
+*&#xA0;@param&#xA0;{Response}&#xA0;res&#xA0;- Resposta
+*&#xA0;@param&#xA0;{NextFunction}&#xA0;next&#xA0;- Pr&#xF3;ximo pedido
+*&#xA0;@return&#xA0;{void}
+*/
+
+router.post(&quot;/registarOcorrencia&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var id = req.body.id;
+  var descricao = req.body.descricao;
+  var reportadoPor = req.body.reportadoPor
+  var dataOcorrido = req.body.dataOcorrido;
+  var local = req.body.local;
+  var prioridade = req.body.prioridade;
+  var today = new Date;
+  var dataRegisto = today.getFullYear() + &apos;-&apos; + (today.getMonth() + 1) + &apos;-&apos; + today.getDate() + &quot;T&quot; + today.getHours() + &quot;:&quot; + today.getMinutes();
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;Incident&quot;);
+    var query = { incidentId: id }
+
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
+        collection.insertOne({ incidentId: id, local: local, incidentDate: dataOcorrido, incidentCreate: dataRegisto, status: 5, description: descricao, user: reportadoPor, priority: prioridade})
+        res.redirect(&quot;ocorrencias.html&quot;);
+        client.close();
+      } else {
+        res.redirect(&quot;registoERROR.html&quot;);
+        console.log(result)
+        client.close();
+      }
+
+    })
+  });
+});
+
+module.exports = router;
+
+
+
+// Alterar Ocorr&#xEA;ncias
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/alterarOcorrencias&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var id = req.body.id;
+  var descricao = req.body.descricao;
+  var reportadoPor = req.body.reportadoPor;
+  var local = req.body.local;
+  var estado = parseInt(req.body.estadoOcorrencia);
+  //   var estadoValor = estado.options[estado.selectedIndex].value;
+  console.log(estado);
+  var today = new Date;
+  var dataRegisto = today.getFullYear() + &apos;-&apos; + (today.getMonth() + 1) + &apos;-&apos; + today.getDate() + &quot;T&quot; + today.getHours() + &quot;:&quot; + today.getMinutes();
+
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;Incident&quot;);
+    var query = { incidentId: id }
+    var values = { $set: { local: local, incidenteCreate: dataRegisto, status: estado, description: descricao, user: reportadoPor } }
+
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
+        res.redirect(&quot;registoERROR.html&quot;);
+        console.log(result)
+        client.close();
+      } else {
+        collection.updateOne(query, values, function (err, result) {
+          if (err || !result) {
+            res.redirect(&quot;registoERROR.html&quot;);
+            console.log(result)
+            console.log(err);
+          } else {
+            res.redirect(&quot;ocorrencias.html&quot;);
+            console.log(result)
+            client.close();
+          }
+        })
+      }
+    })
+  })
+})
+module.exports = router;
+
+
+// Alterar Estado das Ocorr&#xEA;ncias
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/alterarEstadoOcorrencias&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var id = req.body.id;
+  var estado = parseInt(req.body.estadoOcorrencia);
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;Incident&quot;);
+    var query = { incidentId: id }
+    var values = { $set: { status: estado } }
+
+    collection.findOne(query, function (err, result) {
+      if (err || !result) {
+        res.redirect(&quot;registoERROR.html&quot;);
+        console.log(result)
+        client.close();
+      } else {
+        collection.updateOne(query, values, function (err, result) {
+          if (err || !result) {
+            res.redirect(&quot;registoERROR.html&quot;);
+            console.log(result)
+            console.log(err);
+          } else {
+            res.redirect(&quot;ocorrencias.html&quot;);
+            console.log(result)
+            client.close();
+          }
+        })
+      }
+    })
+  })
+})
+module.exports = router;
+
+// Eliminar Ocorr&#xEA;ncia
+
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+router.post(&quot;/eliminarOcorrencia&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var id = req.body.id;
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;Incident&quot;);
+    var query = { incidentId: id };
+    collection.deleteOne(query, function (err, result) {
+      if (err || !result) {
+        res.redirect(&quot;registoERROR.html&quot;);
+        console.log(result)
+      } else {
+        res.redirect(&quot;ocorrencias.html&quot;);
+        console.log(result)
+        client.close();
+      }
+    })
+  });
+
+});
+module.exports = router;
+
+// Mostrar Ocorr&#xEA;ncias
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+router.get(&quot;/getOcorrencias&quot;, (req, res, next) =&gt; {
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;Incident&quot;);
+    collection.find({}).toArray((err, result) =&gt; {
+      if (err) {
+        console.log(err);
+        res.send(500);
+        client.close();
+      } else {
+        res.send(result);
+        client.close();
+      }
+
+    })
+  });
+});
+module.exports = router;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

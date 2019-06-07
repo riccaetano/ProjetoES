@@ -2,7 +2,7 @@
   "source": "./",
   "destination": "./docs",
   "includes": ["\\.js$"],
-  "excludes": ["(node_modules|docs|src|dist|foo.js)"],
+  "excludes": ["(node_modules|docs|src|dist|pdfmake)"],
   "plugins": [
   {
     "name": "esdoc-standard-plugin",

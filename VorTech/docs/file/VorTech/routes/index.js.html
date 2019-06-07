@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">VorTech/routes/index.js | teste</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">VorTech/routes/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">var express = require(&apos;express&apos;);
+var router = express.Router();
+const MongoClient = require(&apos;mongodb&apos;).MongoClient;
+const uri = &quot;mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true&quot;;
+
+var bcrypt = require(&apos;bcrypt&apos;);
+var passport = require (&apos;passport&apos;);
+const saltRounds = 10;
+
+// Login
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/login&quot;, (req, res, next) =&gt; {
+  console.log(req.body)
+  var num = parseInt(req.body.numeroIPS);
+  var pass =  req.body.psw;
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;User&quot;);
+    var query= {numIps: num};
+    // perform actions on the collection object
+    collection.findOne(query, function(err,results){
+      if(err || !results) {
+        res.redirect(&quot;loginError.html&quot;);
+      } else {
+            const hash = results.password;
+            bcrypt.compare(pass, hash, function(err,result) {
+              if(err || !result) {
+                res.redirect(&quot;loginError.html&quot;);
+              } else {
+                res.redirect(&quot;Index.html&quot;);
+              }
+            });
+            
+      }
+
+    })
+  });
+});
+
+
+module.exports = router;
+
+// Registar User
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/registar&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var num = parseInt(req.body.numeroIPS);
+  var pass = req.body.psw;
+  var username = req.body.username;
+  var role = 3;
+  var palette = &quot;default&quot;;
+
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err =&gt; {
+    const collection = client.db(&quot;VorTech&quot;).collection(&quot;User&quot;);
+    const collection1 = client.db(&quot;VorTech&quot;).collection(&quot;Person&quot;);
+    var query = { numIps: num };
+    collection1.findOne(query, function (err, result) {
+      if (err || !result) {
+        res.redirect(&quot;registoERROR.html&quot;);
+        console.log(result)
+      } else {
+
+        bcrypt.hash(pass, saltRounds, function(err,hash) {
+        collection.insertOne({numIps: num, username: username, password: hash, role: role, palette: palette})
+        res.redirect(&quot;index.html&quot;);
+      });
+      }
+
+    })
+  });
+});
+
+module.exports = router;
+
+// Esquecer Password
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/recuperarPass&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var numero = parseInt(req.body.numeroIPS);
+  var password = req.body.psw;
+  var repPassword = req.body.repPsw
+  var user = req.body.username;
+
+  if (password != repPassword) {
+    res.redirect(&quot;recuperarPassERROR.html&quot;)
+    alert(&quot;Passwords n&#xE3;o correspondem&quot;);
+  } else {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err =&gt; {
+      const collection = client.db(&quot;VorTech&quot;).collection(&quot;User&quot;);
+      var query = { numIps: numero, username: user };
+      var values = { $set: { password: password } };
+      collection.updateOne(query, values, function (err, result) {
+        if (err || !result) {
+          res.redirect(&quot;recuperarPassERROR.html&quot;);
+          console.log(result)
+          console.log(err);
+        } else {
+          res.redirect(&quot;index.html&quot;);
+          console.log(result);
+          client.close();
+        }
+      })
+      // client.close();
+    });
+  }
+});
+
+module.exports = router;
+
+
+// Alterar Password
+router.get(&apos;/&apos;, function (req, res, next) {
+  res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+});
+
+router.post(&quot;/alterarPassword&quot;, (req, res, next) =&gt; {
+  console.log(req.body);
+  var numeroIPS = parseInt(req.body.numeroIPS);
+  var username = req.body.username;
+  var passwordAntiga = req.body.passAntiga;
+  var passwordNova = req.body.passNova;
+  var passwordNovaRep = req.body.passNovaRepetir;
+
+  if (passwordNova != passwordNovaRep) {
+    alert(&quot;Passwords n&#xE3;o correspondem&quot;);
+  } else {
+
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err =&gt; {
+      const collection = client.db(&quot;VorTech&quot;).collection(&quot;User&quot;);
+      var query = { $set: { password: passwordNova } };
+      var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
+      var queryFilter1 = { numIps: numeroIPS, username: username };
+      collection.findOne(queryFilter, function (err, result) {
+        if (err || !result) {
+          res.redirect(&quot;registoERROR.html&quot;);
+          console.log(result)
+        } else {
+          collection.updateOne(queryFilter1, query, function (err, result) {
+            if (err || !result) {
+              res.redirect(&quot;registoERROR.html&quot;);
+              console.log(result)
+              console.log(err);
+            } else {
+              res.redirect(&quot;defini&#xE7;&#xF5;es.html&quot;);
+              console.log(result)
+              client.close();
+            }
+          })
+        }
+      })
+    });
+  }
+});
+module.exports = router;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

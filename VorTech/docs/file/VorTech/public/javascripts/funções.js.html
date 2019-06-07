@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">VorTech/public/javascripts/fun&#xE7;&#xF5;es.js | teste</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">VorTech/public/javascripts/fun&#xE7;&#xF5;es.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Mexer Menu
+function w3_open() {
+    document.getElementById(&quot;mySidebar&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;myOverlay&quot;).style.display = &quot;block&quot;;
+    }
+    
+    function w3_close() {
+    document.getElementById(&quot;mySidebar&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;myOverlay&quot;).style.display = &quot;none&quot;;
+    }
+    
+// Esconder Divs
+
+function requisitarSalas() {
+    document.getElementById(&apos;requisitarSalas&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;requisitarMateriais&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarEventos&apos;).style.display=&quot;none&quot;
+}
+   
+function requisitarMateriais() {
+    document.getElementById(&apos;requisitarSalas&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;requisitarMateriais&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;registarEventos&apos;).style.display=&quot;none&quot;
+}
+
+  function registarEventos(){
+    document.getElementById(&apos;requisitarSalas&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;requisitarMateriais&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarEventos&apos;).style.display=&quot;block&quot;
+  }
+
+function perfil() {
+    document.getElementById(&apos;perfil&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;gerirUsers&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirSalas&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;gerirMateriais&apos;).style.display = &quot;none&quot;
+}
+
+function gerirUsers() {
+    document.getElementById(&apos;perfil&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirUsers&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;gerirSalas&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;gerirMateriais&apos;).style.display = &quot;none&quot;
+}
+   
+
+function gerirMateriais() {
+    document.getElementById(&apos;perfil&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirUsers&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirSalas&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;gerirMateriais&apos;).style.display = &quot;block&quot;
+}
+
+
+function gerirSalas() {
+    document.getElementById(&apos;perfil&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirUsers&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;gerirSalas&apos;).style.display=&quot;block&quot;
+    document.getElementById(&apos;gerirMateriais&apos;).style.display = &quot;none&quot;
+}
+   
+function consultarArtigo() {
+    document.getElementById(&apos;consultarArtigo&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;registarArtigo&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;levantarArtigo&apos;).style.display = &quot;none&quot;
+}
+   
+function registarArtigo() {
+    document.getElementById(&apos;consultarArtigo&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarArtigo&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;levantarArtigo&apos;).style.display = &quot;none&quot;
+}
+
+function levantarArtigo() {
+    document.getElementById(&apos;consultarArtigo&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarArtigo&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;levantarArtigo&apos;).style.display = &quot;block&quot;
+}
+
+function consultarSalas() {
+    document.getElementById(&apos;consultarSalas&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;consultarMateriais&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarEventos&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;consultarAulas&apos;).style.display=&quot;none&quot;
+}
+   
+function consultarMateriais() {
+    document.getElementById(&apos;consultarSalas&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarMateriais&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;consultarEventos&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;consultarAulas&apos;).style.display=&quot;none&quot;
+}
+function consultarEventos() {
+    document.getElementById(&apos;consultarSalas&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarMateriais&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarEventos&apos;).style.display=&quot;block&quot;
+    document.getElementById(&apos;consultarAulas&apos;).style.display=&quot;none&quot;
+}
+function consultarAulas() {
+    document.getElementById(&apos;consultarSalas&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarMateriais&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;consultarEventos&apos;).style.display=&quot;none&quot;
+    document.getElementById(&apos;consultarAulas&apos;).style.display=&quot;block&quot;
+}
+
+function consultarOcorrencias() {
+    document.getElementById(&apos;consultarOcorrencias&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;registarOcorrencias&apos;).style.display = &quot;none&quot;
+}
+   
+function registarOcorrencias() {
+    document.getElementById(&apos;consultarOcorrencias&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarOcorrencias&apos;).style.display = &quot;block&quot;
+}
+
+function registarEntrada() {
+    document.getElementById(&apos;registarEntrada&apos;).style.display = &quot;block&quot;
+    document.getElementById(&apos;registarSaida&apos;).style.display = &quot;none&quot;
+}
+   
+function registarSaida() {
+    document.getElementById(&apos;registarEntrada&apos;).style.display = &quot;none&quot;
+    document.getElementById(&apos;registarSaida&apos;).style.display = &quot;block&quot;
+}
+
+
+// Login, Registar User e Recuperar Password
+function openLogin() {
+    document.getElementById(&quot;login&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;registarUser&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;recuperarPass&quot;).style.display = &quot;none&quot;;
+  }
+
+function closeLogin() {
+    document.getElementById(&quot;login&quot;).style.display = &quot;none&quot;;
+  }
+
+function openRegistar() {
+    document.getElementById(&quot;registarUser&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;login&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;recuperarPass&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeRegistar() {
+    document.getElementById(&quot;registarUser&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openRecuperar() {
+    document.getElementById(&quot;registarUser&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;login&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;recuperarPass&quot;).style.display = &quot;block&quot;;
+  }
+  
+  function closeRecuperar() {
+    document.getElementById(&quot;recuperarPass&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openAlterarPass() {
+    document.getElementById(&quot;alterarPass&quot;).style.display = &quot;block&quot;;
+  }
+  
+  function closeAlterarPass() {
+    document.getElementById(&quot;alterarPass&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openAdicionarSala() {
+    document.getElementById(&quot;adicionarSala&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;alterarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;eliminarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;adicionarSalaMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeAdicionarSala() {
+    document.getElementById(&quot;adicionarSala&quot;).style.display = &quot;none&quot;;
+  }
+  
+
+  function openAlterarSala() {
+    document.getElementById(&quot;adicionarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;alterarSala&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;eliminarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;adicionarSalaMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeAlterarSala() {
+    document.getElementById(&quot;alterarSala&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openEliminarSala() {
+    document.getElementById(&quot;adicionarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;alterarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;eliminarSala&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;adicionarSalaMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeEliminarSala() {
+    document.getElementById(&quot;eliminarSala&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openAdicionarSalaMaterial() {
+    document.getElementById(&quot;adicionarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;alterarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;eliminarSala&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;adicionarSalaMaterial&quot;).style.display = &quot;block&quot;;
+  }
+  
+  function closeAdicionarSalaMaterial() {
+    document.getElementById(&quot;adicionarSalaMaterial&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openAdicionarMaterial() {
+    document.getElementById(&quot;adicionarMaterial&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;alterarMaterial&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;eliminarMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeAdicionarMaterial() {
+    document.getElementById(&quot;adicionarMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+
+  function openAlterarMaterial() {
+    document.getElementById(&quot;adicionarMaterial&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;alterarMaterial&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;eliminarMaterial&quot;).style.display = &quot;none&quot;;
+  }
+  
+  function closeAlterarMaterial() {
+    document.getElementById(&quot;alterarMaterial&quot;).style.display = &quot;none&quot;;
+  }
+
+  function openEliminarMaterial() {
+    document.getElementById(&quot;adicionarMaterial&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;alterarMaterial&quot;).style.display = &quot;none&quot;;
+    document.getElementById(&quot;eliminarMaterial&quot;).style.display = &quot;block&quot;;
+  }
+  
+  function closeEliminarMaterial() {
+    document.getElementById(&quot;eliminarMaterial&quot;).style.display = &quot;none&quot;;
+  }
+
+function openAlterarUser() {
+    document.getElementById(&quot;alterarUser&quot;).style.display = &quot;block&quot;;
+    document.getElementById(&quot;eliminarUser&quot;).style.display = &quot;none&quot;;
+}
+
+function closeAlterarUser() {
+    document.getElementById(&quot;alterarUser&quot;).style.display = &quot;none&quot;;
+}
+
+
+function openEliminarUser() {
+  document.getElementById(&quot;alterarUser&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;eliminarUser&quot;).style.display = &quot;block&quot;;
+}
+
+function closeEliminarUser() {
+    document.getElementById(&quot;eliminarUser&quot;).style.display = &quot;none&quot;;
+}
+
+function openAlterarOcorrencia() {
+  document.getElementById(&quot;alterarOcorrencia&quot;).style.display = &quot;block&quot;;
+  document.getElementById(&quot;eliminarOcorrencia&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;alterarEstadoOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function closeAlterarOcorrencia() {
+  document.getElementById(&quot;alterarOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function openEliminarOcorrencia() {
+  document.getElementById(&quot;eliminarOcorrencia&quot;).style.display = &quot;block&quot;;
+  document.getElementById(&quot;alterarOcorrencia&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;alterarEstadoOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function closeEliminarOcorrencia() {
+  document.getElementById(&quot;eliminarOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function openEliminarArtigo() {
+  document.getElementById(&quot;eliminarArtigo&quot;).style.display = &quot;block&quot;;
+}
+
+function closeEliminarArtigo() {
+  document.getElementById(&quot;eliminarArtigo&quot;).style.display = &quot;none&quot;;
+}
+
+
+function openAlterarEstadoOcorrencia() {
+  document.getElementById(&quot;alterarEstadoOcorrencia&quot;).style.display = &quot;block&quot;;
+  document.getElementById(&quot;eliminarOcorrencia&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;alterarOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function closeAlterarEstadoOcorrencia() {
+  document.getElementById(&quot;alterarEstadoOcorrencia&quot;).style.display = &quot;none&quot;;
+}
+
+function openGerarRelatorio() {
+  document.getElementById(&quot;gerarRelatorio&quot;).style.display = &quot;block&quot;;
+}
+
+function closeGerarRelatorio() {
+  document.getElementById(&quot;gerarRelatorio&quot;).style.display = &quot;none&quot;;
+}
+
+function openAlterarEvento() {
+  document.getElementById(&quot;alterarEvento&quot;).style.display = &quot;block&quot;;
+  document.getElementById(&quot;eliminarEvento&quot;).style.display = &quot;none&quot;;
+}
+
+function closeAlterarEvento() {
+  document.getElementById(&quot;alterarEvento&quot;).style.display = &quot;none&quot;;
+}
+
+function openEliminarEvento() {
+  document.getElementById(&quot;alterarEvento&quot;).style.display = &quot;none&quot;;
+  document.getElementById(&quot;eliminarEvento&quot;).style.display = &quot;block&quot;;
+}
+
+function closeEliminarEvento() {
+  document.getElementById(&quot;eliminarEvento&quot;).style.display = &quot;none&quot;;
+}
+
+
+function goBack() {
+  window.history.back();
+}
+
+
+function setStyleSheet(){
+  var stylesheet = document.getElementById(&quot;temas&quot;).value;
+  // var value = stylesheet;
+  // var css = document.getElementById(&quot;temaCSS&quot;);
+  // css.setAttribute(&apos;href&apos;, value);
+  // console.log(value);
+  console.log(stylesheet);
+  // console.log(css);
+
+  for(i=0; (a = document.getElementsByTagName(&quot;link&quot;)[i]); i++) {
+      if(a.getAttribute(&quot;rel&quot;).indexOf(&quot;style&quot;) != -1 &amp;&amp; a.getAttribute(&quot;title&quot;)) {
+        a.disabled = true;
+        console.log(&quot;1&quot;)
+        document.get
+      } else if(a.getAttribute(&quot;title&quot;) == title){
+        a.disabled = false;
+        console.log(&quot;2&quot;);
+      } else {
+        console.log(&quot;3&quot;);
+      }
+    }
+
+}
+
+
+
+function setActiveStyleSheet(title) {
+  var i, a, main;
+  for(i=0; (a = document.getElementsByTagName(&quot;link&quot;)[i]); i++) {
+    if(a.getAttribute(&quot;rel&quot;).indexOf(&quot;style&quot;) != -1 &amp;&amp; a.getAttribute(&quot;title&quot;)) {
+      a.disabled = true;
+      if(a.getAttribute(&quot;title&quot;) == title) a.disabled = false;
+    }
+  }
+}
+
+function getActiveStyleSheet() {
+  var i, a;
+  for(i=0; (a = document.getElementsByTagName(&quot;link&quot;)[i]); i++) {
+    if(a.getAttribute(&quot;rel&quot;).indexOf(&quot;style&quot;) != -1 &amp;&amp; a.getAttribute(&quot;title&quot;) &amp;&amp; !a.disabled) return a.getAttribute(&quot;title&quot;);
+  }
+  return null;
+}
+
+function getPreferredStyleSheet() {
+  var i, a;
+  for(i=0; (a = document.getElementsByTagName(&quot;link&quot;)[i]); i++) {
+    if(a.getAttribute(&quot;rel&quot;).indexOf(&quot;style&quot;) != -1
+       &amp;&amp; a.getAttribute(&quot;rel&quot;).indexOf(&quot;alt&quot;) == -1
+       &amp;&amp; a.getAttribute(&quot;title&quot;)
+       ) return a.getAttribute(&quot;title&quot;);
+  }
+  return null;
+}
+
+function createCookie(name,value,days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = &quot;; expires=&quot;+date.toGMTString();
+  }
+  else expires = &quot;&quot;;
+  document.cookie = name+&quot;=&quot;+value+expires+&quot;; path=/&quot;;
+}
+
+function readCookie(name) {
+  var nameEQ = name + &quot;=&quot;;
+  var ca = document.cookie.split(&apos;;&apos;);
+  for(var i=0;i &lt; ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==&apos; &apos;) c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+window.onload = function(e) {
+  var cookie = readCookie(&quot;style&quot;);
+  var title = cookie ? cookie : getPreferredStyleSheet();
+  setActiveStyleSheet(title);
+}
+
+window.onunload = function(e) {
+  var title = getActiveStyleSheet();
+  createCookie(&quot;style&quot;, title, 365);
+}
+
+var cookie = readCookie(&quot;style&quot;);
+var title = cookie ? cookie : getPreferredStyleSheet();
+setActiveStyleSheet(title);
+
+function activeStyle() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById(&quot;temas&quot;);
+  for(i=0; (a= input[i]); i++) {
+    if(a.getAttribute(&quot;rel&quot;).indexOf(&quot;style&quot;) != -1 &amp;&amp; a.getAttribute(&quot;title&quot;)) {
+      a.disabled = true;}
+      if(a.getAttribute(&quot;title&quot;) == title) {a.disabled = false;}
+    }
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

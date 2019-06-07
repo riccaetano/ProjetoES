@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">VorTech/routes/requisitar.js | teste</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">VorTech/routes/requisitar.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">var express = require(&apos;express&apos;);
+var router = express.Router();
+const MongoClient = require(&apos;mongodb&apos;).MongoClient;
+const uri = &quot;mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true&quot;;
+
+
+// Requisitar Sala
+router.get(&apos;/&apos;, function (req, res, next) {
+    res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+  });
+  
+  router.post(&quot;/requisitarSala&quot;, (req, res, next) =&gt; {
+    console.log(req.body);
+    var numeroSala = req.body.numeroSala;
+    var numeroIPS = parseInt(req.body.numeroIPS);
+    var material = &quot;&quot;;
+    var dataInicio = req.body.dataInicio;
+    var dataFim = req.body.dataFim;
+    var today = new Date;
+    var date = today.getFullYear() + &apos;-&apos; + (today.getMonth() + 1) + &apos;-&apos; + today.getDate() + &quot;T&quot; + today.getHours() + &quot;:&quot; + today.getMinutes();
+    console.log(date);
+    console.log(dataFim);
+  
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err =&gt; {
+      const collection = client.db(&quot;VorTech&quot;).collection(&quot;ClassRoom&quot;);
+      const collection1 = client.db(&quot;VorTech&quot;).collection(&quot;Request&quot;);
+      var query = { name: numeroSala };
+      var values = { $set: { status: 2 } };
+      collection.findOne(query, function (err, result) {
+        if (err || !result) {
+          res.redirect(&quot;requisitar.html&quot;);
+          console.log(result)
+        } else {
+          collection1.insertOne({ user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim })
+          if (date = dataInicio) {
+            collection.updateOne(query, values, function (err, result) {
+              if (err || !result) {
+                res.redirect(&quot;registoERROR.html&quot;);
+                console.log(result)
+                console.log(err);
+              } else {
+                res.redirect(&quot;requisitar.html&quot;);
+                console.log(result)
+                client.close();
+              }
+            })
+          }
+        }
+  
+      })
+    });
+  });
+  module.exports = router;
+
+  // Requisitar Materiais
+router.get(&apos;/&apos;, function (req, res, next) {
+    res.render(&apos;index&apos;, { title: &apos;Express&apos; });
+  });
+  
+  router.post(&quot;/requisitarMaterial&quot;, (req, res, next) =&gt; {
+    console.log(req.body);
+    var numeroMaterial = req.body.material;
+    var numeroIPS = parseInt(req.body.numeroIPS);
+    var dataInicio = req.body.dataInicio;
+    var dataFim = req.body.dataFim;
+  
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err =&gt; {
+      const collection = client.db(&quot;VorTech&quot;).collection(&quot;Material&quot;);
+      const collection1 = client.db(&quot;VorTech&quot;).collection(&quot;Request&quot;);
+      var query = { materialId: numeroMaterial };
+      var values = { $set: { status: 2 } };
+      collection.findOne(query, function (err, result) {
+        if (err || !result) {
+          res.redirect(&quot;registoERROR.html&quot;);
+          console.log(result)
+        } else {
+          collection1.insertOne({ user: numeroIPS, classRoom: &quot;&quot;, material: numeroMaterial, startDate: dataInicio, endDate: dataFim })
+          if (date = dataInicio) {
+            collection.updateOne(query, values, function (err, result) {
+              if (err || !result) {
+                res.redirect(&quot;registoERROR.html&quot;);
+                console.log(result)
+                console.log(err);
+              } else {
+                res.redirect(&quot;requisitar.html&quot;);
+                console.log(result)
+                client.close();
+              }
+            })
+          }
+        }
+  
+      })
+    });
+  });
+  module.exports = router;</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

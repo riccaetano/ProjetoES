@@ -8,7 +8,16 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
+/**
+* Função de validação de uma sessão.
+* A validação é realizada através do
+* método Verify() do módulo
+* JSONWebToken.
+* @param {Request} req - Pedido
+* @param {Response} res - Resposta
+* @param {NextFunction} next - Próximo pedido
+* @return {void}
+*/
 
 router.post("/registarOcorrencia", (req, res, next) => {
   console.log(req.body);
