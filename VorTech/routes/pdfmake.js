@@ -174,18 +174,150 @@ router.post('/pdf', (req, res, next) => {
         name = "Ocorrências";
         col = "Incident";
         query = { incidentCreate: dataRelatorio };
+        var documentDefinition = {
+            content: [
+                {
+                    stack: [
+                        `Relatório de ${name}`,
+                        { text: `Relatório Diário das ${name} do dia ${dataRelatorio}`, style: 'subheader' },
+                    ],
+                    style: 'header'
+                },
+                {
+                    text: [
+                        `Este relatório contem informações sobre as requisições feitas no dia ${dataRelatorio}, assim como um resume sobre as salas e materiais mais requisitados`,
+                    ]
+                },
+                'Salas mais requisitadas: ',
+                              
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'right',
+                    margin: [0, 190, 0, 80]
+                },
+                subheader: {
+                    fontSize: 14
+                },
+                superMargin: {
+                    margin: [20, 0, 40, 0],
+                    fontSize: 15
+                }
+            }
+        };
     } else if (tipoRelatorio == 3) {
         name = "Eventos";
         col = "Event";
         query = { startDate: dataRelatorio };
+        var documentDefinition = {
+            content: [
+                {
+                    stack: [
+                        `Relatório de ${name}`,
+                        { text: `Relatório Diário das ${name} do dia ${dataRelatorio}`, style: 'subheader' },
+                    ],
+                    style: 'header'
+                },
+                {
+                    text: [
+                        `Este relatório contem informações sobre as requisições feitas no dia ${dataRelatorio}, assim como um resume sobre as salas e materiais mais requisitados`,
+                    ]
+                },
+                'Salas mais requisitadas: ',
+                              
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'right',
+                    margin: [0, 190, 0, 80]
+                },
+                subheader: {
+                    fontSize: 14
+                },
+                superMargin: {
+                    margin: [20, 0, 40, 0],
+                    fontSize: 15
+                }
+            }
+        };
     } else if (tipoRelatorio == 4) {
         name = "Entradas e Saídas";
         col = "Hours";
         query = { overtimeIn: dataRelatorio };
+        var documentDefinition = {
+            content: [
+                {
+                    stack: [
+                        `Relatório de ${name}`,
+                        { text: `Relatório Diário das ${name} do dia ${dataRelatorio}`, style: 'subheader' },
+                    ],
+                    style: 'header'
+                },
+                {
+                    text: [
+                        `Este relatório contem informações sobre as requisições feitas no dia ${dataRelatorio}, assim como um resume sobre as salas e materiais mais requisitados`,
+                    ]
+                },
+                'Salas mais requisitadas: ',
+                              
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'right',
+                    margin: [0, 190, 0, 80]
+                },
+                subheader: {
+                    fontSize: 14
+                },
+                superMargin: {
+                    margin: [20, 0, 40, 0],
+                    fontSize: 15
+                }
+            }
+        };
     } else if (tipoRelatorio == 5) {
         // name = "Estatísticas";
         // col = "Estatistica"
         // query = {startDate: dataRelatorio};
+        var documentDefinition = {
+            content: [
+                {
+                    stack: [
+                        `Relatório de ${name}`,
+                        { text: `Relatório Diário das ${name} do dia ${dataRelatorio}`, style: 'subheader' },
+                    ],
+                    style: 'header'
+                },
+                {
+                    text: [
+                        `Este relatório contem informações sobre as requisições feitas no dia ${dataRelatorio}, assim como um resume sobre as salas e materiais mais requisitados`,
+                    ]
+                },
+                'Salas mais requisitadas: ',
+                              
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    alignment: 'right',
+                    margin: [0, 190, 0, 80]
+                },
+                subheader: {
+                    fontSize: 14
+                },
+                superMargin: {
+                    margin: [20, 0, 40, 0],
+                    fontSize: 15
+                }
+            }
+        };
     }
     console.log(name);
     console.log(tipoRelatorio);

@@ -3,7 +3,7 @@
 <title>VorTech</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/default.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/default.css" title = "default" />
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/black.css" title = "black"/>
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/yellow_light.css" title = "yellow_light"/>
 <link rel="alternate stylesheet" type="text/css" media="screen" href="stylesheets/alternative.css" title = "alternative"/>
@@ -48,7 +48,7 @@
     <div class="w3-container">
     <h1><b>Home - Registo Inválido</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-      <button class="w3-button w3-white" onclick=""><i class="w3-margin-right">Voltar</i></button>
+      <button class="w3-button w3-white" onclick="goBack()"><i class="w3-margin-right">Voltar</i></button>
     </div>
     </div>
   </header>
@@ -64,7 +64,7 @@
         <h1>Login</h1>
     
           <label for="numeroIPS"><b>Número IPS</b></label>
-          <input class="w3-input w3-border" name="numeroIPS" type="text">
+          <input class="w3-input w3-border" name="number" type="text">
       
           <label for="psw"><b>Password</b></label>
           <input class="w3-input w3-border" name="psw" type="password" required>
@@ -80,7 +80,7 @@
           <h1>Registar</h1>
       
           <label for="numeroIPS"><b>Número IPS</b></label>
-          <input class="w3-input w3-border" name="numeroIPS" type="text" required>
+          <input class="w3-input w3-border" name="numeroIPS" type="number" required>
 
           <label for="username"><b>Username</b></label>
           <input class="w3-input w3-border" name="username" type="text" required>
@@ -98,7 +98,7 @@
           <h1>Recuperar Password</h1>
       
           <label for="numeroIPS"><b>Número IPS</b></label>
-          <input class="w3-input w3-border" name="numeroIPS" type="text" required>
+          <input class="w3-input w3-border" name="numeroIPS" type="number" required>
 
           <label for="name"><b>Username</b></label>
           <input class="w3-input w3-border" name="username" type="text" required>

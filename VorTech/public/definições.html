@@ -66,19 +66,19 @@
       <form action="/action_page.php" target="_blank">
         <div class="w3-section">
           <label>Id</label>
-          <input class="w3-input w3-border" type="text" name="Name" required>
+          <input class="w3-input w3-border" style="margin: 1%" type="text" name="Name" required>
         </div>
         <div class="w3-section">
           <label>Número IPS</label>
-          <input class="w3-input w3-border" type="text" name="Email" required>
+          <input class="w3-input w3-border" style="margin: 1%" type="number" name="Email" required>
         </div>
         <div class="w3-section">
           <label>Cartão de Cidadão</label>
-          <input class="w3-input w3-border" type="text" name="Message" required>
+          <input class="w3-input w3-border" style="margin: 1%" type="text" name="Message" required>
         </div>
         <div class="w3-section">
               <label>User</label>
-              <input class="w3-input w3-border" type="date" name="Message" required>
+              <input class="w3-input w3-border" style="margin: 1%" type="date" name="Message" required>
           </div>
           <div class="w3-section">
             <label>Tema</label>
@@ -90,7 +90,7 @@
         </div>
         <div class="w3-section">
           <label>Role</label>
-          <input class="w3-input w3-border" type="text" name="Message" required>
+          <input class="w3-input w3-border" style="margin: 1%" type="text" name="Message" required>
       </div>
           <div class="w3-section">
             <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarPass()">Alterar Password</button>
@@ -275,7 +275,7 @@
       <form action="/addMaterial" method="POST" class="form-container">
         <h1>Adicionar Material</h1>
         <label for="numeroIPS"><b>Material ID</b></label>
-        <input class="w3-input w3-border" type="text" name="numeroMaterial" required>
+        <input class="w3-input w3-border" type="number" name="numeroMaterial" required>
         
         <label for="numeroIPS"><b>Nome</b></label>
         <input class="w3-input w3-border" type="text" name="nome" required>
@@ -325,7 +325,7 @@
     <form action="/addUser" method="POST" class="form-container">
       <h1>Adicionar User</h1>
       <label for="numeroIPS"><b>Número IPS</b></label>
-      <input class="w3-input w3-border" type="text" name="numeroIPS" required>
+      <input class="w3-input w3-border" type="number" name="numeroIPS" required>
 
       <label for="name"><b>Nome User</b></label>
       <input class="w3-input w3-border" type="text" name="username" required>
@@ -345,7 +345,7 @@
   <form action="/updateUser" method="POST" class="form-container">
     <h1>Alterar Estado</h1>
       <label for="numeroIPS"><b>Número IPS</b></label>
-      <input class="w3-input w3-border" type="text" name="numeroIPS" required>
+      <input class="w3-input w3-border" type="number" name="numeroIPS" required>
 
       <label for="name"><b>User Name</b></label>
       <input class="w3-input w3-border" type="text" name="username" required>
@@ -363,7 +363,7 @@
   <form action="/deleteUser" method="POST" class="form-container">
     <h1>Eliminar User</h1>
     <label for="numeroIPS"><b>Número IPS</b></label>
-    <input class="w3-input w3-border" type="text" name="numeroIPS" required>
+    <input class="w3-input w3-border" type="number" name="numeroIPS" required>
 
     <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
     <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarUser()">Cancelar</button>
