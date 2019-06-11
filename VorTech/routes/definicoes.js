@@ -22,14 +22,22 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("ClassRoom");
       var query = { name: numeroSala, section: bloco,school: escola, floor: andar, status: estado, material: material };
-      collection.insertOne(query, function (err, result) {
+      var queryFilter = { name: numeroSala};
+      collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
-          res.redirect("registoERROR.html");
-          console.log(result)
+          collection.insertOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
         } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
+          res.redirect("registoERROR.html");
+          console.log(result)          
         }
       })
     });
@@ -65,7 +73,7 @@ router.get('/', function (req, res, next) {
               console.log(result)
               console.log(err);
             } else {
-              res.redirect("requisitar.html");
+              res.redirect("definições.html");
               console.log(result)
               client.close();
             }
@@ -126,18 +134,24 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("ClassRoom");
       var query = { name: numeroSala };
-      collection.deleteOne(query, function (err, result) {
+      collection.findOne(query, function (err, result) {
         if (err || !result) {
-          res.redirect("registoERROR.html");
+          res.redirect("./registoERROR.html");
           console.log(result)
         } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
+          collection.deleteOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
         }
       })
-    });
-  
+    })
   });
   module.exports = router;
   
@@ -160,16 +174,25 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("Material");
       var query = { materialId: numeroMaterial, name: nome, status: 1, description: descricao };
-      collection.insertOne(query, function (err, result) {
+      var queryFilter = { materialId: numeroMaterial};
+      collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
+          collection.insertOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })          
+        } else {
           res.redirect("registoERROR.html");
           console.log(result)
-        } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
         }
       })
+      
     });
   });
   module.exports = router;
