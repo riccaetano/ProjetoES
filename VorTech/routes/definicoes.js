@@ -225,7 +225,7 @@ router.get('/', function (req, res, next) {
               console.log(result)
               console.log(err);
             } else {
-              res.redirect("requisitar.html");
+              res.redirect("definições.html");
               console.log(result)
               client.close();
             }
