@@ -249,14 +249,21 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("Material");
       var query = { materialId: material };
-      collection.deleteOne(query, function (err, result) {
+      collection.findOne(query, function (err, result) {
         if (err || !result) {
           res.redirect("registoERROR.html");
           console.log(result)
         } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
+          collection.deleteOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
         }
       })
     });
@@ -280,17 +287,26 @@ router.get('/', function (req, res, next) {
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
+      var queryFilter = { numIps: numeroIPS};
       var query = { numIps: numeroIPS, username: username, password: password, role: role, palette: palette, status: estado };
-      collection.insertOne(query, function (err, result) {
+      collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
+          collection.insertOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
+        } else {
           res.redirect("registoERROR.html");
           console.log(result)
-        } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
         }
       })
+      
     });
   });
   module.exports = router;
@@ -346,14 +362,21 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
       var query = { numIps: numeroIPS };
-      collection.deleteOne(query, function (err, result) {
+      collection.findOne(query, function (err, result) {
         if (err || !result) {
-          res.redirect("registoERROR.html");
-          console.log(result)
+              res.redirect("registoERROR.html");
+              console.log(result)
         } else {
-          res.redirect("definições.html");
-          console.log(result)
-          client.close();
+          collection.deleteOne(query, function (err, result) {
+            if (err || !result) {
+              res.redirect("registoERROR.html");
+              console.log(result)
+            } else {
+              res.redirect("definições.html");
+              console.log(result)
+              client.close();
+            }
+          })
         }
       })
     });
