@@ -72,6 +72,7 @@
               class="fa fa-edit w3-margin-right"></i>Registar Artigos Perdidos</button>
           <button onclick="levantarArtigo()" class="w3-button w3-white w3-hide-small"><i
               class="fa fa-check-square-o w3-margin-right"></i>Levantar Artigos Perdidos</button>
+              <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
         </div>
       </div>
     </header>
@@ -173,6 +174,22 @@
           onclick="closeEliminarArtigo()">Cancelar</button>
       </form>
     </div>
+
+    
+<div class="form-popup" id="ajuda">
+  <form  class="form-container">
+    <h1>Ajuda Página Home</h1>
+
+    <label>Para consultar, registar ou levantar artigos perdidos utilize os botões que se encontraram ao lado do botão de ajuda. Caso queira usar um filtro de consulta preencha as opçoes acima da tabela, para eliminar um artigo abra a página de consulta e clique no botão Eliminar Artigo de seguida é só necessário preencher o Id do Artigo. Para resitar é só ecessário preencher os campos em questão e clicar no botão Registar. Por fim caso queria levantar um artigo só precisa de preencher os cmapos e clicar em Levantar.</label>
+    <br>
+    <label>Para navegar pelas várias páginas existentes utilize a barra de navegação à esquerda da página.</label>
+    
+
+    <br><br>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
+  </form>
+</div>
+
 
 
     <div class="separador2 w3-center w3-padding-24" style="text-align:center">Instituto Politécnico de Setúbal &
