@@ -51,6 +51,7 @@
       <button class="w3-button w3-white" onclick="openLogin()"><i class="w3-margin-right">Login</i></button>
       <button class="w3-button w3-white w3-margin-right" onclick="openRegistar()"><i class="w3-margin-right">Registar</i></button>
       <a class="w3-button w3-white w3-margin-right" href="https://forms.gle/Wk1355qvmguWGPy89 ">Dê a sua opinião</i></a>
+      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
      
     </div>
     </div>
@@ -137,14 +138,24 @@
             </form>
     </div>
 
+    <div class="form-popup" id="ajuda">
+      <form  class="form-container">
+        <h1>Ajuda Página Home</h1>
+    
+        <label>fodasse</label>
+
+
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Cancelar</button>
+      </form>
+</div>
+
     <div class="form-popup" id="errorLogin">
       <form action="/action_page.php" class="form-container">
         <h1>Login Inválido</h1>
     
         <label for="numeroIPS"><b>Verifique o número e a password inseridas</b></label>
     
-        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Login</button>
-        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
       </form>
 </div>
 

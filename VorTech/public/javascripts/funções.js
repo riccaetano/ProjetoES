@@ -429,3 +429,15 @@ function activeStyle() {
       if(a.getAttribute("title") == title) {a.disabled = false;}
     }
 }
+
+// Login, Registar User e Recuperar Password
+function openAjuda() {
+  document.getElementById("ajuda").style.display = "block";
+  document.getElementById("login").style.display = "none";
+  document.getElementById("registarUser").style.display = "none";
+  document.getElementById("recuperarPass").style.display = "none";
+}
+
+function closeAjuda() {
+  document.getElementById("ajuda").style.display = "none";
+}
