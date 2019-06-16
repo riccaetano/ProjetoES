@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
 
 var bcrypt = require('bcrypt');
-var passport = require ('passport');
 const saltRounds = 10;
 
 // Login
@@ -120,7 +119,6 @@ router.post("/recuperarPass", (req, res, next) => {
 
 module.exports = router;
 
-
 // Alterar Password
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
@@ -141,7 +139,8 @@ router.post("/alterarPassword", (req, res, next) => {
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
-      var query = { $set: { password: passwordNova } };
+      bcrypt.hash(passwordNova, saltRounds, function(err,hash) {
+      var query = { $set: { password: hash } };
       var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
       var queryFilter1 = { numIps: numeroIPS, username: username };
       collection.findOne(queryFilter, function (err, result) {
@@ -163,6 +162,8 @@ router.post("/alterarPassword", (req, res, next) => {
         }
       })
     });
+  });
   }
 });
+
 module.exports = router;
