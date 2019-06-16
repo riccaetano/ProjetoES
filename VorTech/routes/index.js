@@ -99,7 +99,8 @@ router.post("/recuperarPass", (req, res, next) => {
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
       var query = { numIps: numero, username: user };
-      var values = { $set: { password: password } };
+      bcrypt.hash(password, saltRounds, function(err,hash) {
+      var values = { $set: { password: hash } };
       collection.updateOne(query, values, function (err, result) {
         if (err || !result) {
           res.redirect("recuperarPassERROR.html");
@@ -110,6 +111,7 @@ router.post("/recuperarPass", (req, res, next) => {
           console.log(result);
           client.close();
         }
+      });
       })
       // client.close();
     });
