@@ -49,6 +49,7 @@
     <div class="w3-section w3-bottombar w3-padding-16">
       <button onclick="registarEntrada()" class="w3-button w3-white"><i class="w3-margin-right">Registar Entrada</i></button>
       <button onclick="registarSaida()" class="w3-button w3-white"><i class="w3-margin-right">Registar Saída</i></button>
+      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
     </div>
     </div>
   </header>
@@ -92,6 +93,23 @@
         </div> 
         </div>
       </div>
+
+
+      
+<div class="form-popup" id="ajuda">
+  <form  class="form-container">
+    <h1>Ajuda Página Home</h1>
+
+    <label>Para registar a hora de entrada ou saida utilize os botões que se encontraram ao lado do botão de ajuda. Só é preciso preencher a data e o número do IPS e clicar no botão Registar.</label>
+    <br>
+    <label>Para navegar pelas várias páginas existentes utilize a barra de navegação à esquerda da página.</label>
+    
+
+    <br><br>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
+  </form>
+</div>
+
     <hr>
     
     <hr>

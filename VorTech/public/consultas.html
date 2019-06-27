@@ -54,6 +54,7 @@
       <button onclick="consultarEventos()" class="w3-button w3-white w3-hide-small"><i class="fa fa-ticket w3-margin-right"></i>Consultar Eventos</button>
       <button onclick="consultarSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Consultar Salas</button>
       <button onclick="consultarMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Consultar Materiais</button>
+      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
     </div>
     </div>
   </header>
@@ -219,6 +220,20 @@
  
     <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
     <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarEvento()">Cancelar</button>
+  </form>
+</div>
+
+<div class="form-popup" id="ajuda">
+  <form  class="form-container">
+    <h1>Ajuda Página Home</h1>
+
+    <label>Para consultar aulas, eventos, salas,  utilize os botões que se encontraram ao lado do botão de ajuda. Caso queira usar um filtro de consulta preencha as opçoes acima da tabela.</label>
+    <br>
+    <label>Para navegar pelas várias páginas existentes utilize a barra de navegação à esquerda da página.</label>
+    
+
+    <br><br>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
   </form>
 </div>
 

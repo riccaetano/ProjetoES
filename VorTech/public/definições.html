@@ -58,6 +58,7 @@
       <button onclick="gerirMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Gerir Materiais</button>
       <button onclick="gerirUsers()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
       <button  onclick="perfil()" class="w3-button w3-white w3-hide-small"><i class="fa fa-drivers-license-o w3-margin-right"></i>Perfil</i></button>
+      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
     </div>
     </div>
   </header>
@@ -374,6 +375,21 @@
 
     <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Eliminar</button>
     <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeEliminarUser()">Cancelar</button>
+  </form>
+</div>
+
+
+<div class="form-popup" id="ajuda">
+  <form  class="form-container">
+    <h1>Ajuda Página Home</h1>
+
+    <label>Para gerir salas, materiais, utilizadores ou ver o perfil utilize os botões que se encontraram ao lado do botão de ajuda. Para adiciona, alterar, adicionar um material ou eliminar a sala utilize os botões por cima da tabela e preencha as opções. Para os materiais e os utilizadores é utilizada a mesma lógica. Para mudar o tema de um perfil é só necesário clicar no tema que deseja na página User, para alterar password também será nessa página. </label>
+    <br>
+    <label>Para navegar pelas várias páginas existentes utilize a barra de navegação à esquerda da página.</label>
+    
+
+    <br><br>
+    <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
   </form>
 </div>
   
