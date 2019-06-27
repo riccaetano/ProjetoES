@@ -25,11 +25,18 @@ router.post("/login", (req, res, next) => {
       if(err || !results) {
         res.redirect("loginError.html");
       } else {
+
             const hash = results.password;
             bcrypt.compare(pass, hash, function(err,result) {
               if(err || !result) {
                 res.redirect("loginError.html");
               } else {
+                  /////////////////////////
+                 
+                  ////////////////////////
+                document.cookie="numeroIPS="+result[0].numeroIPS;
+                document.cookie="username="+result[0].username;
+                document.cookie="password="+result[0].password;
                 res.redirect("Index.html");
               }
             });
@@ -39,7 +46,6 @@ router.post("/login", (req, res, next) => {
     })
   });
 });
-
 
 module.exports = router;
 
@@ -164,3 +170,22 @@ router.post("/alterarPassword", (req, res, next) => {
   }
 });
 module.exports = router;
+
+
+//getcookie
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
