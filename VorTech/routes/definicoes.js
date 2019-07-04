@@ -278,7 +278,7 @@ router.get('/', function (req, res, next) {
   
   router.post("/addUser", (req, res, next) => {
     console.log(req.body);
-    var numeroIPS = req.body.numeroIPS;
+    var numeroIPS = parseInt(req.body.numeroIPS);
     var username = req.body.username;
     var password = req.body.password;
     var role = req.body.role;
@@ -318,7 +318,7 @@ router.get('/', function (req, res, next) {
   
   router.post("/updateUser", (req, res, next) => {
     console.log(req.body);
-    var numeroIPS = req.body.numeroIPS;
+    var numeroIPS = parseInt(req.body.numeroIPS);
     var username = req.body.username;
     var role = req.body.role;
   
