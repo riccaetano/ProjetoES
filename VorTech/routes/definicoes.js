@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=true";
-
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // Adicionar Salas
 router.get('/', function (req, res, next) {
@@ -288,19 +289,13 @@ router.get('/', function (req, res, next) {
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
       var queryFilter = { numIps: numeroIPS};
-      var query = { numIps: numeroIPS, username: username, password: password, role: role, palette: palette, status: estado };
+      // var query = { numIps: numeroIPS, username: username, password: password, role: role, palette: palette, status: estado };
       collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
-          collection.insertOne(query, function (err, result) {
-            if (err || !result) {
-              res.redirect("registoERROR.html");
-              console.log(result)
-            } else {
-              res.redirect("definições.html");
-              console.log(result)
-              client.close();
-            }
-          })
+          bcrypt.hash(password, saltRounds, function(err,hash) {
+            collection.insertOne({numIps: numeroIPS, username: username, password: hash, role: role, palette: palette})
+            res.redirect("definições.html");
+          });
         } else {
           res.redirect("registoERROR.html");
           console.log(result)

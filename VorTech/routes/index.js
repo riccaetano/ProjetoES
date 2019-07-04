@@ -23,13 +23,16 @@ router.post("/login", (req, res, next) => {
     collection.findOne(query, function(err,results){
       if(err || !results) {
         res.redirect("loginError.html");
+        console.log(results)
       } else {
             const hash = results.password;
             bcrypt.compare(pass, hash, function(err,result) {
               if(err || !result) {
                 res.redirect("loginError.html");
+                console.log(results + "bcrypt")
               } else {
                 res.redirect("Index.html");
+                console.log(results)
               }
             });
             
@@ -65,7 +68,6 @@ router.post("/registar", (req, res, next) => {
         res.redirect("registoERROR.html");
         console.log(result)
       } else {
-
         bcrypt.hash(pass, saltRounds, function(err,hash) {
         collection.insertOne({numIps: num, username: username, password: hash, role: role, palette: palette})
         res.redirect("index.html");
