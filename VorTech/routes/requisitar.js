@@ -29,9 +29,10 @@ router.get('/', function (req, res, next) {
       var values = { $set: { status: 2 } };
       collection.findOne(query, function (err, result) {
         if (err || !result) {
-          res.redirect("requisitar.html");
+          res.redirect("registoERROR.html");
           console.log(result)
         } else {
+          console.log(result)
           collection1.insertOne({ user: numeroIPS, classRoom: numeroSala, material: material, startDate: dataInicio, endDate: dataFim })
           if (date = dataInicio) {
             collection.updateOne(query, values, function (err, result) {
