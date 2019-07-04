@@ -98,18 +98,25 @@ router.post("/eliminarArtigo", (req, res, next) => {
   client.connect(err => {
     const collection = client.db("VorTech").collection("ItemLost");
     var query = { idItem: artigo };
-    collection.deleteOne(query, function (err, result) {
+    collection.findOne(query, function (err, result) {
       if (err || !result) {
         res.redirect("registoERROR.html");
         console.log(result)
-      } else {
-        res.redirect("artigosperdidos.html");
-        console.log(result)
         client.close();
+      } else {
+        collection.deleteOne(query, function (err, result) {
+          if (err || !result || result == "null") {
+            res.redirect("registoERROR.html");
+            console.log(result)
+          } else {
+            res.redirect("artigosperdidos.html");
+            console.log(result)
+            client.close();
+          }
+        })
       }
+      })
     })
-  });
-
 });
 module.exports = router;
 

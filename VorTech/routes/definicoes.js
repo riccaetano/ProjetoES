@@ -350,25 +350,27 @@ router.get('/', function (req, res, next) {
   module.exports = router;
   
   // Eliminar User
-  
+
   router.get('/', function (req, res, next) {
     res.render('index', { title: 'Express' });
   });
-  
   router.post("/deleteUser", (req, res, next) => {
     console.log(req.body);
     var numeroIPS = parseInt(req.body.numeroIPS);
+    console.log(numeroIPS);
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
+      console.log(collection);
       var query = { numIps: numeroIPS };
       collection.findOne(query, function (err, result) {
         if (err || !result) {
-              res.redirect("registoERROR.html");
-              console.log(result)
+          res.redirect("registoERROR.html");
+          console.log(result)
+          client.close();
         } else {
           collection.deleteOne(query, function (err, result) {
-            if (err || !result) {
+            if (err || !result || result == "null") {
               res.redirect("registoERROR.html");
               console.log(result)
             } else {
@@ -378,8 +380,7 @@ router.get('/', function (req, res, next) {
             }
           })
         }
+        })
       })
-    });
-  
   });
   module.exports = router;
