@@ -143,7 +143,7 @@ router.post("/alterarPassword", (req, res, next) => {
       const collection = client.db("VorTech").collection("User");
       bcrypt.hash(passwordNova, saltRounds, function(err,hash) {
       var query = { $set: { password: hash } };
-      var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
+      var queryFilter = { numIps: numeroIPS, username: username };
       var queryFilter1 = { numIps: numeroIPS, username: username };
       collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
