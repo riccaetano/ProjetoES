@@ -62,16 +62,16 @@
     </p>
     <hr>
     <div class="form-popup" id="login">
-      <form id="/login" action="/login" method="POST" class="form-container">
+      <form action="" class="form-container" id="loginForm">
         <h1>Login</h1>
     
         <label for="numeroIPS"><b>Número IPS</b></label>
-        <input class="w3-input w3-border" name="numeroIPS" type="number">
+        <input id="numeroIPS" class="w3-input w3-border" name="numeroIPS" type="number">
     
         <label for="psw"><b>Password</b></label>
-        <input class="w3-input w3-border" name="psw" type="password" required>
+        <input id="password" class="w3-input w3-border" name="psw" type="password" required>
     
-        <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
         <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
         <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
       </form>
@@ -173,6 +173,6 @@
 
 <!-- End page content -->
 </div>
-
+<script src="javascripts/login.js"></script> 
 </body>
 </html>

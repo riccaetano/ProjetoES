@@ -15,6 +15,7 @@
 <script type="text/javascript" src="javascripts/funções.js"></script> 
 <script src="javascripts/consultas.js"></script>  
 
+<script src="javascripts/login.js"></script> 
 <script src="../routes/index.js"></script>  
 <body class="background-color w3-content" style="max-width:1600px">
 
@@ -68,16 +69,15 @@
       <hr class="w3-opacity">
       <form action="/action_page.php" target="_blank">
         <div class="w3-section">
-          <label>Id</label>
-          <input id="ID" class="w3-input w3-border" style="margin: 1%" type="text" name="Name" required>
-        </div>
-        <div class="w3-section">
           <label>Número IPS</label>
-          <input  id="numeroIPS" class="w3-input w3-border" style="margin: 1%" type="number" name="Email" required>
+          <input  id="numeroIPS" class="w3-input w3-border" style="margin: 1%" type="number" name="numeroIPS">
           <script>
-                $(function() {
-                     document.getElementById("numeroIPS").value=getCookie("username");
-                });
+            alert(getCookie("numIps"));
+            $(function(){
+              document.getElementById("numeroIPS").value=getCookie("numIps");
+            });
+                
+             
          </script>  
         </div>
         <div class="w3-section">
@@ -397,6 +397,7 @@
 
 <!-- End page content -->
 </div>
+
 </body>
 </html>
  

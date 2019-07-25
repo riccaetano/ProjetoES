@@ -6,47 +6,112 @@ const uri = "mongodb+srv://user:user@ips-gwakx.gcp.mongodb.net/test?retryWrites=
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
+
 // Login
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body)
-  var num = parseInt(req.body.numeroIPS);
-  var pass =  req.body.psw;
+  
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("VorTech").collection("User");
-    var query= {numIps: num};
+    var num=parseInt(req.body.nIPS);
     // perform actions on the collection object
-    collection.findOne(query, function(err,results){
-      if(err || !results) {
-        res.redirect("loginError.html");
-      } else {
+    collection.findOne({'numIps':num, 'password':req.body.password},(err, res2) => {
+      if(err){
+        res.json({"Message":"SystemError"});
+        console.log("1");
+      }else{
+        console.log("2");        
+        if(res2){
+          console.log("okok");
+          //////////////////////////////////////
 
-            const hash = results.password;
-            bcrypt.compare(pass, hash, function(err,result) {
-              if(err || !result) {
-                res.redirect("loginError.html");
-              } else {
-                  /////////////////////////
-                 
-                  ////////////////////////
-                document.cookie="numeroIPS="+result[0].numeroIPS;
-                document.cookie="username="+result[0].username;
-                document.cookie="password="+result[0].password;
-                res.redirect("Index.html");
+          client.connect(err => {
+            const collection = client.db("VorTech").collection("Person");
+            // perform actions on the collection object
+            collection.findOne({'numIps':num},(err, res3) => {
+              if(err){
+                res.json({"Message":"SystemError2"});
+                console.log("1.1");
+              }else{
+                console.log("2.1");        
+                if(res3){
+                  console.log(res2);
+                  console.log(res3);
+                  res.status(200).json({
+                    "Message": "Success",
+                    "numIps": res2.numIps,
+                    "cc": res3.cc,
+                    "username": res2.username,
+                    "role": res3.role,
+                    "password":res2.password
+                  });
+                }else{
+                  console.log("3.1");
+                  res.json({"Message": "WrongCombination2"});
+                }   
               }
             });
-            
-      }
+          });
 
-    })
+
+          //////////////////////////////////////
+         
+        }else{
+          console.log("3");
+          res.json({"Message": "WrongCombination"});
+        }   
+      }
+    });
   });
 });
-
 module.exports = router;
+
+// function login(req, res){
+//   console.log(req.body)
+//     var num = parseInt(req.body.numeroIPS);
+//     var pass =  req.body.psw;
+//     const client = new MongoClient(uri, { useNewUrlParser: true });
+//     client.connect(err => {
+//       const collection = client.db("VorTech").collection("User");
+//       var query= {numIps: num};
+//       // perform actions on the collection object
+//       collection.findOne(query, function(err,results){
+//         if(err || !results) {
+//           console.log("fase1");
+//         } else {
+//           console.log("fase2");
+//         }
+//       });
+  
+//     });
+// }
+// module.exports.login = login;
+
+// function login(req,res){
+//   const collection = client.db("VorTech").collection("User");
+//   collection.find({ 'numIPS': req.body.nIPS, 'password': req.body.password}, (err, res2) => {
+//   if (err) {
+//   res.json({ "Message": "SystemError" });
+//   } else {
+//   if (res2.length > 0) {
+//   res.json({
+//   "Message": "Success",
+//   "username": res2[0].username,
+//   "password": res2[0].password
+//   });
+//   } else
+//   res.json({ "Message": "WrongCombination" });
+//   }
+//   });
+//   }
+//   module.exports.login=login; 
+   
+  
 
 // Registar User
 router.get('/', function (req, res, next) {
