@@ -441,3 +441,51 @@ function openAjuda() {
 function closeAjuda() {
   document.getElementById("ajuda").style.display = "none";
 }
+
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  if(getCookie("role")==3){
+
+    document.getElementById('registarMenu').style.display = "none";
+    document.getElementById('relatorios').style.display = "none";
+    
+  }
+
+  if(getCookie("role")==""){
+
+    document.getElementById('registarMenu').style.display = "none";
+    document.getElementById('definicoes').style.display = "none";
+    document.getElementById('relatorios').style.display = "none";
+    document.getElementById('ocorrencias').style.display = "none";
+    document.getElementById('artigos').style.display = "none";
+    document.getElementById('entradas').style.display = "none";
+    
+  }
+
+
+});

@@ -34,11 +34,9 @@ function fazerLogin() {
     xhr.onload = function () {
 
         if (xhr.readyState == 4 && xhr.status == "200") {
-            alert("calate");
             if (xhr.response.Message=="WrongCombination"){
                 window.location.replace("loginError.html");
             }else if (xhr.response.Message=="SystemError"){
-            alert("Erro 2");
             }else if (xhr.response.Message=="Success"){
                 document.cookie=
             setCookie("numIps",xhr.response.numIps,10);
@@ -46,7 +44,6 @@ function fazerLogin() {
             setCookie("username",xhr.response.username,10);
             setCookie("role",xhr.response.role,10);
             setCookie("password",xhr.response.passsword,10);
-            alert("yau");
             window.location.replace("index.html");
         }
             } else {
@@ -81,3 +78,25 @@ function setCookie(cname, cvalue, exdays) {
     }
     return "";
   }
+
+  document.addEventListener('DOMContentLoaded',function(){
+
+    if(getCookie("role")==3){
+
+      document.getElementById('registarMenu').style.display = "none";
+      document.getElementById('relatorios').style.display = "none";
+      
+    }
+    if(getCookie("role")==""){
+
+        document.getElementById('registarMenu').style.display = "none";
+        document.getElementById('definicoes').style.display = "none";
+        document.getElementById('relatorios').style.display = "none";
+        document.getElementById('ocorrencias').style.display = "none";
+        document.getElementById('artigos').style.display = "none";
+        document.getElementById('entradas').style.display = "none";
+        
+      }
+
+  });
+

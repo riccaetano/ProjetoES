@@ -8,28 +8,37 @@ const saltRounds = 10;
 
 
 
+
 // Login
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 router.post("/login", (req, res, next) => {
-  
+  console.log(req.body.nIPS)
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
+    var num = parseInt(req.body.nIPS);
+    var pass =  req.body.password;
     const collection = client.db("VorTech").collection("User");
-    var num=parseInt(req.body.nIPS);
     // perform actions on the collection object
-    collection.findOne({'numIps':num, 'password':req.body.password},(err, res2) => {
+    collection.findOne({'numIps':num},(err, res2) => {
       if(err){
         res.json({"Message":"SystemError"});
         console.log("1");
       }else{
-        console.log("2");        
+        const hash = res2.password;
+        bcrypt.compare(pass, hash, function(err,result) {
+          if(err || !result) {
+          res.json({"Message": "WrongCombination"});
+            console.log(res2.password + "bcrypt")
+          } else {
+        console.log("2"); 
+        console.log(num);
+        console.log(pass);       
         if(res2){
           console.log("okok");
-          //////////////////////////////////////
-
+          console.log(res2);
           client.connect(err => {
             const collection = client.db("VorTech").collection("Person");
             // perform actions on the collection object
@@ -38,8 +47,9 @@ router.post("/login", (req, res, next) => {
                 res.json({"Message":"SystemError2"});
                 console.log("1.1");
               }else{
-                console.log("2.1");        
+                       
                 if(res3){
+                  console.log("2.1"); 
                   console.log(res2);
                   console.log(res3);
                   res.status(200).json({
@@ -57,18 +67,17 @@ router.post("/login", (req, res, next) => {
               }
             });
           });
-
-
-          //////////////////////////////////////
-         
         }else{
           console.log("3");
           res.json({"Message": "WrongCombination"});
         }   
       }
+    })
+      };
     });
   });
 });
+
 module.exports = router;
 
 // function login(req, res){
@@ -202,6 +211,7 @@ router.post("/alterarPassword", (req, res, next) => {
   var passwordAntiga = req.body.passAntiga;
   var passwordNova = req.body.passNova;
   var passwordNovaRep = req.body.passNovaRepetir;
+  
 
   if (passwordNova != passwordNovaRep) {
     alert("Passwords não correspondem");
@@ -210,15 +220,17 @@ router.post("/alterarPassword", (req, res, next) => {
     const client = new MongoClient(uri, { useNewUrlParser: true });
     client.connect(err => {
       const collection = client.db("VorTech").collection("User");
-      bcrypt.hash(passwordNova, saltRounds, function(err,hash) {
-      var query = { $set: { password: hash } };
-      var queryFilter = { numIps: numeroIPS, username: username, password: passwordAntiga };
-      var queryFilter1 = { numIps: numeroIPS, username: username };
+      bcrypt.hash(passwordNova, saltRounds, function(err,hashnova) {
+      var query = { $set: { password: hashnova } };
+      var queryFilter = { numIps: numeroIPS, username: username};
+      var queryFilter1 = { numIps: numeroIPS, username: username};
       collection.findOne(queryFilter, function (err, result) {
         if (err || !result) {
           res.redirect("registoERROR.html");
           console.log(result)
         } else {
+          const hash = result.password;
+          bcrypt.compare(passwordAntiga, hash, function(err,result) {
           collection.updateOne(queryFilter1, query, function (err, result) {
             if (err || !result) {
               res.redirect("registoERROR.html");
@@ -229,9 +241,10 @@ router.post("/alterarPassword", (req, res, next) => {
               console.log(result)
               client.close();
             }
+          });
           })
         }
-      })
+      });
     });
   });
   }

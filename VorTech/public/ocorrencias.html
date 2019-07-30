@@ -13,6 +13,7 @@
 <script src="javascripts/filterTable.js"></script>   
 <script src="javascripts/funções.js"></script>   
 <script src="javascripts/ocorrencias.js"></script>  
+<script src="javascripts/login.js"></script> 
 <body class="background-color w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
@@ -27,13 +28,13 @@
   </div>
   <div class="w3-bar-block">
     <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
-    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
-    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
-    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
-    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
-    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
-    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
-    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+    <a href="requisitar.html" onclick="w3_close()" id = "registarMenu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" id = "consultas"class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" id = "relatorios" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" id = "ocorrencias" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" id = "artigos" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" id= "entradas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" id = "definicoes" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
   </div>
 </nav>
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -51,7 +52,7 @@
       <!-- <span class="w3-margin-right">Filter:</span>  -->
       <!-- <button class="w3-button w3-black">ALL</button> -->
       <button onclick="consultarOcorrencias()" class="w3-button w3-white w3-hide-small"><i class="fa fa-search w3-margin-right"></i>Consultar Ocorrências</i></button>
-      <button onclick="registarOcorrencias()" class="w3-button w3-white w3-hide-small"><i class="fa fa-edit w3-margin-right"></i>Registar Ocorrências</button>
+      <button onclick="registarOcorrencias()" id = "registarOcorrencia" class="w3-button w3-white w3-hide-small"><i class="fa fa-edit w3-margin-right"></i>Registar Ocorrências</button>
       <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
     </div>
     </div>
@@ -59,8 +60,8 @@
 
     <div id="consultarOcorrencias" style="text-align: center">
             <h1><b>Consultar Ocorrências</b></h1>
-            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarEstadoOcorrencia()">Alterar Estado</button>
-            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarOcorrencia()">Alterar Ocorrência</button>            
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarEstadoOcorrencia()" id = 'alterarEstadoOcorrencia'>Alterar Estado</button>
+            <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openAlterarOcorrencia()" id = 'alterarOcorrencia'>Alterar Ocorrência</button>            
             <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openEliminarOcorrencia()">Eliminar Ocorrência</button><br><br>
             <label>ID: </label>
             <input id="filterOcorrencias" class="filter" onkeyup="filterOcorrências()" placeholder="Insera o ID" /> 

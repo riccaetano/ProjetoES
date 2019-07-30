@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="javascripts/filterTable.js"></script>   
-<script src="javascripts/funções.js"></script>   
+<script src="javascripts/funções.js"></script>  
+
 <body class="background-color w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
@@ -26,13 +27,13 @@
   </div>
   <div class="w3-bar-block">
     <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
-    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
-    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
-    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
-    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
-    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
-    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
-    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+    <a href="requisitar.html" onclick="w3_close()" id = "registarMenu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" id = "consultas"class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" id = "relatorios" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" id = "ocorrencias" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" id = "artigos" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" id= "entradas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" id "" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
   </div>
 </nav>
 
@@ -46,11 +47,14 @@
   <header id="portfolio">
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    <h1><b>Home - Login Inválido</b></h1>
+    <h1><b>Home - Login Invalido</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-																														 
-      <button class="w3-button w3-white" onclick="openLogin()"><i class="w3-margin-right">Tentar Login</i></button>
+       <button class="w3-button w3-white" id="logoutButton" onclick="deleteCookies()" name="logoutButton2">Logout</button>
+      <button class="w3-button w3-white" id="loginButton" onclick="openLogin()"><i class="w3-margin-right">Login</i></button>
       <button class="w3-button w3-white w3-margin-right" onclick="openRegistar()"><i class="w3-margin-right">Registar</i></button>
+      <a class="w3-button w3-white w3-margin-right" href="https://forms.gle/Wk1355qvmguWGPy89 ">Dê a sua opinião</i></a>
+      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
+     
     </div>
     </div>
   </header>
@@ -61,60 +65,104 @@
       <img src="images\error.png" width="200">																																																																																																																																																																																																								   
     </p>
     <hr>
+
     <div class="form-popup" id="login">
-      <form action="" class="form-container" id="loginForm">
-        <h1>Login</h1>
+     
+            <form action="" class="form-container" id="loginForm">
+              <h1>Login</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input id="numeroIPS" class="w3-input w3-border" name="numeroIPS" type="number">
+          
+              <label for="psw"><b>Password</b></label>
+              <input id="password" class="w3-input w3-border" name="psw" type="password" required>
+              
+              <button class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="registarUser">
+            <form id="/registar" action="/registar" method="POST" class="form-container">
+              <h1>Registar</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input class="w3-input w3-border" name="numeroIPS" type="number" required>
+
+              <label for="username"><b>Username</b></label>
+              <input class="w3-input w3-border" name="username" type="text" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input class="w3-input w3-border" name="psw" type="password" required>
+          
+              <button onclick="" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="recuperarPass">
+            <form d="/recuperarPass" action="/recuperarPass" method="POST" class="form-container">
+              <h1>Recuperar Password</h1>
+          
+              <label for="numeroIPS"><b>Número IPS</b></label>
+              <input class="w3-input w3-border" name="numeroIPS" type="number" required>
+
+              <label for="name"><b>Username</b></label>
+              <input class="w3-input w3-border" name="username" type="text" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input class="w3-input w3-border" name="psw" type="password" required>
+
+              <label for="psw"><b>Repetir Password</b></label>
+              <input class="w3-input w3-border" name="repPsw" type="password" required>
+          
+              <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
+              <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
+            </form>
+    </div>
+
+    <div class="form-popup" id="ajuda">
+      <form  class="form-container">
+        <h1>Ajuda Página Home</h1>
     
-        <label for="numeroIPS"><b>Número IPS</b></label>
-        <input id="numeroIPS" class="w3-input w3-border" name="numeroIPS" type="number">
-    
-        <label for="psw"><b>Password</b></label>
-        <input id="password" class="w3-input w3-border" name="psw" type="password" required>
-    
-        <button class="w3-button w3-black w3-margin-bottom" type="submit" value="login" id="login">Login</button>
-        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeLogin()">Cancelar</button>
-        <button class="w3-button w3-black w3-margin-bottom" type="button" onclick="openRecuperar()">Recuperar Password</button>
+        <label>Para fazer login, registar ou dar-nos a sua opinião utilize os botões que se encontraram ao lado do botão de ajuda.</label>
+        <br>
+        <label>Para navegar pelas várias páginas existentes utilize a barra de navegação à esquerda da página.</label>
+        
+
+        <br><br>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
       </form>
 </div>
 
-<div class="form-popup" id="registarUser">
-      <form id="/registar" action="/registar" method="POST" class="form-container">
-        <h1>Registar</h1>
+    <div class="form-popup" id="errorLogin">
+      <form action="/action_page.php" class="form-container">
+        <h1>Login Inválido</h1>
     
-        <label for="numeroIPS"><b>Número IPS</b></label>
-        <input class="w3-input w3-border" name="numeroIPS" type="number" required>
-
-        <label for="username"><b>Username</b></label>
-        <input class="w3-input w3-border" name="username" type="text" required>
+        <label for="numeroIPS"><b>Verifique o número e a password inseridas</b></label>
     
-        <label for="psw"><b>Password</b></label>
-        <input class="w3-input w3-border" name="psw" type="password" required>
-    
-        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Registar</button>
-        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRegistar()">Cancelar</button>
+        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeAjuda()">Fechar</button>
       </form>
 </div>
 
-<div class="form-popup" id="recuperarPass">
-      <form d="/recuperarPass" action="/recuperarPass" method="POST" class="form-container">
-        <h1>Recuperar Password</h1>
+    <h4>Escolas</h4>
+    <!-- Progress bars / Skills -->
+    <p>Escola de Saúde</p>
+    <div class="separador2">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:30%">30%</div>
+    </div>
+    <p>Escola de Tecnologia</p>
+    <div class="separador2">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:40%">40%</div>
+    </div>
+    <p>Escola de Gestão</p>
+    <div class="separador2">
+      <div class="w3-container w3-dark-grey w3-padding w3-center" style="width:30%">30%</div>
+    </div>
+    <hr>
     
-        <label for="numeroIPS"><b>Número IPS</b></label>
-        <input class="w3-input w3-border" name="numeroIPS" type="number" required>
 
-        <label for="name"><b>Username</b></label>
-        <input class="w3-input w3-border" name="username" type="text" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input class="w3-input w3-border" name="psw" type="password" required>
-
-        <label for="psw"><b>Repetir Password</b></label>
-        <input class="w3-input w3-border" name="repPsw" type="password" required>
-		  
-        <button onclick="openLogin()" class="w3-button w3-black w3-margin-bottom" type="submit" class="btn">Recuperar</button>
-        <button class="w3-button w3-black w3-margin-bottom" type="button" class="btn cancel" onclick="closeRecuperar()">Cancelar</button>
-      </form>
-</div>
   <!-- Contact Section -->
   <div class="w3-container w3-padding-large separador2">
     <h4 id="contact"><b>Contactos</b></h4>
@@ -173,6 +221,20 @@
 
 <!-- End page content -->
 </div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
 <script src="javascripts/login.js"></script> 
 </body>
 </html>
