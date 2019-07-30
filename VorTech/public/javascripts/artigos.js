@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded',function(){
             document.getElementById('registarArtigo').style.display = "none";
             document.getElementById('registarMenu').style.display = "none";
             document.getElementById('relatorios').style.display = "none";
+            document.getElementById('levantarArtigo').style.display = "none";
     };
     if(getCookie("role")==4){
         document.getElementById('registarArtigo').style.display = "none";
