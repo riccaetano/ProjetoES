@@ -46,6 +46,7 @@ app.use('/', artRouter);
 app.use('/', conRouter);
 app.use('/', ocoRouter);
 app.use('/', pdfRouter);
+app.use('/login',indexRouter);
 
 
 // catch 404 and forward to error handler

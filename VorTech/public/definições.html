@@ -14,6 +14,8 @@
 <script src="javascripts/filterTable.js"></script>   
 <script type="text/javascript" src="javascripts/funções.js"></script> 
 <script src="javascripts/consultas.js"></script>  
+<script src="javascripts/login.js"></script> 
+<script src="../routes/index.js"></script>  
 <body class="background-color w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
@@ -28,13 +30,13 @@
   </div>
   <div class="w3-bar-block">
     <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Home</a> 
-    <a href="requisitar.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
-    <a href="consultas.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
-    <a href="relatorios.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
-    <a href="ocorrencias.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
-    <a href="artigosperdidos.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
-    <a href="registarEntradaSaida.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
-    <a href="definições.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
+    <a href="requisitar.html" onclick="w3_close()" id = "registarMenu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit fa-fw w3-margin-right"></i>Registar</a> 
+    <a href="consultas.html" onclick="w3_close()" id = "consultas"class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw w3-margin-right"></i>Consultar</a>
+    <a href="relatorios.html" onclick="w3_close()" id = "relatorios" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw w3-margin-right"></i>Relatórios</a>
+    <a href="ocorrencias.html" onclick="w3_close()" id = "ocorrencias" class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card fa-fw w3-margin-right"></i>Ocorrências</a>
+    <a href="artigosperdidos.html" onclick="w3_close()" id = "artigos" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inbox fa-fw w3-margin-right"></i>Artigos Perdidos</a>
+    <a href="registarEntradaSaida.html" onclick="w3_close()" id= "entradas" class="w3-bar-item w3-button w3-padding"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Registar Entrada/Saída</a>
+    <a href="definições.html" onclick="w3_close()" id = "definicoes" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw w3-margin-right"></i>Definições</a>
   </div>
 </nav>
 
@@ -52,11 +54,11 @@
     <div class="w3-section w3-bottombar w3-padding-16">
       <!-- <span class="w3-margin-right">Filter:</span>  -->
       <!-- <button class="w3-button w3-black">ALL</button> -->
-      <button onclick="gerirSalas()" class="w3-button w3-white w3-hide-small"><i class="fa fa-key w3-margin-right"></i>Gerir Salas</button>
-      <button onclick="gerirMateriais()" class="w3-button w3-white w3-hide-small"><i class="fa fa-laptop w3-margin-right"></i>Gerir Materiais</button>
-      <button onclick="gerirUsers()" class="w3-button w3-white w3-hide-small"><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
+      <button id= "gerirSalas" onclick="gerirSalas()"  class="w3-button w3-white w3-hide-small" ><i class="fa fa-key w3-margin-right"></i>Gerir Salas</button>
+      <button onclick="gerirMateriais()"  class="w3-button w3-white w3-hide-small" id= "gerirMateriais"><i class="fa fa-laptop w3-margin-right"></i>Gerir Materiais</button>
+      <button onclick="gerirUsers()"  class="w3-button w3-white w3-hide-small" id= "gerirUsers" ><i class="fa fa-users w3-margin-right"></i>Gerir Users</button>
       <button  onclick="perfil()" class="w3-button w3-white w3-hide-small"><i class="fa fa-drivers-license-o w3-margin-right"></i>Perfil</i></button>
-      <button class="w3-button w3-white w3-margin-right" onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
+      <button class="w3-button w3-white w3-margin-right"  onclick="openAjuda()"><i class="w3-margin-right">Ajuda</i></button>
     </div>
     </div>
   </header>
@@ -66,20 +68,24 @@
       <hr class="w3-opacity">
       <form action="/action_page.php" target="_blank">
         <div class="w3-section">
-          <label>Id</label>
-          <input class="w3-input w3-border" style="margin: 1%" type="text" name="Name" required>
-        </div>
-        <div class="w3-section">
           <label>Número IPS</label>
-          <input class="w3-input w3-border" style="margin: 1%" type="number" name="Email" required>
+          <input  id="numeroIPS" class="w3-input w3-border" style="margin: 1%" type="number" name="numeroIPS">
+          <script>
+            //alert(getCookie("numIps"));
+            $(function(){
+              document.getElementById("numeroIPS").value=getCookie("numIps");
+            });
+                
+             
+         </script>  
         </div>
         <div class="w3-section">
           <label>Cartão de Cidadão</label>
-          <input class="w3-input w3-border" style="margin: 1%" type="text" name="Message" required>
+          <input id="CC" class="w3-input w3-border" style="margin: 1%" type="text" name="Message" required>
         </div>
         <div class="w3-section">
-              <label>User</label>
-              <input class="w3-input w3-border" style="margin: 1%" type="date" name="Message" required>
+              <label>Username</label>
+              <input id="Username" class="w3-input w3-border" style="margin: 1%" type="text" name="Message" required>
           </div>
           <div class="w3-section">
             <label>Tema</label>
@@ -390,6 +396,7 @@
 
 <!-- End page content -->
 </div>
+
 </body>
 </html>
  
