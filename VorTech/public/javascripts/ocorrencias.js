@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded',function(){
         document.getElementById('alterarOcorrencia').style.display = "none";
         document.getElementById('registarMenu').style.display = "none";
         document.getElementById('relatorios').style.display = "none";
+        document.getElementById('alterarOcorrencia').style.display = "none"; 
+        document.getElementById('alterarEstadoOcorrencia').style.display = "none"; 
+        document.getElementById('eliminarOcorrencia').style.display = "none"; 
+        
             
 
 }
